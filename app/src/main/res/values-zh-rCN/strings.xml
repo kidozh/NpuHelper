@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">瓜大助手</string>
+    <string name="weather_icon_description">天气图标</string>
+    <string name="connection_error_notice">无法与服务器沟通交流</string>
+    <string name="caiyun_support_notice">分钟降雨预报由中国气象局和彩云科技联合出品</string>
+    <string name="location_fail_notice">无法定位，请打开定位服务</string>
+    <string name="unknown_temperature">温度未知</string>
+    <string name="geo_parse_failed">无法获取您的地址</string>
+    <string name="arrivial_tag">开往</string>
+    <string name="youyi_campus_name">友谊校区</string>
+    <string name="changan_campus_name">长安校区</string>
+    <string name="left_time_label">剩余时间</string>
+    <string name="depature_tag" >出发</string>
+    <string name="shuttle_start_time">下一班校车时间</string>
+    <string name="minute_tag">分</string>
+    <string name="no_left_shuttle_today">今日无校车了</string>
+    <string name="npu_library">NPU Library</string>
+    <string name="hour_tag">小时</string>
+    <string name="nav_header_title">瓜大助手</string>
+    <string name="action_settings">设置</string>
+    <string name="bus_list_title">校车时刻表</string>
+    <string name="navigation_drawer_open">打开导航栏</string>
+    <string name="navigation_drawer_close">关闭导航栏</string>
+    <string name="weekday_bus">工作日时刻</string>
+</resources>

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">NPU Helper</string>
+    <string name="weather_icon_description">Weather icon</string>
+    <string name="connection_error_notice">Failed to connect with Internet</string>
+    <string name="caiyun_support_notice">Weather Forcast provided by CMA and Caiyun Tech.</string>
+    <string name="location_fail_notice">Failed to get your location by network.</string>
+    <string name="unknown_temperature">Unknown</string>
+    <string name="geo_parse_failed">Failed to get your location</string>
+    <string name="arrivial_tag">To</string>
+    <string name="youyi_campus_name">Youyi C.</string>
+    <string name="changan_campus_name">Chang\'an C.</string>
+    <string name="left_time_label">Time left</string>
+    <string name="depature_tag">From</string>
+    <string name="shuttle_start_time">Next shuttle</string>
+    <string name="minute_tag">min</string>
+    <string name="no_left_shuttle_today">No Shuttle Left today</string>
+    <string name="title_activity_main_menu">mainMenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">NPU helper</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="npu_library">NPU Library</string>
+    <string name="hour_tag">h</string>
+    <string name="bus_list_title">Bus shuttle list</string>
+    <string name="weekday_bus">weekday bus</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1abc9c</color>
+    <color name="colorPrimaryDark">#16a085</color>
+    <color name="colorAccent">#e74c3c</color>
+
+
+    <color name="colorAlizarin">#e74c3c</color>
+    <color name="colorPomegranate">#c0392b</color>
+    <color name="colorPumpkin">#d35400</color>
+    <color name="colorCarrot">#e67e22</color>
+    <color name="colorSunflower">#f1c40f</color>
+    <color name="colorOrange">#f39c12</color>
+    <color name="colorConcrete">#95a5a6</color>
+    <color name="colorSilver">#bdc3c7</color>
+    <color name="colorAsbestos">#7f8c8d</color>
+    <color name="colorCloud">#ecf0f1</color>
+    <color name="colorEmerland">#2ecc71</color>
+    <color name="colorNephritis">#27ae60</color>
+    <color name="colorTurquoise">#1abc9c</color>
+    <color name="colorGreensea">#16a085</color>
+</resources>

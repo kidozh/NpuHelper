@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/school_bus_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/arrival_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/colorOrange"
+        app:cardElevation="8dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/depature_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/depature_tag"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/depature_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen"
+                android:text="@string/youyi_campus_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                app:layout_constraintStart_toStartOf="@+id/depature_tag"
+                app:layout_constraintTop_toBottomOf="@+id/depature_tag"
+                tools:text="@string/youyi_campus_name" />
+
+            <TextView
+                android:id="@+id/arrival_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/oxygen"
+                android:text="@string/changan_campus_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/depature_place"
+                tools:text="@string/changan_campus_name" />
+
+            <TextView
+                android:id="@+id/arrival_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/arrivial_tag"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                app:layout_constraintEnd_toEndOf="@+id/arrival_place"
+                app:layout_constraintTop_toTopOf="@+id/depature_tag" />
+
+            <TextView
+                android:id="@+id/shuttle_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/shuttle_start_time"
+                android:textAppearance="@android:style/TextAppearance.Material.Small.Inverse"
+                app:layout_constraintStart_toStartOf="@+id/depature_place"
+                app:layout_constraintTop_toBottomOf="@+id/depature_place" />
+
+            <TextView
+                android:id="@+id/shuttle_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                app:layout_constraintStart_toStartOf="@+id/shuttle_label"
+                app:layout_constraintTop_toBottomOf="@+id/shuttle_label"
+                tools:text="11:00" />
+
+            <TextView
+                android:id="@+id/left_time_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/left_time_label"
+                android:textAppearance="@android:style/TextAppearance.Material.Small.Inverse"
+                app:layout_constraintEnd_toEndOf="@+id/arrival_tag"
+                app:layout_constraintTop_toTopOf="@+id/shuttle_label" />
+
+            <TextView
+                android:id="@+id/left_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Material.Large.Inverse"
+                app:layout_constraintEnd_toEndOf="@+id/left_time_label"
+                app:layout_constraintTop_toBottomOf="@+id/left_time_label"
+                tools:text="1 Hours" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/arrival_card1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/colorOrange"
+        app:cardElevation="8dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/depature_tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/depature_tag"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/depature_place1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen"
+                android:text="@string/changan_campus_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                app:layout_constraintStart_toStartOf="@+id/depature_tag1"
+                app:layout_constraintTop_toBottomOf="@+id/depature_tag1"
+                tools:text="@string/changan_campus_name" />
+
+            <TextView
+                android:id="@+id/arrival_place1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen"
+                android:text="@string/youyi_campus_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                app:layout_constraintEnd_toEndOf="@+id/arrival_tag1"
+                app:layout_constraintTop_toTopOf="@+id/depature_place1"
+                tools:text="@string/youyi_campus_name" />
+
+            <TextView
+                android:id="@+id/arrival_tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/arrivial_tag"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/depature_tag1" />
+
+            <TextView
+                android:id="@+id/shuttle_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/shuttle_start_time"
+                android:textAppearance="@android:style/TextAppearance.Material.Small.Inverse"
+                app:layout_constraintStart_toStartOf="@+id/depature_place1"
+                app:layout_constraintTop_toBottomOf="@+id/depature_place1" />
+
+            <TextView
+                android:id="@+id/shuttle_start_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                app:layout_constraintStart_toStartOf="@+id/shuttle_label1"
+                app:layout_constraintTop_toBottomOf="@+id/shuttle_label1"
+                tools:text="11:00" />
+
+            <TextView
+                android:id="@+id/left_time_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/left_time_label"
+                android:textAppearance="@android:style/TextAppearance.Material.Small.Inverse"
+                app:layout_constraintEnd_toEndOf="@+id/arrival_place1"
+                app:layout_constraintTop_toTopOf="@+id/shuttle_label1" />
+
+            <TextView
+                android:id="@+id/left_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Material.Large.Inverse"
+                app:layout_constraintEnd_toEndOf="@+id/left_time_label1"
+                app:layout_constraintTop_toBottomOf="@+id/left_time_label1"
+                tools:text="1 Hours" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
