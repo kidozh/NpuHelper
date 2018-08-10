@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kidozh.npuhelper.MainActivity;
 import com.kidozh.npuhelper.R;
 
 import java.util.List;
 
 public class schoolBusAdapter extends RecyclerView.Adapter<schoolBusAdapter.schoolBusAdapterViewHolder> {
 
+    private static final String TAG = schoolBusAdapter.class.getSimpleName();
     private int[] mBusStartTime;
     private final Context mContext;
 

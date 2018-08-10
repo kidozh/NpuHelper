@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.kidozh.npuhelper.R;
@@ -48,7 +49,7 @@ public class schoolBusListActivity extends AppCompatActivity {
          */
         busRecyclerView.setHasFixedSize(true);
 
-        mSchoolBusAdapter = new schoolBusAdapter(getBaseContext());
+
 
 
 
@@ -56,11 +57,14 @@ public class schoolBusListActivity extends AppCompatActivity {
         if(departure_campus.equals("YOUYI")){
             mBusArrivialPlace.setText(R.string.changan_campus_name);
             mBusDeparturePlace.setText(R.string.youyi_campus_name);
+            mSchoolBusAdapter = new schoolBusAdapter(getBaseContext());
+
             mSchoolBusAdapter.setmBusStartTime(schoolBusUtils.getYouyi2ChanganBusList());
         }
         else {
             mBusDeparturePlace.setText(R.string.changan_campus_name);
             mBusArrivialPlace.setText(R.string.youyi_campus_name);
+            mSchoolBusAdapter = new schoolBusAdapter(getBaseContext());
             mSchoolBusAdapter.setmBusStartTime(schoolBusUtils.getChangan2YouyiBusList());
         }
         busRecyclerView.setAdapter(mSchoolBusAdapter);
