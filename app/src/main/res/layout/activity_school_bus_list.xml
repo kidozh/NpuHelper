@@ -7,18 +7,29 @@
     tools:context=".schoolBusUtils.schoolBusListActivity">
 
     <TextView
-        android:id="@+id/bus_notice_title"
+        android:id="@+id/bus_departure_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/lato"
         android:text="@string/bus_list_title"
         android:textAppearance="@android:style/TextAppearance.Material.Title"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bus_arrivial_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/lato"
+        android:text="@string/bus_list_title"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -31,11 +42,12 @@
         android:fontFamily="@font/oxygen"
         android:text="@string/weekday_bus"
         android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-        app:layout_constraintEnd_toEndOf="@+id/bus_notice_title"
-        app:layout_constraintStart_toStartOf="@+id/bus_notice_title"
-        app:layout_constraintTop_toBottomOf="@+id/bus_notice_title" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bus_departure_place"
+        app:layout_constraintTop_toBottomOf="@+id/bus_departure_place" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/bus_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="502dp"
         android:layout_marginEnd="8dp"

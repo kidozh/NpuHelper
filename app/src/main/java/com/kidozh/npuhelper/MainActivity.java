@@ -53,6 +53,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
+import com.kidozh.npuhelper.schoolBusUtils.schoolBusListActivity;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherDatabase;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherEntry;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherUtils;
@@ -464,7 +465,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Log.d(TAG,"Ended Rendering Weather Condition");
     }
 
-    public void displaySchoolBus(Context context){
+    public void displaySchoolBus(final Context context){
         int youyi2changanLeftMinutes = schoolBusUtils.getBusLeftMinutesToChangan();
         int changan2youyiLeftMinutes = schoolBusUtils.getBusLeftMinutesToYouyi();
         if(youyi2changanLeftMinutes == -1){
@@ -515,6 +516,27 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         }
         Log.v(TAG,"school shuttle rendering finished");
+        CardView mCardView = (CardView) findViewById(R.id.arrival_card);
+        mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(MainActivity.this,schoolBusListActivity.class);
+                intent.putExtra("DEPARTURE_CAMPUS","YOUYI");
+                startActivity(intent);
+            }
+        });
+
+        CardView mCardView1 = (CardView) findViewById(R.id.arrival_card1);
+        mCardView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(MainActivity.this,schoolBusListActivity.class);
+                intent.putExtra("DEPARTURE_CAMPUS","CHANGAN");
+                startActivity(intent);
+            }
+        });
 
     }
     // stay as long as possible
@@ -554,7 +576,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Log.d(TAG,"Pressed id "+ id);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {

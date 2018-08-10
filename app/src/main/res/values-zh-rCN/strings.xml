@@ -23,4 +23,6 @@
     <string name="navigation_drawer_open">打开导航栏</string>
     <string name="navigation_drawer_close">关闭导航栏</string>
     <string name="weekday_bus">工作日时刻</string>
+    <string name="bus_gone_label">已过时间</string>
+    <string name="bus_accessible_label">等待中</string>
 </resources>

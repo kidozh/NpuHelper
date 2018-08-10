@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/colorOrange"
         app:cardElevation="8dp">
 
@@ -109,12 +111,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/colorOrange"
         app:cardElevation="8dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="true"
             android:padding="8dp">
 
             <TextView

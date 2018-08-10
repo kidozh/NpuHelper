@@ -25,4 +25,6 @@
     <string name="hour_tag">h</string>
     <string name="bus_list_title">Bus shuttle list</string>
     <string name="weekday_bus">weekday bus</string>
+    <string name="bus_gone_label">Gone</string>
+    <string name="bus_accessible_label">Wait</string>
 </resources>

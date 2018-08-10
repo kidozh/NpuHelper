@@ -17,10 +17,10 @@ public final class schoolBusUtils {
     private static final int[] youyi2changanWeekdayTime = {0, 700, 800, 900, 1000, 1100, 1200, 1230, 1400, 1430, 1600, 1700, 1730, 1830, 2100};
     private static final int[] youyi2changanWeekendTime = {0, 800, 900, 1230, 1400, 1800, 2000};
 
-    private static boolean isWeekday(){
+    public static boolean isWeekday(){
         Calendar calendar = Calendar.getInstance();
         int dayOfWeekIndex = calendar.get(Calendar.DAY_OF_WEEK);
-        if(dayOfWeekIndex == calendar.SATURDAY || dayOfWeekIndex == calendar.SUNDAY){
+        if(dayOfWeekIndex == Calendar.SATURDAY || dayOfWeekIndex == Calendar.SUNDAY){
             return false;
         }
         else {
@@ -29,7 +29,38 @@ public final class schoolBusUtils {
 
     }
 
-    public static int getNearestTime(int[] timeSchedule){
+    public static int[] getYouyi2ChanganBusList(){
+        if(isWeekday()){
+            return changan2youyiWeekdayTime;
+        }
+        else {
+            return changan2youyiWeekendTime;
+        }
+    }
+
+    public static int[] getChangan2YouyiBusList(){
+        if(isWeekday()){
+            return youyi2changanWeekdayTime;
+        }
+        else {
+            return youyi2changanWeekendTime;
+        }
+    }
+
+    public static int getBusLeftMinutes(int timeLabel){
+        Calendar calendar = Calendar.getInstance();
+        int minute = calendar.get(Calendar.MINUTE);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int formatTime = hour *100 + minute;
+        int busDepatureHour = timeLabel / 100;
+        int busDepatureMinute = timeLabel % 100;
+
+        // Log.d(TAG,String.format("%s %s %s %s",nextBusDepatureHour,nextBusDepatureMinute,hour,minute));
+        return (busDepatureHour - hour) * 60 + (busDepatureMinute - minute);
+    }
+
+
+    private static int getNearestTime(int[] timeSchedule){
         Calendar calendar = Calendar.getInstance();
         int minute = calendar.get(Calendar.MINUTE);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
