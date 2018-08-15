@@ -6,5 +6,6 @@
         <item>@font/lato_bold</item>
         <item>@font/overpass</item>
         <item>@font/oxygen</item>
+        <item>@font/pt_sans</item>
     </array>
 </resources>

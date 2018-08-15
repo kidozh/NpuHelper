@@ -23,6 +23,11 @@
     <string name="navigation_drawer_open">打开导航栏</string>
     <string name="navigation_drawer_close">关闭导航栏</string>
     <string name="weekday_bus">工作日时刻</string>
-    <string name="bus_gone_label">已过时间</string>
+    <string name="bus_gone_label">已过时</string>
     <string name="bus_accessible_label">等待中</string>
+    <string name="weekend_bus">周休时间</string>
+    <string name="ipv6_tv_label">IPv6 免费电视</string>
+    <string name="nav_header_desc">导航头</string>
+    <string name="bus_wait_label">将出发</string>
+    <string name="back_label">返回</string>
 </resources>

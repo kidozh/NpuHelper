@@ -1,10 +1,12 @@
 package com.kidozh.npuhelper.schoolBusUtils;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.kidozh.npuhelper.R;
@@ -50,6 +52,13 @@ public class schoolBusListActivity extends AppCompatActivity {
 
         mSchoolBusAdapter = new schoolBusAdapter(getBaseContext());
 
+        if(schoolBusUtils.isWeekday()){
+            mBusScheduleTypes.setText(R.string.weekday_bus);
+        }
+        else {
+            mBusScheduleTypes.setText(R.string.weekend_bus);
+        }
+
 
 
 
@@ -64,7 +73,28 @@ public class schoolBusListActivity extends AppCompatActivity {
             mSchoolBusAdapter.setmBusStartTime(schoolBusUtils.getChangan2YouyiBusList());
         }
         busRecyclerView.setAdapter(mSchoolBusAdapter);
+
+        setActionBar();
     }
 
+    private void setActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        // 显示返回按钮
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        // 去掉logo图标
+        actionBar.setDisplayShowHomeEnabled(true);
+        //actionBar.setTitle(R.string.back_label);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:   //返回键的id
+                this.finish();
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

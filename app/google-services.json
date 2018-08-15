@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "137329413497",
+    "firebase_url": "https://npuhelper.firebaseio.com",
+    "project_id": "npuhelper",
+    "storage_bucket": "npuhelper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137329413497:android:345ccae559d699c7",
+        "android_client_info": {
+          "package_name": "com.kidozh.npuhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137329413497-ee56ss004e4b22m9pcic39vdm4hr22fa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWZcCwA-ghX64_XQTXJNElxabOvVrmL3A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -29,7 +29,7 @@ public final class schoolBusUtils {
 
     }
 
-    public static int[] getYouyi2ChanganBusList(){
+    public static int[] getChangan2YouyiBusList(){
         if(isWeekday()){
             return changan2youyiWeekdayTime;
         }
@@ -38,7 +38,7 @@ public final class schoolBusUtils {
         }
     }
 
-    public static int[] getChangan2YouyiBusList(){
+    public static int[] getYouyi2ChanganBusList(){
         if(isWeekday()){
             return youyi2changanWeekdayTime;
         }

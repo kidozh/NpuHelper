@@ -53,6 +53,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
+import com.kidozh.npuhelper.preference.SettingsActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusListActivity;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherDatabase;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherEntry;
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @BindView(R.id.weather_icon)  ImageView mWeatherIcon;
 
     static private String celsius_temperature_unit_label = "°C";
+
     private LocationManager locationManager;
     private Context mContext;
     private String currentLocation;
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            Log.d(TAG,"GET LOCATION PERMIT"+locationManager);
+            Log.d(TAG,"GET LOCATION PERMIT "+locationManager);
 
             if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_COARSE_LOCATION)){
                 Toasty.info(this,getString(R.string.caiyun_support_notice),Toast.LENGTH_SHORT,true).show();
@@ -209,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return false;
+                return MainActivity.this.onNavigationItemSelected(item);
             }
         });
 
@@ -579,6 +581,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this,SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
         else if(id == android.R.id.home){
@@ -600,14 +604,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_ipv6_free_tv) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
+            Intent intent = new Intent(this,SettingsActivity.class);
+            startActivity(intent);
+            return true;
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
