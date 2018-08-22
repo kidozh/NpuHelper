@@ -354,16 +354,17 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             // sync data
-            List<campusBuildingInfoEntity> allCampusLocation = mDb.campusBuildingInfoDao().getAll();
-            for (int i=0;i<allCampusLocation.size();i++){
-                campusBuildingInfoEntity campusBuildingInfo = allCampusLocation.get(i);
-                String campusBuildingName = campusBuildingInfo.name;
-                campusBuildingInfoEntity deleteCampusBuildingInfoEntity = getCampusBuildingInfoEntityByName(campusBuildingName);
-                if(deleteCampusBuildingInfoEntity != null){
-                    mDb.campusBuildingInfoDao().deleteInfo(deleteCampusBuildingInfoEntity);
-                }
-
-            }
+            // remove that to speed up
+//            List<campusBuildingInfoEntity> allCampusLocation = mDb.campusBuildingInfoDao().getAll();
+//            for (int i=0;i<allCampusLocation.size();i++){
+//                campusBuildingInfoEntity campusBuildingInfo = allCampusLocation.get(i);
+//                String campusBuildingName = campusBuildingInfo.name;
+//                campusBuildingInfoEntity deleteCampusBuildingInfoEntity = getCampusBuildingInfoEntityByName(campusBuildingName);
+//                if(deleteCampusBuildingInfoEntity != null){
+//                    mDb.campusBuildingInfoDao().deleteInfo(deleteCampusBuildingInfoEntity);
+//                }
+//
+//            }
             // then insert
             mDb.campusBuildingInfoDao().insertInfos(campusBuildingInfoEntityList);
             return null;
