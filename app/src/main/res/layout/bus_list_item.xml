@@ -15,8 +15,6 @@
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/colorCarrot"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

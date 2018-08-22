@@ -28,6 +28,7 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.google.firebase:firebase-core:16.0.1'
+    //implementation 'com.google.firebase:firebase-messaging:17.3.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -53,7 +54,18 @@ dependencies {
     implementation "com.jakewharton:butterknife:$butter_knife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
 
+    // android plot
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
     //annotationProcessor "com.neenbedankt.android-apt:1.8"
+
+    // gaode map
+    implementation 'com.amap.api:map2d:latest.integration'
+    implementation 'com.amap.api:navi-3dmap:latest.integration'
+    implementation 'com.amap.api:search:latest.integration'
+    implementation 'com.amap.api:location:latest.integration'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

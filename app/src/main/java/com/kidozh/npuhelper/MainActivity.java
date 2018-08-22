@@ -55,12 +55,14 @@ import android.widget.Toast;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
 import com.kidozh.npuhelper.preference.SettingsActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusListActivity;
+import com.kidozh.npuhelper.weatherUtils.WeatherDetailActivity;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherDatabase;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherEntry;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherUtils;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherViewModel;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherViewModelFactory;
 import com.kidozh.npuhelper.weatherUtils.addCaiyunWeatherViewModel;
+import com.kidozh.npuhelper.campusBuildingLoc.campusBuildingPortalActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.SyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Nullable @BindView(R.id.toolbar) Toolbar toolbar;
 
+    private String mRealTimeInfo;
 
 
 
@@ -135,19 +138,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mDb = caiyunWeatherDatabase.getsInstance(getApplicationContext());
 
         // check permission
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             Log.d(TAG,"GET LOCATION PERMIT "+locationManager);
 
             if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_COARSE_LOCATION)){
                 Toasty.info(this,getString(R.string.caiyun_support_notice),Toast.LENGTH_SHORT,true).show();
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},8);
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
             }
             else {
-                // ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},8);
-                // ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},8);
-                Toasty.error(this, getString(R.string.location_fail_notice), Toast.LENGTH_LONG, true).show();
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
+                Toasty.info(this,getString(R.string.location_denied_notice),Toast.LENGTH_LONG,true).show();
 
 
             }
@@ -155,10 +156,26 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
         } else {
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},8);
+            Log.d(TAG,"USER permits location request");
+            //ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},8);
             locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+            List<String> providers = locationManager.getProviders(true);
+            Location bestLocation = null;
+            for (String provider : providers) {
+                Location l = locationManager.getLastKnownLocation(provider);
+                if (l == null) {
+                    continue;
+                }
+                if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                    // Found best last known location: %s", l);
+                    bestLocation = l;
+                }
+            }
+
             // LocationProvider netProvider = locationManager.getProvider(LocationManager.NETWORK_PROVIDER);
-            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            //Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            Location location = bestLocation;
             if(location != null){
                 currentLocation = location.getLongitude()+","+location.getLatitude();
                 locLatitude = location.getLatitude();
@@ -166,11 +183,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
             else {
                 // use default value
-                currentLocation = caiyunWeatherUtils.GEO_LOCATION;
+                location = getLastKnownLocation();
+                if(location != null){
+                    currentLocation = location.getLongitude()+","+location.getLatitude();
+                    locLatitude = location.getLatitude();
+                    locLongitude = location.getLongitude();
+                }
+                else {
+                    currentLocation = caiyunWeatherUtils.GEO_LOCATION;
+                }
+
             }
 
 
-            Log.d(TAG,"Loc"+currentLocation);
+            Log.d(TAG,"Loc"+currentLocation +" Manager "+location);
 
 
         }
@@ -346,6 +372,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Toasty.error(this, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
             return;
         }
+        mRealTimeInfo = data;
         JSONObject jsonData ;
         try {
             jsonData = new JSONObject(data);
@@ -368,6 +395,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                         data,
                         new Date()
                 );
+
+                 new insertDataTask(weatherEntry).execute();
 
 
                 //mDb.caiyunWeatherDao().insertCaiyunWeatherRecord(weatherEntry);
@@ -459,13 +488,26 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         weather2drawable.put("SNOW",R.drawable.vector_drawable_weather_snowy);
         weather2drawable.put("WIND",R.drawable.vector_drawable_weather_windy);
         weather2drawable.put("FOG",R.drawable.vector_drawable_weather_fog);
+        weather2drawable.put("HAZE",R.drawable.vector_drawable_weather_fog);
 
         // get Drawable icon
         Drawable weatherIcon = getDrawable((Integer) weather2drawable.get(weatherCondition));
         mWeatherIcon.setImageDrawable(weatherIcon);
         mLocationTemperature.setText(String.format("%s %s",localTemperature, celsius_temperature_unit_label));
         Log.d(TAG,"Ended Rendering Weather Condition");
+        mWeatherCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(MainActivity.this,WeatherDetailActivity.class);
+                intent.putExtra("REALTIME_WEATHER",mRealTimeInfo);
+                intent.putExtra("CUR_LOC",mLocationName.getText());
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     public void displaySchoolBus(final Context context){
         int youyi2changanLeftMinutes = schoolBusUtils.getBusLeftMinutesToChangan();
@@ -606,14 +648,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         if (id == R.id.nav_ipv6_free_tv) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_position_label) {
+            Intent intent = new Intent(this,campusBuildingPortalActivity.class);
+            startActivity(intent);
+            return true;
 
         } else if (id == R.id.nav_slideshow) {
+            return  false;
 
         } else if (id == R.id.nav_manage) {
             Intent intent = new Intent(this,SettingsActivity.class);
             startActivity(intent);
-            return true;
+            return false;
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -629,6 +675,49 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void setTitle(CharSequence title) {
         mTitle = title;
         getSupportActionBar().setTitle(mTitle);
+    }
+
+    private Location getLastKnownLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        List<String> providers = locationManager.getAllProviders();
+        Location bestLocation = null;
+        for (String provider : providers) {
+
+            Location l = locationManager.getLastKnownLocation(provider);
+            if (l == null) {
+                continue;
+            }
+            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                // Found best last known location: %s", l);
+                bestLocation = l;
+            }
+        }
+        return bestLocation;
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class insertDataTask extends AsyncTask<Void,Void,Void>{
+        caiyunWeatherEntry mWeatherEntry;
+
+        public insertDataTask(caiyunWeatherEntry mWeatherEntry){
+            this.mWeatherEntry = mWeatherEntry;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mDb.caiyunWeatherDao().insertCaiyunWeatherRecord(mWeatherEntry);
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(TAG,"Save it to database "+mWeatherEntry);
+
+        }
     }
 
 

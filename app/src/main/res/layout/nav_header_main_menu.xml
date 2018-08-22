@@ -16,7 +16,7 @@
         android:contentDescription="@string/nav_header_desc"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
-        app:srcCompat="@mipmap/nwpu_library" />
+        app:srcCompat="@mipmap/snowy_forest" />
 
     <TextView
         android:id="@+id/nav_header_title"

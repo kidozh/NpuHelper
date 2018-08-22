@@ -4,8 +4,10 @@
         <item>@font/</item>
         <item>@font/lato</item>
         <item>@font/lato_bold</item>
+        <item>@font/lato_light</item>
         <item>@font/overpass</item>
         <item>@font/oxygen</item>
         <item>@font/pt_sans</item>
+        <item>@font/roboto_light</item>
     </array>
 </resources>

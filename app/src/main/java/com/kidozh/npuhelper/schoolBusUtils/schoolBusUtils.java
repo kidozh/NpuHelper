@@ -81,6 +81,27 @@ public final class schoolBusUtils {
         else return timeSchedule[nextBus];
     }
 
+    public static int getNearestIndex(int[] timeSchedule){
+        Calendar calendar = Calendar.getInstance();
+        int minute = calendar.get(Calendar.MINUTE);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int formatTime = hour *100 + minute;
+        int nextBus = timeSchedule.length;
+
+        for(int i=1;i<timeSchedule.length;i++){
+            if(timeSchedule[i] >=  formatTime){
+                // there is a school shuttle
+                nextBus = i;
+                break;
+            }
+        }
+
+        if(nextBus == timeSchedule.length){
+            return -1;
+        }
+        else return nextBus;
+    }
+
     private static int getMinutesLeft(int[] timeSchedule){
         Calendar calendar = Calendar.getInstance();
         int minute = calendar.get(Calendar.MINUTE);

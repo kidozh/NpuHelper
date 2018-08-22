@@ -15,7 +15,7 @@
     <string name="shuttle_start_time">下一班校车时间</string>
     <string name="minute_tag">分</string>
     <string name="no_left_shuttle_today">今日无校车了</string>
-    <string name="npu_library">NPU Library</string>
+    <string name="npu_library">NPU图书馆</string>
     <string name="hour_tag">小时</string>
     <string name="nav_header_title">瓜大助手</string>
     <string name="action_settings">设置</string>
@@ -30,4 +30,49 @@
     <string name="nav_header_desc">导航头</string>
     <string name="bus_wait_label">将出发</string>
     <string name="back_label">返回</string>
+    <string name="CLEAR_DAY">晴天</string>
+    <string name="CLEAR_NIGHT">晴夜</string>
+    <string name="PARTLY_CLOUDY_DAY">多云</string>
+    <string name="PARTLY_CLOUDY_NIGHT">多云夜</string>
+    <string name="CLOUDY">阴</string>
+    <string name="RAIN">雨</string>
+    <string name="SNOW">雪</string>
+    <string name="WIND">大风</string>
+    <string name="HAZE">雾霾</string>
+    <string name="relative_humidity">相对湿度</string>
+    <string name="nearst_rain_strength">最近降雨地点/量</string>
+    <string name="rain_strength">降雨量</string>
+    <string name="aqi">空气质量指数</string>
+    <string name="location_denied_notice">无法获得位置，默认使用老校区位置</string>
+    <string name="title_activity_settings">设置</string>
+    <string name="kilometer">公里</string>
+    <string-array name="pref_array_bus_notice_time_entries">
+        <item>5分钟</item>
+        <item>10分钟</item>
+        <item>15分钟</item>
+        <item>30分钟</item>
+        <item>1小时</item>
+    </string-array>
+    <string name="pref_header_general">通用</string>
+    <string name="pref_header_data_sync">数据与同步</string>
+    <string name="pref_header_notifications">通知</string>
+    <string name="pref_title_bus_notice_time">校车提示时间</string>
+    <string name="pref_summary_bus_notice_time">提前多少时间提醒校车即将出发</string>
+    <string name="campus_location_guide">校园位置</string>
+    <string name="building_location_search_hint">搜索校园的地点</string>
+    <string name="location_search_banner_text">校园检索</string>
+    <string name="i_am_feeling_lucky">随便溜达</string>
+    <string name="failed_to_connected_to_location_api">无法连接上服务器</string>
+    <string name="failed_to_parse_json">无法解析服务器信息</string>
+    <string name="pref_title_location_api_source">校园地点API来源</string>
+    <string name="pref_description_location_api_source">选择应用将会从哪里获得校园里的地点信息</string>
+    <string-array name="pref_array_location_api_source_entries">
+        <item>Github</item>
+        <item>Gitee (在国内较为稳定)</item>
+
+    </string-array>
+    <string name="location_search_not_ready">搜索地点服务尚未就绪</string>
+    <string name="location_card_detail_tag">详情</string>
+    <string name="location_card_show_in_map_tag">在外部地图中显示</string>
+    <string name="location_show_in_map_notice">使用GCJ-02坐标系，与高德兼容性较好</string>
 </resources>

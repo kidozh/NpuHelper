@@ -9,9 +9,9 @@
             android:icon="@drawable/vector_drawable_television"
             android:title="@string/ipv6_tv_label" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_position_label"
+            android:icon="@drawable/vector_drawable_positioning_label_full"
+            android:title="@string/campus_location_guide" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"

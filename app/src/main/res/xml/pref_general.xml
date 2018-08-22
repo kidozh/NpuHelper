@@ -1,5 +1,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <ListPreference
+        android:defaultValue="@string/github_location_api_source"
+        android:entries="@array/pref_array_location_api_source_entries"
+        android:entryValues="@array/pref_array_location_api_source_entries_value"
+        android:key="@string/pref_location_api_source"
+        android:summary="@string/pref_description_location_api_source"
+        android:title="@string/pref_title_location_api_source" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="example_switch"

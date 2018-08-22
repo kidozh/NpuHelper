@@ -2,6 +2,8 @@ package com.kidozh.npuhelper.schoolBusUtils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -71,6 +73,10 @@ public class schoolBusAdapter extends RecyclerView.Adapter<schoolBusAdapter.scho
     @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull schoolBusAdapter.schoolBusAdapterViewHolder holder, int position) {
+        // get preference from settings
+        SharedPreferences prefs =PreferenceManager.getDefaultSharedPreferences(mContext) ;
+        String advanced_time_string = prefs.getString(mContext.getString(R.string.shuttle_advanced_time),"30");
+        int advanced_time_int = Integer.parseInt(advanced_time_string);
         int item_bus_start_time = mBusStartTime[position];
         holder.item_depature_time.setText(String.format("% 2d:%02d",item_bus_start_time/100,item_bus_start_time%100));
         int leftTime = schoolBusUtils.getBusLeftMinutes(item_bus_start_time);
@@ -79,7 +85,7 @@ public class schoolBusAdapter extends RecyclerView.Adapter<schoolBusAdapter.scho
             holder.bus_card_view.setBackgroundColor(mContext.getColor(R.color.colorSunflower));
 
         }
-        else if(leftTime <30){
+        else if(leftTime <advanced_time_int){
             holder.item_passed.setText(R.string.bus_wait_label);
             holder.bus_card_view.setBackgroundColor(mContext.getColor(R.color.colorAlizarin));
         }

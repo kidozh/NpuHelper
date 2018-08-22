@@ -1,0 +1,384 @@
+package com.kidozh.npuhelper.campusBuildingLoc;
+
+import android.annotation.SuppressLint;
+import android.app.SearchManager;
+import android.content.AsyncQueryHandler;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.provider.SearchRecentSuggestions;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.SearchView;
+import android.widget.Toast;
+
+import com.kidozh.npuhelper.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+public class campusBuildingPortalActivity extends AppCompatActivity {
+    private static final String TAG = campusBuildingPortalActivity.class.getSimpleName();
+    private String apiJsonString;
+    private JSONObject apiJsonObj;
+    Context mContext;
+
+    @BindView(R.id.location_horizonal_progressBar)
+    ProgressBar mLocationHorizonalProgressBar;
+
+    @BindView(R.id.location_search_div)
+    SearchView mLocationSearchDiv;
+
+    @BindView(R.id.location_search_btn)
+    Button searchBtn;
+
+    private campusBuildingInfoDatabase mDb;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_campus_building_portal);
+        mContext = this;
+        ButterKnife.bind(this);
+        // ActionBar
+        setActionBar();
+        curlJsonFromData();
+        //init Search bar
+        initSearchBar(mLocationSearchDiv);
+
+        mDb = campusBuildingInfoDatabase.getsInstance(getApplicationContext());
+
+
+        // asyncTask
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            Log.d(TAG,"Search location : "+ query);
+            saveRecentLocation(intent);
+        }
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get Query String
+                CharSequence queryCharSeq = mLocationSearchDiv.getQuery();
+                String queryText = queryCharSeq.toString();
+                Intent intent;
+                intent = new Intent(campusBuildingPortalActivity.this,campusBuildingSearchResultActivity.class);
+                intent.putExtra("SEARCH_LOCATION_NAME",queryText);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
+
+    private void saveRecentLocation(Intent intent){
+        String query = intent.getStringExtra(SearchManager.QUERY);
+
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                campusBuildingSearchSuggestionProvider.AUTHORITY,
+                campusBuildingSearchSuggestionProvider.MODE);
+        suggestions.saveRecentQuery(query, null);
+
+    }
+
+    private void saveRecentLocation(String recentLocation){
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                campusBuildingSearchSuggestionProvider.AUTHORITY,
+                campusBuildingSearchSuggestionProvider.MODE);
+        suggestions.saveRecentQuery(recentLocation, null);
+    }
+
+
+    private void curlJsonFromData(){
+        @SuppressLint("StaticFieldLeak")
+        class curlApiTask extends AsyncTask<Void,Void,String>{
+
+            private Request request;
+            private final OkHttpClient client = new OkHttpClient();
+            private String jsonResponse;
+
+            @Override
+            protected void onPreExecute() {
+                mLocationHorizonalProgressBar.setVisibility(View.VISIBLE);
+                super.onPreExecute();
+                URL apiURL = campusBuildingUtils.build_url(mContext);
+                request = new Request.Builder()
+                        .url(apiURL)
+                        .build();
+
+
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                try {
+                    Response response = client.newCall(request).execute();
+                    if (response.isSuccessful()) {
+                        jsonResponse = response.body().string();
+                    } else {
+                        throw new IOException("Unexpected code " + response);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toasty.error(mContext,getString(R.string.failed_to_connected_to_location_api),Toast.LENGTH_LONG).show();
+                    jsonResponse = "";
+                }
+
+                return jsonResponse;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                mLocationHorizonalProgressBar.setVisibility(View.INVISIBLE);
+                apiJsonString = jsonResponse;
+                Log.d(TAG,"Read info from api "+apiJsonString);
+                try {
+                    apiJsonObj = campusBuildingUtils.load_json(apiJsonString);
+                    // save it to Database
+                    saveCampusBuildingData(apiJsonObj.getJSONArray("place"));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toasty.error(campusBuildingPortalActivity.this,getString(R.string.failed_to_parse_json),Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+        new curlApiTask().execute();
+
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:   //返回键的id
+                this.finish();
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_search_location, menu);
+        final MenuItem searchItem = menu.findItem(R.id.location_app_bar_search);
+
+//        final SearchManager searchManager =
+//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) searchItem.getActionView();
+        initSearchBar(searchView);
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            String mSearchTerm;
+//            Boolean mSearchQueryChanged;
+//
+//            @Override
+//            public boolean onQueryTextSubmit(String queryText) {
+//                saveRecentLocation(queryText);
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                String newFilter = !TextUtils.isEmpty(newText) ? newText : null;
+//                if (mSearchTerm == null && newFilter == null) {
+//                    return true;
+//                }
+//                if (mSearchTerm != null && mSearchTerm.equals(newFilter)) {
+//                    return true;
+//                }
+//                mSearchTerm = newFilter;
+//                mSearchQueryChanged = true;
+//                searchLocationByName(newText); //handle this
+//                return true;
+//            }
+//        });
+
+        MenuItem.OnActionExpandListener expandListener = new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+
+                return true;
+            }
+        };
+        searchItem.setOnActionExpandListener(expandListener);
+
+        return true;
+    }
+
+    private void initSearchBar(SearchView searchView){
+        final SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            String mSearchTerm;
+            Boolean mSearchQueryChanged;
+
+            @Override
+            public boolean onQueryTextSubmit(String queryText) {
+                saveRecentLocation(queryText);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String newFilter = !TextUtils.isEmpty(newText) ? newText : null;
+                if (mSearchTerm == null && newFilter == null) {
+                    return true;
+                }
+                if (mSearchTerm != null && mSearchTerm.equals(newFilter)) {
+                    return true;
+                }
+                mSearchTerm = newFilter;
+                mSearchQueryChanged = true;
+                searchLocationByName(newText); //handle this
+                return true;
+            }
+        });
+    }
+
+    private void searchLocationByName(String searchText){
+        if (apiJsonObj == null){
+            Toasty.error(mContext,getString(R.string.location_search_not_ready),Toast.LENGTH_SHORT).show();
+        }
+        else {
+            try{
+                JSONArray locationArray = apiJsonObj.getJSONArray("place");
+                for (int i = 0; i < locationArray.length(); i++) {
+                    JSONObject object = (JSONObject) locationArray.get(i);
+                    JSONObject nameObj = object.getJSONObject("name");
+                    // search reference
+                    String nameZh = nameObj.getString("zh");
+                    String descriptionLoc = object.getString("description");
+                    if(nameZh.contains(searchText) || descriptionLoc.contains(searchText)){
+                        //append that
+                    }
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void saveCampusBuildingData(JSONArray jsonArray) {
+        List<campusBuildingInfoEntity> campusBuildingInfoEntityList = new ArrayList<>();
+        for(int i =0;i<jsonArray.length();i++){
+            try {
+                JSONObject campusLoc = (JSONObject) jsonArray.get(i);
+                // parse JSON obj
+                JSONObject nameObj = campusLoc.getJSONObject("name");
+                String zhName = nameObj.getString("zh");
+                String imgUrl = campusLoc.optString("img_url","");
+                String description = campusLoc.optString("description","");
+                String location = campusLoc.getString("location");
+                String campus = campusLoc.getString("campus");
+                campusBuildingInfoEntity campusBuildingInfo = new  campusBuildingInfoEntity(zhName,imgUrl,description,location,campus);
+                campusBuildingInfoEntityList.add(campusBuildingInfo);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if(campusBuildingInfoEntityList.size() != 0){
+                // Insert to db
+                new insertBuildingInfoTask(campusBuildingInfoEntityList).execute();
+
+            }
+
+
+
+        }
+
+
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public class insertBuildingInfoTask extends AsyncTask<Void,Void,Void>{
+        List<campusBuildingInfoEntity> campusBuildingInfoEntityList = new ArrayList<>();
+        public insertBuildingInfoTask(List<campusBuildingInfoEntity> campusBuildingInfoEntityList){
+            this.campusBuildingInfoEntityList = campusBuildingInfoEntityList;
+        }
+
+        campusBuildingInfoEntity getCampusBuildingInfoEntityByName(String name){
+            for(int i = 0;i<campusBuildingInfoEntityList.size();i++){
+                if(campusBuildingInfoEntityList.get(i).name.equals(name)){
+                    return campusBuildingInfoEntityList.get(i);
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // sync data
+            List<campusBuildingInfoEntity> allCampusLocation = mDb.campusBuildingInfoDao().getAll();
+            for (int i=0;i<allCampusLocation.size();i++){
+                campusBuildingInfoEntity campusBuildingInfo = allCampusLocation.get(i);
+                String campusBuildingName = campusBuildingInfo.name;
+                campusBuildingInfoEntity deleteCampusBuildingInfoEntity = getCampusBuildingInfoEntityByName(campusBuildingName);
+                if(deleteCampusBuildingInfoEntity != null){
+                    mDb.campusBuildingInfoDao().deleteInfo(deleteCampusBuildingInfoEntity);
+                }
+
+            }
+            // then insert
+            mDb.campusBuildingInfoDao().insertInfos(campusBuildingInfoEntityList);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Log.d(TAG,"Insert to database " + campusBuildingInfoEntityList.size());
+        }
+    }
+
+
+
+
+
+
+}
