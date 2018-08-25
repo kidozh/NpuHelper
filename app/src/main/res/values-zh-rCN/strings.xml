@@ -75,4 +75,9 @@
     <string name="location_card_detail_tag">详情</string>
     <string name="location_card_show_in_map_tag">在外部地图中显示</string>
     <string name="location_show_in_map_notice">使用GCJ-02坐标系，与高德兼容性较好</string>
+    <string name="pref_title_when_download_pic">省流量模式</string>
+    <string name="pref_description_when_download_pic">在流量连接情况下，应用不联网下载图片</string>
+    <string name="pref_title_data_save_mode">省流量模式</string>
+    <string name="pref_description_data_save_mode">仅在WLAN下下载图片、数据库等</string>
+    <string name="campus_building_description_not_exist">暂时没有任何对这个地点的描述</string>
 </resources>

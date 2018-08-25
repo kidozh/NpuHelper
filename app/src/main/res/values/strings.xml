@@ -246,8 +246,8 @@
         <item>Gitee (Stable in China)</item>
 
     </string-array>
-    <string name="github_location_api_source">https://raw.githubusercontent.com/kidozh/nwpu_info_api/master/v1/building_location.json</string>
-    <string name="gitee_location_api_source">https://gitee.com/kidozh/nwpu_info_api/raw/master/v1/building_location.json</string>
+    <string name="github_location_api_source">github</string>
+    <string name="gitee_location_api_source">gitee</string>
     <string-array name="pref_array_location_api_source_entries_value">
         <item>@string/github_location_api_source</item>
         <item>@string/gitee_location_api_source</item>
@@ -257,4 +257,10 @@
     <string name="location_card_detail_tag">Detail</string>
     <string name="location_card_show_in_map_tag">Show in external map</string>
     <string name="location_show_in_map_notice">Use GCJ-02 cordinator system as external map standard</string>
+    <string name="pref_title_data_save_mode">Mobile Data Save Mode</string>
+    <string name="pref_description_data_save_mode">Only under Wi-Fi condition could app download pic, database, etc.</string>
+    <string name="pref_key_data_save_mode">pref_key_data_save_mode</string>
+    <string name="title_activity_campus_building_detail">CampusBuildingDetailActivity</string>
+    <string name="campus_building_description_not_exist">No description found</string>
+
 </resources>

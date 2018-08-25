@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 //apply plugin: 'com.jakewharton.butterknife'
 
 
@@ -19,7 +20,12 @@ android {
         }
     }
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -59,13 +65,25 @@ dependencies {
 
     //annotationProcessor "com.neenbedankt.android-apt:1.8"
 
-    // gaode map
-    implementation 'com.amap.api:map2d:latest.integration'
-    implementation 'com.amap.api:navi-3dmap:latest.integration'
-    implementation 'com.amap.api:search:latest.integration'
-    implementation 'com.amap.api:location:latest.integration'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'ru.noties:markwon:1.1.0'
+    implementation 'ru.noties:markwon-image-loader:1.1.0' // optional
+    implementation 'ru.noties:markwon-syntax:1.1.0' // optional
+    implementation 'ru.noties:markwon-view:1.1.0' // optional
+    def commonmark = "0.10.0";
+    implementation "com.atlassian.commonmark:commonmark:$commonmark"
+    implementation "com.atlassian.commonmark:commonmark-ext-autolink:$commonmark"
+    implementation "com.atlassian.commonmark:commonmark-ext-gfm-strikethrough:$commonmark"
+    implementation "com.atlassian.commonmark:commonmark-ext-gfm-tables:$commonmark"
+    implementation "com.atlassian.commonmark:commonmark-ext-ins:$commonmark"
+    implementation "com.atlassian.commonmark:commonmark-ext-yaml-front-matter:$commonmark"
 
-    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
+    implementation 'com.github.nightwhistler:HtmlSpanner:0.4'
+    implementation 'com.zzhoujay.markdown:markdown:1.0.5'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}

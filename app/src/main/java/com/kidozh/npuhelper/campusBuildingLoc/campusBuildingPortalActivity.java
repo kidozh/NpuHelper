@@ -98,6 +98,7 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle(R.string.location_search_banner_text);
     }
 
     private void saveRecentLocation(Intent intent){
@@ -149,7 +150,7 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toasty.error(mContext,getString(R.string.failed_to_connected_to_location_api),Toast.LENGTH_LONG).show();
+
                     jsonResponse = "";
                 }
 
@@ -324,7 +325,13 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
 
             if(campusBuildingInfoEntityList.size() != 0){
                 // Insert to db
-                new insertBuildingInfoTask(campusBuildingInfoEntityList).execute();
+                try{
+                    new insertBuildingInfoTask(campusBuildingInfoEntityList).execute();
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
 
             }
 
@@ -366,7 +373,14 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
 //
 //            }
             // then insert
-            mDb.campusBuildingInfoDao().insertInfos(campusBuildingInfoEntityList);
+            try{
+                mDb.campusBuildingInfoDao().insertInfos(campusBuildingInfoEntityList);
+            }
+            catch (Exception e){
+                Log.d(TAG,"Error "+e.toString());
+                e.printStackTrace();
+            }
+
             return null;
         }
 
