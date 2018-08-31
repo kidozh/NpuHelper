@@ -10,12 +10,12 @@
             android:title="@string/ipv6_tv_label" />
         <item
             android:id="@+id/nav_position_label"
-            android:icon="@drawable/vector_drawable_positioning_label_full"
+            android:icon="@drawable/vector_drawable_position_label"
             android:title="@string/campus_location_guide" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_address_book"
+            android:icon="@drawable/vector_drawable_address_book_icon"
+            android:title="@string/school_department_address_book" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

@@ -52,6 +52,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kidozh.npuhelper.campusAddressBook.campusAddressBookMainActivity;
+import com.kidozh.npuhelper.schoolBusUtils.schoolBusNetworkUtils;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
 import com.kidozh.npuhelper.preference.SettingsActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusListActivity;
@@ -72,6 +74,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +86,9 @@ import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 //import cz.msebera.android.httpclient.client.cache.Resource;
 import es.dmoral.toasty.Toasty;
-
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
@@ -245,6 +250,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         LoaderManager.LoaderCallbacks<String> callback = MainActivity.this;
         int loaderId = FORECAST_LOADER_ID;
         mContext = getApplicationContext();
+        new getCalenderFromApiTask(mContext).execute();
 
         displaySchoolBus(this);
 
@@ -510,6 +516,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
     public void displaySchoolBus(final Context context){
+        Log.d(TAG, "isFestival "+schoolBusUtils.isFestivalHoliday+" isWorkday "+schoolBusUtils.isFestivalWorkDay);
         int youyi2changanLeftMinutes = schoolBusUtils.getBusLeftMinutesToChangan();
         int changan2youyiLeftMinutes = schoolBusUtils.getBusLeftMinutesToYouyi();
         if(youyi2changanLeftMinutes == -1){
@@ -559,7 +566,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
 
         }
-        Log.v(TAG,"school shuttle rendering finished");
+        // Log.v(TAG,"school shuttle rendering finished");
         CardView mCardView = (CardView) findViewById(R.id.arrival_card);
         mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -648,13 +655,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         if (id == R.id.nav_ipv6_free_tv) {
             // Handle the camera action
+            return false;
         } else if (id == R.id.nav_position_label) {
             Intent intent = new Intent(this,campusBuildingPortalActivity.class);
             startActivity(intent);
-            return true;
+            return false;
 
-        } else if (id == R.id.nav_slideshow) {
-            return  false;
+        } else if (id == R.id.nav_address_book) {
+            Intent intent = new Intent(this,campusAddressBookMainActivity.class);
+            startActivity(intent);
+            return false;
 
         } else if (id == R.id.nav_manage) {
             Intent intent = new Intent(this,SettingsActivity.class);
@@ -717,6 +727,75 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             super.onPreExecute();
             Log.d(TAG,"Save it to database "+mWeatherEntry);
 
+        }
+    }
+
+    public class getCalenderFromApiTask extends AsyncTask<Void,Void,String>{
+        URL mApiUrl;
+        Context mContext;
+        private Request request;
+        private final OkHttpClient client = new OkHttpClient();
+
+        getCalenderFromApiTask(Context context){
+            this.mContext = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mApiUrl = schoolBusNetworkUtils.build_school_calendar_url(mContext);
+            request = new Request.Builder()
+                    .url(mApiUrl)
+                    .build();
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String jsonResponse = "";
+            try {
+                Response response = client.newCall(request).execute();
+
+                if (response.isSuccessful()) {
+                    jsonResponse = response.body().string();
+                } else {
+                    throw new IOException("Unexpected code " + response);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+
+                jsonResponse = "";
+            }
+
+            return jsonResponse;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Calendar calendar = Calendar.getInstance();
+            int curYear = calendar.get(Calendar.YEAR);
+            int curMonth = calendar.get(Calendar.MONTH)+1;
+            int curDay = calendar.get(Calendar.DAY_OF_MONTH);
+            @SuppressLint("DefaultLocale")
+            String curTimeString = String.format("%s%02d%02d",curYear,curMonth,curDay);
+            Log.d(TAG,"Current Time Tag is "+curTimeString);
+            if(!s.contains(curTimeString)){
+                return;
+            }
+
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                String festival = schoolBusUtils.handleApiJson(jsonObject);
+                Log.d(TAG,"Detect festival : "+festival+" isFestival "+schoolBusUtils.isFestivalHoliday+" isWorkday "+schoolBusUtils.isFestivalWorkDay);
+
+                if(festival.length()!=0){
+                    displaySchoolBus(mContext);
+                }
+
+            } catch (JSONException e) {
+                Log.d(TAG,"Wrong JSON : ");
+                e.printStackTrace();
+            }
         }
     }
 

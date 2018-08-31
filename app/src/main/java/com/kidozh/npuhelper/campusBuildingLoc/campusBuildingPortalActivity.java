@@ -54,6 +54,9 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
     @BindView(R.id.location_search_btn)
     Button searchBtn;
 
+    @BindView(R.id.random_choice_btn)
+    Button randomChoiceBtn;
+
     private campusBuildingInfoDatabase mDb;
 
 
@@ -92,6 +95,13 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        randomChoiceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new randomGetLocationTask().execute();
+            }
+        });
     }
 
     private void setActionBar(){
@@ -116,6 +126,37 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
                 campusBuildingSearchSuggestionProvider.AUTHORITY,
                 campusBuildingSearchSuggestionProvider.MODE);
         suggestions.saveRecentQuery(recentLocation, null);
+    }
+
+    class randomGetLocationTask extends AsyncTask<Void,Void,Void>{
+        campusBuildingInfoEntity randomCampusBuildingInfoEntity;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            randomCampusBuildingInfoEntity = mDb.campusBuildingInfoDao().getCampusBuildingInfoRandomly();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            String[] locArray = randomCampusBuildingInfoEntity.location.split(",");
+            double[] gaodeLoc =  GPSUtil.bd09_To_gps84(Double.parseDouble(locArray[1]),Double.parseDouble(locArray[0]));
+            String locString = String.format("%s,%s",gaodeLoc[0],gaodeLoc[1]);
+            Intent intent = new Intent(campusBuildingPortalActivity.this,campusBuildingDetailActivity.class);
+            intent.putExtra("BUILDING_NAME",randomCampusBuildingInfoEntity.name);
+            intent.putExtra("BUILDING_LOCATION",locString);
+            intent.putExtra("BUILDING_DESCRIPTION",randomCampusBuildingInfoEntity.description);
+            intent.putExtra("BUILDING_PICTURE_PATH",randomCampusBuildingInfoEntity.imgUrl);
+            startActivity(intent);
+
+        }
     }
 
 

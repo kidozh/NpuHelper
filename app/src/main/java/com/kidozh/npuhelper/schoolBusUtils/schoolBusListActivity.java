@@ -1,6 +1,7 @@
 package com.kidozh.npuhelper.schoolBusUtils;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,10 +58,29 @@ public class schoolBusListActivity extends AppCompatActivity {
         mSchoolBusAdapter = new schoolBusAdapter(getBaseContext());
 
         if(schoolBusUtils.isWeekday()){
-            mBusScheduleTypes.setText(R.string.weekday_bus);
+            if(schoolBusUtils.isFestivalWorkDay){
+                // set name
+                Log.d(TAG,"Festival name "+schoolBusUtils.speacialDayName );
+                Resources rs = getResources();
+                int fest_id = rs.getIdentifier(schoolBusUtils.speacialDayName,"string",getPackageName());
+                mBusScheduleTypes.setText(String.format("%s %s",getString(fest_id),getString(R.string.weekday_bus)));
+            }
+            else {
+                mBusScheduleTypes.setText(R.string.weekday_bus);
+            }
+
         }
         else {
-            mBusScheduleTypes.setText(R.string.weekend_bus);
+            if(schoolBusUtils.isFestivalHoliday){
+                // set name
+                Resources rs = getResources();
+                int fest_id = rs.getIdentifier(schoolBusUtils.speacialDayName,"string",getPackageName());
+                mBusScheduleTypes.setText(rs.getString(fest_id));
+            }
+            else {
+                mBusScheduleTypes.setText(R.string.weekend_bus);
+            }
+
         }
 
         int[] bus_list;

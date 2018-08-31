@@ -16,7 +16,6 @@ public interface campusBuildingInfoDao {
     @Query("SELECT * FROM campusBuildingInfoEntity WHERE id = :id")
     campusBuildingInfoEntity getCampusBuildingInfoById(int id);
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertInfos(List<campusBuildingInfoEntity> campusBuildingInfoEntities);
 
@@ -28,4 +27,7 @@ public interface campusBuildingInfoDao {
 
     @Query("SELECT * FROM campusBuildingInfoEntity WHERE name LIKE '%%' || :searchText || '%%' OR description LIKE '%%' || :searchText || '%%'")
     List<campusBuildingInfoEntity> getRelatedCampusBuildingInfo(String searchText);
+
+    @Query("SELECT * FROM campusBuildingInfoEntity ORDER BY RANDOM() LIMIT 1")
+    campusBuildingInfoEntity getCampusBuildingInfoRandomly();
 }

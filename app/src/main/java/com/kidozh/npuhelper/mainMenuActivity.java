@@ -87,7 +87,7 @@ public class mainMenuActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_position_label) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_address_book) {
 
         } else if (id == R.id.nav_manage) {
             Intent intent = new Intent(this,SettingsActivity.class);

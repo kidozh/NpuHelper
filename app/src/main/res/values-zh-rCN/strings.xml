@@ -64,8 +64,8 @@
     <string name="i_am_feeling_lucky">随便溜达</string>
     <string name="failed_to_connected_to_location_api">无法连接上服务器</string>
     <string name="failed_to_parse_json">无法解析服务器信息</string>
-    <string name="pref_title_location_api_source">校园地点API来源</string>
-    <string name="pref_description_location_api_source">选择应用将会从哪里获得校园里的地点信息</string>
+    <string name="pref_title_location_api_source">API提供方</string>
+    <string name="pref_description_location_api_source">选择应用将会从哪里获得相关的在线信息</string>
     <string-array name="pref_array_location_api_source_entries">
         <item>Github</item>
         <item>Gitee (在国内较为稳定)</item>
@@ -80,4 +80,19 @@
     <string name="pref_title_data_save_mode">省流量模式</string>
     <string name="pref_description_data_save_mode">仅在WLAN下下载图片、数据库等</string>
     <string name="campus_building_description_not_exist">暂时没有任何对这个地点的描述</string>
+    <string name="dragon_boat_festival">端午节</string>
+    <string name="mid_fall_festival">中秋节</string>
+    <string name="national_day">国庆节</string>
+    <string name="school_department_address_book">校园通讯录</string>
+    <string name="general_tag">通用</string>
+    <string name="individual_college">各学院</string>
+    <string name="others_tag">其他</string>
+    <string name="pref_title_phone_number_prefix">电话号码加拨前缀</string>
+    <string name="pref_description_phone_number_prefix">选择应用将会在显示电话号码时自动添加的前缀</string>
+    <string-array name="pref_array_phone_number_prefix_entries">
+        <item>国家（地区）代码和区号</item>
+        <item>区号</item>
+        <item>无</item>
+
+    </string-array>
 </resources>

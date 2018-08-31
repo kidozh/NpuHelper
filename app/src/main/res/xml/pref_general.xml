@@ -1,7 +1,8 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ListPreference
-        android:defaultValue="@string/github_location_api_source"
+        android:defaultValue="@string/gitee_location_api_source"
         android:entries="@array/pref_array_location_api_source_entries"
         android:entryValues="@array/pref_array_location_api_source_entries_value"
         android:key="@string/pref_location_api_source"
@@ -15,6 +16,12 @@
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <ListPreference
+        android:entries="@array/pref_array_phone_number_prefix_entries"
+        android:entryValues="@array/pref_array_phone_number_prefix_entries_value"
+        android:key="@string/pref_key_phone_number_prefix"
+        android:summary="@string/pref_description_phone_number_prefix"
+        android:title="@string/pref_title_phone_number_prefix" />
     <EditTextPreference
         android:capitalize="words"
         android:defaultValue="@string/pref_default_display_name"

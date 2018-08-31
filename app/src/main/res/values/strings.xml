@@ -238,7 +238,7 @@
     <string name="failed_to_connected_to_location_api">Failed to get info from server</string>
     <string name="failed_to_parse_json">Failed to parse info from server</string>
 
-    <string name="pref_title_location_api_source">Location API Source</string>
+    <string name="pref_title_location_api_source">API Source</string>
     <string name="pref_description_location_api_source">Select which api app will retrieve info</string>
     <string name="pref_location_api_source">pref_location_api_source</string>
     <string-array name="pref_array_location_api_source_entries">
@@ -262,5 +262,28 @@
     <string name="pref_key_data_save_mode">pref_key_data_save_mode</string>
     <string name="title_activity_campus_building_detail">CampusBuildingDetailActivity</string>
     <string name="campus_building_description_not_exist">No description found</string>
+    <string name="dragon_boat_festival">Dragon boat festival</string>
+    <string name="mid_fall_festival">Mid fall festival</string>
+    <string name="national_day">National Day</string>
+    <string name="school_department_address_book">Dept. address book of U.</string>
+    <string name="general_tag">General</string>
+    <string name="individual_college">colleges</string>
+    <string name="others_tag">Others</string>
+
+    <string name="pref_title_phone_number_prefix">Phone prefix</string>
+    <string name="pref_description_phone_number_prefix">Select which prefix app will show before phone number</string>
+    <string name="pref_key_phone_number_prefix">pref_phone_number_prefix</string>
+    <string-array name="pref_array_phone_number_prefix_entries">
+        <item>Country Code + Location Code</item>
+        <item>Location Code</item>
+        <item>Nothing</item>
+
+    </string-array>
+    <string-array name="pref_array_phone_number_prefix_entries_value">
+        <item>+86-29</item>
+        <item>029</item>
+        <item></item>
+
+    </string-array>
 
 </resources>
