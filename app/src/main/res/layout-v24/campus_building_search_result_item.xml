@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/search_result_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/location_search_item_background"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:contentDescription="background"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@color/colorPeterRiver" />
+
+            <TextView
+                android:id="@+id/location_search_item_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorConcreteTransparent"
+                android:fontFamily="serif"
+                android:paddingBottom="4dp"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                android:textColor="@color/colorCloud"
+                app:layout_constraintBottom_toBottomOf="@+id/location_search_item_background"
+                app:layout_constraintEnd_toEndOf="@+id/location_search_item_background"
+                app:layout_constraintHorizontal_bias="0.12"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Top 10 NPU Senery" />
+
+            <TextView
+                android:id="@+id/location_search_item_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textColor="@color/colorAsbestos"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/location_search_item_name"
+                app:layout_constraintTop_toBottomOf="@+id/location_search_item_background"
+                tools:text="@string/common_google_play_services_notification_ticker" />
+
+            <Button
+                android:id="@+id/location_search_item_detail_btn"
+                style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/location_card_detail_tag"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+                app:layout_constraintStart_toStartOf="@+id/location_search_item_description"
+                app:layout_constraintTop_toBottomOf="@+id/location_search_item_description" />
+
+            <Button
+                android:id="@+id/location_search_item_show_in_external_map_btn"
+                style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/location_card_show_in_map_tag"
+                android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Borderless.Colored"
+                app:layout_constraintStart_toEndOf="@+id/location_search_item_detail_btn"
+                app:layout_constraintTop_toTopOf="@+id/location_search_item_detail_btn" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

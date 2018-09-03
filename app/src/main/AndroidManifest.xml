@@ -6,6 +6,16 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 地图SDK（包含其搜索功能）需要的基础权限 -->
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -29,8 +39,45 @@
         <activity
             android:name=".mainMenuActivity"
             android:label="@string/title_activity_main_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".schoolBusUtils.schoolBusListActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".schoolBusUtils.schoolBusListActivity" />
+        <activity
+            android:name=".preference.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".weatherUtils.WeatherDetailActivity"
+            android:label="@string/title_activity_weather_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- gaode map -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="bbfb294974c8caa9820f9cb7eba53559" />
+
+        <activity android:name=".campusBuildingLoc.campusBuildingPortalActivity">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <provider
+            android:name=".campusBuildingLoc.campusBuildingSearchSuggestionProvider"
+            android:authorities="CAMPUS_BUILDING_SEARCH_AUTHORITY" />
+
+        <activity android:name=".campusBuildingLoc.campusBuildingSearchResultActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".campusBuildingLoc.campusBuildingDetailActivity"
+            android:label="@string/title_activity_campus_building_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".campusAddressBook.campusAddressBookMainActivity"></activity>
     </application>
 
 </manifest>

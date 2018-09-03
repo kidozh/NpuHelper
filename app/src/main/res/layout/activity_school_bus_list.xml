@@ -7,30 +7,35 @@
     tools:context=".schoolBusUtils.schoolBusListActivity">
 
     <TextView
+        android:id="@+id/bus_item_departure_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/depature_tag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/bus_departure_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/lato"
-        android:text="@string/bus_list_title"
+        android:text="@string/changan_campus_name"
         android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/bus_item_departure_tag"
+        app:layout_constraintTop_toBottomOf="@+id/bus_item_departure_tag" />
 
     <TextView
         android:id="@+id/bus_arrivial_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/lato"
-        android:text="@string/bus_list_title"
+        android:text="@string/youyi_campus_name"
         android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/bus_item_arrivial_tag"
+        app:layout_constraintTop_toTopOf="@+id/bus_departure_place" />
 
     <TextView
         android:id="@+id/bus_schedule_type"
@@ -38,22 +43,45 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/oxygen"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/pt_sans"
         android:text="@string/weekday_bus"
-        android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textAppearance="@android:style/TextAppearance.Material.Notification"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/bus_arrivial_place"
         app:layout_constraintStart_toStartOf="@+id/bus_departure_place"
         app:layout_constraintTop_toBottomOf="@+id/bus_departure_place" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/bus_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="502dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+    <TextView
+        android:id="@+id/bus_item_arrivial_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/arrivial_tag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bus_item_departure_tag" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bus_schedule_type" />
+        app:layout_constraintTop_toBottomOf="@+id/bus_schedule_type">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/bus_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bus_schedule_type" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
