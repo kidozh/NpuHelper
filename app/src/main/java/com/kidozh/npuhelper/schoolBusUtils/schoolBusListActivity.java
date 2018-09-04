@@ -115,7 +115,7 @@ public class schoolBusListActivity extends AppCompatActivity {
             // moveToPosition(cur_bus_index - 1);
         }
         else if (cur_bus_index != -1){
-            busRecyclerView.scrollToPosition(cur_bus_index);
+            busRecyclerView.scrollToPosition(cur_bus_index-1);
             //moveToPosition(cur_bus_index);
         }
         else{

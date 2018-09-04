@@ -146,6 +146,9 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            if(randomCampusBuildingInfoEntity == null){
+                return;
+            }
             String[] locArray = randomCampusBuildingInfoEntity.location.split(",");
             double[] gaodeLoc =  GPSUtil.bd09_To_gps84(Double.parseDouble(locArray[1]),Double.parseDouble(locArray[0]));
             String locString = String.format("%s,%s",gaodeLoc[0],gaodeLoc[1]);

@@ -1,5 +1,6 @@
 package com.kidozh.npuhelper.campusAddressBook;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -24,6 +25,12 @@ public interface campusAddressBookInfoDao {
     @Delete
     void deleteInfo(campusAddressBookInfoEntity mCampusAddressBookInfoEntity);
 
-    @Query("SELECT * FROM campusAddressBookInfoEntity WHERE name LIKE '%%' || :searchText || '%%' OR category LIKE '%%' || :searchText || '%%'")
+    @Query("SELECT * FROM campusAddressBookInfoEntity WHERE name LIKE '%%' || :searchText || '%%' OR category LIKE '%%' || :searchText || '%%' OR phoneNumber LIKE '%%' || :searchText || '%%' OR location LIKE '%%' || :searchText || '%%' OR departmentLoc LIKE '%%' || :searchText || '%%' OR job LIKE '%%' || :searchText || '%%'")
     List<campusAddressBookInfoEntity> getAllRelatedCampusAddressBookInfo(String searchText);
+
+    @Query("SELECT * FROM campusAddressBookInfoEntity")
+    LiveData<List<campusAddressBookInfoEntity>> getAllCampusAddressBookInfo();
+
+    @Query("SELECT * FROM campusAddressBookInfoEntity")
+    List<campusAddressBookInfoEntity> queryAllCampusAddressBookInfo();
 }

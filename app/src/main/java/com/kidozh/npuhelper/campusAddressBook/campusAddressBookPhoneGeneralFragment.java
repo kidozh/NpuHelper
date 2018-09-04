@@ -15,10 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.common.util.JsonUtils;
 import com.kidozh.npuhelper.R;
-import com.kidozh.npuhelper.campusBuildingLoc.campusBuildingPortalActivity;
-import com.kidozh.npuhelper.campusBuildingLoc.campusBuildingUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,8 +33,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class campusAddressBookPhoneDeatailFragment extends Fragment {
-    private final static String TAG = campusAddressBookPhoneDeatailFragment.class.getSimpleName();
+public class campusAddressBookPhoneGeneralFragment extends Fragment {
+    private final static String TAG = campusAddressBookPhoneGeneralFragment.class.getSimpleName();
 
     @BindView(R.id.campus_address_book_phone_recycler_view)
     RecyclerView mCampusAddressBookPhoneRecylerView;
@@ -132,7 +129,7 @@ public class campusAddressBookPhoneDeatailFragment extends Fragment {
                     for (Iterator cate = categoryObj.keys();cate.hasNext();){
                         String departmentName =  (String) cate.next();
                         String departmentPhone = (String) categoryObj.getString(departmentName);
-                        campusAddressBookInfoEntityList.add(new campusAddressBookInfoEntity(departmentName,departmentPhone,category));
+                        campusAddressBookInfoEntityList.add(new campusAddressBookInfoEntity(departmentName,departmentPhone,category,"","",""));
                     }
                 }
 

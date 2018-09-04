@@ -52,6 +52,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.location.DPoint;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeAddress;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.kidozh.npuhelper.campusAddressBook.campusAddressBookMainActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusNetworkUtils;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
@@ -441,33 +448,63 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     public void renderGeoLocation(){
         Geocoder gc = new Geocoder(this, Locale.getDefault());
-        List<Address> locationList = null;
-        try {
-            locationList = gc.getFromLocation(locLatitude,locLongitude,1);
-            Address address = locationList.get(0);
+        if(Geocoder.isPresent()){
+            List<Address> locationList = null;
+            try {
+                // there is backend service
+                locationList = gc.getFromLocation(locLatitude,locLongitude,1);
+                Address address = locationList.get(0);
 
-            String countryName = address.getCountryName();
-            String locality = address.getLocality();
-            String adminArea = address.getAdminArea();
-            String feature = address.getFeatureName();
+                String countryName = address.getCountryName();
+                String locality = address.getLocality();
+                String adminArea = address.getAdminArea();
+                String feature = address.getFeatureName();
 
-            String locationFullName = adminArea + " " + locality + " " + feature;
-            Log.d(TAG,"get location name " +  locationFullName);
+                String locationFullName = adminArea + " " + locality + " " + feature;
+                Log.d(TAG,"get location name " +  locationFullName);
 
-            Log.d(TAG,address.toString());
+                Log.d(TAG,address.toString());
 
-            mLocationName.setText(feature);
+                mLocationName.setText(feature);
 
 
+            }
+            catch (IOException e){
+                mLocationName.setText(getString(R.string.geo_parse_failed));
+                Toasty.error(this, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
+                // e.printStackTrace();
+            }
+            //assert locationList != null;
+            Log.d(TAG,"Ended Loading Weather condition");
+            //finish();
         }
-        catch (IOException e){
-            mLocationName.setText(getString(R.string.geo_parse_failed));
-            Toasty.error(this, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
-            // e.printStackTrace();
+        else {
+            GeocodeSearch geocoderSearch = new GeocodeSearch(this);
+            geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+                @Override
+                public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+                    if(i == 1000){
+                        RegeocodeAddress geoCodeAddr = regeocodeResult.getRegeocodeAddress();
+                        String neighborhood = geoCodeAddr.getNeighborhood();
+                        mLocationName.setText(neighborhood);
+
+                    }
+                    else {
+                        Toasty.error(mContext, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
+                    }
+                }
+
+                @Override
+                public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
+                }
+            });
+            LatLonPoint latLonPoint = new LatLonPoint(locLatitude,locLongitude);
+            RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,GeocodeSearch.GPS);
+
+            geocoderSearch.getFromLocationAsyn(query);
         }
-        //assert locationList != null;
-        Log.d(TAG,"Ended Loading Weather condition");
-        //finish();
+
     }
 
     public void populateWeatherUI(caiyunWeatherEntry caiyunWeather) throws JSONException {

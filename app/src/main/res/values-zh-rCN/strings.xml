@@ -40,7 +40,7 @@
     <string name="WIND">大风</string>
     <string name="HAZE">雾霾</string>
     <string name="relative_humidity">相对湿度</string>
-    <string name="nearst_rain_strength">最近降雨地点/量</string>
+    <string name="nearst_rain_strength">最近降雨地点</string>
     <string name="rain_strength">降雨量</string>
     <string name="aqi">空气质量指数</string>
     <string name="location_denied_notice">无法获得位置，默认使用老校区位置</string>
@@ -95,4 +95,5 @@
         <item>无</item>
 
     </string-array>
+    <string name="search_phone_hint">学校各部门的名称及其职责</string>
 </resources>

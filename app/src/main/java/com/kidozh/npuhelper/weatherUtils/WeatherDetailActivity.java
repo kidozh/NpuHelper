@@ -54,8 +54,8 @@ public class WeatherDetailActivity extends AppCompatActivity {
     @BindView(R.id.detailed_weather_rain_text_1)
     TextView mDetailWeatherRainText1;
 
-    @BindView(R.id.detailed_weather_rain_text_2)
-    TextView mDetailWeatherRainText2;
+    @BindView(R.id.detailed_weather_rain_unit)
+    TextView mDetailWeatherRainUnit;
 
 
 
@@ -129,16 +129,21 @@ public class WeatherDetailActivity extends AppCompatActivity {
                 String distance = nearstRain.getString("distance");
                 float fDistance = Float.parseFloat(distance);
                 int intDistance = (int) fDistance;
-                mDetailWeatherRainText1.setText(String.format("%s %s",intDistance,getString(R.string.kilometer)));
+                if(intDistance > 1000){
+                    mDetailWeatherRainText1.setText(R.string.rain_distance_1000_plus);
+                }
+                else {
+
+                    mDetailWeatherRainText1.setText(String.format("%s",intDistance));
+                }
+
                 String intensity = nearstRain.getString("intensity");
-                mDetailWeatherRainText2.setText(intensity);
             }
             else {
                 mDetailedWeatherRainTag.setText(R.string.rain_strength);
-                String distance = String.format("%s %s",Integer.parseInt(localRain.getString("distance")),getString(R.string.kilometer));
+                String distance = localRain.getString("distance");
                 mDetailWeatherRainText1.setText(distance);
                 String intensity = localRain.getString("intensity");
-                mDetailWeatherRainText2.setText(intensity);
             }
 
         }

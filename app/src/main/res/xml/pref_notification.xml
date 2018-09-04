@@ -7,7 +7,7 @@
         android:entries="@array/pref_array_bus_notice_time_entries"
         android:entryValues="@array/pref_array_bus_notice_time_entries_value"
         android:key="@string/shuttle_advanced_time"
-        android:summary="@string/pref_summary_bus_notice_time"
+        android:summary="%s"
         android:title="@string/pref_title_bus_notice_time" />
     <SwitchPreference
         android:defaultValue="true"

@@ -285,5 +285,7 @@
         <item></item>
 
     </string-array>
+    <string name="rain_distance_1000_plus">999+</string>
+    <string name="search_phone_hint">Department\'s name, branch or work</string>
 
 </resources>

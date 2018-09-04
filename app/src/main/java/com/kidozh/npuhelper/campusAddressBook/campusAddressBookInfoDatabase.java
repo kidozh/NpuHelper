@@ -10,9 +10,10 @@ import android.util.Log;
 import com.kidozh.npuhelper.campusBuildingLoc.DateConverter;
 
 
-@Database(entities = {campusAddressBookInfoEntity.class},version = 1 ,exportSchema = false)
+@Database(entities = {campusAddressBookInfoEntity.class},version = 2 ,exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class campusAddressBookInfoDatabase extends RoomDatabase {
+
 
     private static final String TAG = campusAddressBookInfoDatabase.class.getSimpleName();
 
@@ -28,6 +29,7 @@ public abstract class campusAddressBookInfoDatabase extends RoomDatabase {
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
                         campusAddressBookInfoDatabase.class,
                         campusAddressBookInfoDatabase.DATABASE_NAME)
+                        .fallbackToDestructiveMigration()
                         .build();
             }
         }
