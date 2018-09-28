@@ -1,6 +1,6 @@
 # NpuHelper
 
-Your encyclopedia in NPU
+Your encyclopedia in NPU (in Xi'an, Shaanxi province, China.)
 
 [中文介绍](/README-zh_CN.md)
 
