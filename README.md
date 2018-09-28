@@ -2,6 +2,8 @@
 
 Your encyclopedia in NPU
 
+[中文介绍](/README-zh_CN.md)
+
 # Main Feature
 
 + real-time weather forecast

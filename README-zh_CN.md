@@ -2,6 +2,8 @@
 
 瓜大的百科全书
 
+[English Introduction](/README.md)
+
 # 主要特征
 
 + 实时天气查询
