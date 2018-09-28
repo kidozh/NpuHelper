@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    android:orientation="vertical"
+    tools:context=".xianCityBus.cityBusNavigationFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/place_input_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:background="@color/colorCityBusActionBar">
+
+        <ImageView
+            android:id="@+id/destination_tag"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/vector_drawable_current_location"
+            app:layout_constraintBottom_toBottomOf="@+id/bus_departure_editText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bus_departure_editText" />
+
+        <EditText
+            android:id="@+id/bus_departure_editText"
+            style="@style/cityBusEditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pt_sans"
+            android:hint="@string/departure_hint"
+            android:inputType="text|textNoSuggestions"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:singleLine="true"
+            android:textColor="@color/colorCloud"
+            android:textColorHint="@color/colorSilver"
+            android:textSize="24sp"
+            android:theme="@style/cityBusEditTextStyle"
+            app:layout_constraintEnd_toStartOf="@+id/bus_change_place_btn"
+            app:layout_constraintStart_toEndOf="@+id/destination_tag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Bell Tower, Xi'an" />
+
+        <ImageButton
+            android:id="@+id/bus_change_place_btn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="8dp"
+            android:radius="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/vector_drawable_exchange"
+            app:layout_constraintBottom_toBottomOf="@+id/bus_arrival_editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bus_departure_editText" />
+
+        <ImageView
+            android:id="@+id/arrival_tag"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/vector_drawable_pin_wap"
+            app:layout_constraintBottom_toBottomOf="@+id/bus_arrival_editText"
+            app:layout_constraintStart_toStartOf="@+id/destination_tag"
+            app:layout_constraintTop_toTopOf="@+id/bus_arrival_editText" />
+
+        <EditText
+            android:id="@+id/bus_arrival_editText"
+            style="@style/cityBusEditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:fontFamily="@font/pt_sans"
+            android:hint="@string/destination_hint"
+            android:inputType="text"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:singleLine="true"
+            android:textColor="@color/colorCloud"
+            android:textColorHint="@color/colorSilver"
+            android:textSize="24sp"
+            android:theme="@style/cityBusEditTextStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bus_change_place_btn"
+            app:layout_constraintStart_toStartOf="@+id/bus_departure_editText"
+            app:layout_constraintTop_toBottomOf="@+id/bus_departure_editText"
+            tools:text="South Gate, NPU" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/bus_search_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bus_result_recylerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
+        tools:listitem="@layout/city_bus_route_list_item" />
+
+</LinearLayout>

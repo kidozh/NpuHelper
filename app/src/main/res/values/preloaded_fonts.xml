@@ -2,6 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/</item>
+        <item>@font/copse</item>
+        <item>@font/dosis</item>
         <item>@font/lato</item>
         <item>@font/lato_bold</item>
         <item>@font/lato_light</item>
@@ -11,5 +13,6 @@
         <item>@font/pt_sans_narrow</item>
         <item>@font/roboto</item>
         <item>@font/roboto_light</item>
+        <item>@font/titillium_web</item>
     </array>
 </resources>

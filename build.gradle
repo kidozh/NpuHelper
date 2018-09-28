@@ -24,7 +24,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:3.2.0'
         //classpath "com.neenbedankt.android-apt:1.8"
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
         //classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
@@ -52,6 +52,8 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

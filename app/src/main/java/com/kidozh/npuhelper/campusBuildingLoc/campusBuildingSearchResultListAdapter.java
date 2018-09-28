@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.kidozh.npuhelper.R;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusAdapter;
 
@@ -57,11 +58,6 @@ public class campusBuildingSearchResultListAdapter extends RecyclerView.Adapter<
         this.mContext = mContext;
         fileDir = new File(path);
         Log.d(TAG,"Create dirs in path:"+path+" is Exist :"+fileDir.exists());
-
-        if (!fileDir.exists()) {
-            Boolean isCreated = fileDir.mkdirs();
-            Log.d(TAG,"Create dirs in path:"+path+" is Created : "+isCreated);
-        }
     }
 
     @NonNull
@@ -87,45 +83,10 @@ public class campusBuildingSearchResultListAdapter extends RecyclerView.Adapter<
          */
         Log.d(TAG,"Img url : "+campusBuildingInfo.imgUrl+" name : "+campusBuildingInfo.name+" "+campusBuildingInfo.imgUrl.length());
         if(campusBuildingInfo.imgUrl.length()!=0){
-            String[] picUrlArray = campusBuildingInfo.imgUrl.split("/");
-            String fileName = picUrlArray[picUrlArray.length-1];
-            // add name prefix
-            fileName = campusBuildingInfo.name + " "+ fileName;
-            File file = new File(fileDir, fileName);
-            if (!file.exists()) {
-
-                // 如果本地图片不存在则从网上下载
-                // check with preference
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext) ;
-                Boolean isDataSave  = prefs.getBoolean(mContext.getString(R.string.pref_key_data_save_mode),true);
-                // check current network condition
-                ConnectivityManager cm =
-                        (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-                boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-                boolean isWiFi = activeNetwork != null && activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
-                // only if there is network , wifi is connected or dataSave mode is off
-                Log.d(TAG,"Connected : "+isConnected+" isWifi : "+isWiFi+" DataSave Mode : "+isDataSave);
-                if(isConnected && (!isDataSave || isWiFi) ){
-                    new downloadPicAndBindViewTask(fileName,campusBuildingInfo.imgUrl,holder.mLocationBackground).execute();
-                }
-                else {
-                    // plot offline
-                    holder.mLocationBackground.setImageBitmap(null);
-                    if(campusBuildingInfo.campus.equals("Changan")){
-                        holder.mLocationBackground.setBackgroundResource(R.color.colorPeterRiver);
-                    }
-                    else {
-                        holder.mLocationBackground.setBackgroundResource(R.color.colorOrange);
-                    }
-                }
-
-            } else {
-                Bitmap bitmap = BitmapFactory
-                        .decodeFile(file.getAbsolutePath());
-                holder.mLocationBackground.setImageBitmap(bitmap);
-            }
+            Glide.with(mContext)
+                    .asBitmap()
+                    .load(campusBuildingInfo.imgUrl)
+                    .into(holder.mLocationBackground);
         }
         else{
             holder.mLocationBackground.setImageBitmap(null);
@@ -173,17 +134,7 @@ public class campusBuildingSearchResultListAdapter extends RecyclerView.Adapter<
 
                 intent.putExtra("BUILDING_LOCATION",locString);
                 intent.putExtra("BUILDING_DESCRIPTION",campusBuildingInfo.description);
-                if(campusBuildingInfo.imgUrl.length()!=0) {
-                    String[] picUrlArray = campusBuildingInfo.imgUrl.split("/");
-                    String fileName = picUrlArray[picUrlArray.length - 1];
-                    // add name prefix
-                    fileName = campusBuildingInfo.name + " " + fileName;
-                    File file = new File(fileDir, fileName);
-                    intent.putExtra("BUILDING_PICTURE_PATH", file.getAbsolutePath());
-                }
-                else {
-                    intent.putExtra("BUILDING_PICTURE_PATH", "");
-                }
+                intent.putExtra("BUILDING_PICTURE_PATH", campusBuildingInfo.imgUrl);
                 mContext.startActivity(intent);
             }
         });
@@ -222,78 +173,6 @@ public class campusBuildingSearchResultListAdapter extends RecyclerView.Adapter<
             super(itemView);
             ButterKnife.bind(this,itemView);
 
-        }
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private class downloadPicAndBindViewTask extends AsyncTask<Void,Void,Void>{
-        String filename;
-        String pictureURL;
-
-        ImageView imageView;
-
-        File file;
-
-        downloadPicAndBindViewTask(final String filename, final String pictureURL, final ImageView imageView){
-            this.filename = filename;
-            this.pictureURL = pictureURL;
-            this.imageView = imageView;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            FileOutputStream fos = null;
-            InputStream in = null;
-
-            // 创建文件
-            file = new File(fileDir, filename);
-
-            try {
-
-                fos = new FileOutputStream(file);
-
-                URL url = new URL(pictureURL);
-
-                in = url.openStream();
-
-                int len = -1;
-                byte[] b = new byte[1024];
-                while ((len = in.read(b)) != -1) {
-                    fos.write(b, 0, len);
-                }
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (fos != null) {
-                        fos.close();
-                    }
-                    if (in != null) {
-                        in.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            Bitmap bitmap = BitmapFactory
-                    .decodeFile(file.getAbsolutePath());
-            imageView.setImageBitmap(bitmap);
-            Log.d(TAG,"GET Bitmap from "+pictureURL+" to "+filename);
         }
     }
 

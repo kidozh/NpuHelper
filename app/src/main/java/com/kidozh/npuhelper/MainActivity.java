@@ -64,6 +64,7 @@ import com.kidozh.npuhelper.schoolBusUtils.schoolBusNetworkUtils;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
 import com.kidozh.npuhelper.preference.SettingsActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusListActivity;
+import com.kidozh.npuhelper.schoolCalendar.schoolCalendarMainActivity;
 import com.kidozh.npuhelper.weatherUtils.WeatherDetailActivity;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherDatabase;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherEntry;
@@ -72,6 +73,7 @@ import com.kidozh.npuhelper.weatherUtils.caiyunWeatherViewModel;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherViewModelFactory;
 import com.kidozh.npuhelper.weatherUtils.addCaiyunWeatherViewModel;
 import com.kidozh.npuhelper.campusBuildingLoc.campusBuildingPortalActivity;
+import com.kidozh.npuhelper.xianCityBus.cityBusPortalActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.SyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -120,8 +122,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @BindView(R.id.left_time)  TextView mShuttleLeftTime;
     @BindView(R.id.left_time1) TextView mShuttleLeftTime1;
 
-    private double locLatitude = 34.244065;
-    private double locLongitude = 108.915874;
+
+    private double locLatitude = 34.24626;
+    private double locLongitude = 108.91148;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -155,12 +158,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Log.d(TAG,"GET LOCATION PERMIT "+locationManager);
 
             if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_COARSE_LOCATION)){
-                Toasty.info(this,getString(R.string.caiyun_support_notice),Toast.LENGTH_SHORT,true).show();
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
+                // 应用之前请求过此权限但用户拒绝了请求，此方法将返回 true
+                Toasty.info(this,getString(R.string.location_denied_notice),Toast.LENGTH_LONG,true).show();
             }
             else {
                 ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
-                Toasty.info(this,getString(R.string.location_denied_notice),Toast.LENGTH_LONG,true).show();
+
 
 
             }
@@ -469,7 +472,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
             }
-            catch (IOException e){
+            catch (Exception e){
                 mLocationName.setText(getString(R.string.geo_parse_failed));
                 Toasty.error(this, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
                 // e.printStackTrace();
@@ -692,6 +695,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         if (id == R.id.nav_ipv6_free_tv) {
             // Handle the camera action
+            Intent intent = new Intent(this,schoolCalendarMainActivity.class);
+            startActivity(intent);
             return false;
         } else if (id == R.id.nav_position_label) {
             Intent intent = new Intent(this,campusBuildingPortalActivity.class);
@@ -707,7 +712,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Intent intent = new Intent(this,SettingsActivity.class);
             startActivity(intent);
             return false;
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_bus_services) {
+            Intent intent = new Intent(this,cityBusPortalActivity.class);
+            startActivity(intent);
+            return true;
 
         } else if (id == R.id.nav_send) {
 

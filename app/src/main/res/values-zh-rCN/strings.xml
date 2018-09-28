@@ -96,4 +96,59 @@
 
     </string-array>
     <string name="search_phone_hint">学校各部门的名称及其职责</string>
+    <string name="school_calendar">校历</string>
+    <string name="holiday">假</string>
+
+    <string-array name="week_string_array">
+        <item>日</item>
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+    </string-array>
+    <string name="detailed">具体</string>
+    <string name="spring_semester">春学期</string>
+    <string name="fall_semester">秋学期</string>
+    <string name="vacation">假期</string>
+    <string name="rest">休</string>
+    <string name="work">班</string>
+    <string name="today">今日</string>
+    <string name="start_label">始</string>
+    <string name="end_label">终</string>
+    <string name="week_number_template">第 %s 周</string>
+    <string name="school_news_title">校园新闻</string>
+    <string name="semester_start_tag">开学</string>
+    <string name="semester_end_tag">本学年完</string>
+
+    <string name="pref_title_calendar_start_day">日历起始日</string>
+    <string-array name="pref_array_calendar_start_day_entries">
+        <item>星期六</item>
+        <item>星期天</item>
+        <item>星期一</item>
+    </string-array>
+    <string name="hot_news">热点新闻</string>
+    <string name="city_service">城市服务</string>
+    <string name="bus_service">西安公交</string>
+    <string name="guide_path">导航</string>
+    <string name="route_tabitem_text">公交线路</string>
+    <string name="bus_stop_tabitem_text">公交站</string>
+    <string name="departure_hint">出发地</string>
+    <string name="destination_hint">到达地</string>
+    <string name="bus_fastest_label">最快</string>
+    <string name="bus_less_transfer_label">少换乘</string>
+    <string name="bus_travel_stop_template">停靠%s站</string>
+    <string name="bus_my_location_label">我的位置</string>
+    <string name="leave_at_stop_template">在%s上车</string>
+    <string name="bus_search_location_hint">搜索地点</string>
+    <string name="request_location_dialog_title">提供您的位置</string>
+    <string name="request_location_dialog_message">您的位置将被用于作为公交导航的依据，如果您不想提供您当前的地理位置，西北工业大学友谊校区的位置将被设为默认的出发地。</string>
+    <string name="request_location_dialog_ok">好</string>
+    <string name="request_location_dialog_refuse">不必了</string>
+    <string name="no_location_provided_error">没有可用的位置提供器</string>
+    <string name="rmb_tag">元</string>
+    <string name="bus_travel_left_template">在%s下车</string>
+    <string name="or_divider">或者</string>
+    <string name="next_divider">转</string>
 </resources>

@@ -24,8 +24,8 @@ public final class caiyunWeatherUtils {
     final static private String REALTIME_RESPONSE_RES = "realtime.json";
     final static private String RAIN_UNIT_KEY = "unit";
     final static private String RAIN_UNIT_VALUE = "metric:v2";
+    public static String GEO_LOCATION = "108.91148,34.24626";
 
-    public static String GEO_LOCATION = "108.913676,34.244065";
 
     public static URL build_forecast_api_url(String geo_location){
         final String api_string = CAIYUN_HOST + "/" + API_KEY + "/" + geo_location + "/" + RESOPNSE_RES;

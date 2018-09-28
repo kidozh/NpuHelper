@@ -20,5 +20,17 @@
     <color name="colorTurquoise">#1abc9c</color>
     <color name="colorGreensea">#16a085</color>
     <color name="colorPeterRiver">#3498db</color>
+    <color name="colorBelizahole">#2980b9</color>
+    <color name="colorAmethyst">#9b59b6</color>
+    <color name="colorWisteria">#8e44ad</color>
+    <color name="colorWetasphalt">#34495e</color>
+    <color name="colorMidnightblue">#2c3e50</color>
+    <color name="colorPureWhite">#FFFFFF</color>
     <color name="colorConcreteTransparent">#6495a5a6</color>
+    <color name="colorCalendarWorkDayLabel">@color/colorOrange</color>
+    <color name="colorCalendarHolidayDayLabel">@color/colorEmerland</color>
+    <color name="colorCalendarStartSemesterLabel">@color/colorAccent</color>
+    <color name="colorCalendarEndSemesterLabel">@color/colorAccent</color>
+    <color name="colorCityBusActionBar">@color/colorGreensea</color>
+
 </resources>

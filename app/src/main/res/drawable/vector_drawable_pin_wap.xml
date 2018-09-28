@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="1024"
+    android:viewportHeight="1024" android:width="200dp" android:height="200dp">
+    <path android:fillColor="@color/cardview_light_background"
+        android:pathData="M512 0C308.38784 0 143.36 165.02784 143.36 368.64c0 38.17472 5.20192 75.1616 16.54784 109.60896C219.29984 657.89952 512 1024 512 1024s307.2-381.41952 352.95232-548.70016C874.2912 441.30304 880.64 405.74976 880.64 368.64 880.64 165.02784 715.61216 0 512 0zM512 532.48c-90.48064 0-163.84-73.35936-163.84-163.84 0-90.48064 73.35936-163.84 163.84-163.84 90.48064 0 163.84 73.35936 163.84 163.84C675.84 459.12064 602.48064 532.48 512 532.48z" />
+</vector>

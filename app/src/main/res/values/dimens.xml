@@ -11,4 +11,5 @@
     <dimen name="gaode_map_left_padding">8dp</dimen>
     <dimen name="gaode_map_right_padding">8dp</dimen>
     <dimen name="gaode_map_top_margin">8dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
 </resources>

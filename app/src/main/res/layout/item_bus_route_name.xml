@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:focusableInTouchMode="false">
+
+    <TextView
+        android:id="@+id/item_bus_or_divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/or_divider"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_bus_drawable_divider" />
+
+    <TextView
+        android:id="@+id/item_bus_route_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_bold"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorTurquoise"
+        android:textSize="42sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_bus_or_divider"
+        tools:text="Route 101" />
+
+    <TextView
+        android:id="@+id/item_bus_route_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorSilver"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/item_bus_route_number"
+        app:layout_constraintTop_toBottomOf="@+id/item_bus_route_number"
+        tools:text="Berlin HauptBanhof" />
+
+    <TextView
+        android:id="@+id/item_bus_route_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/colorSilver"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_bus_route_start"
+        tools:text="Koln Cathenthral" />
+
+    <ImageView
+        android:id="@+id/item_bus_travel_direction_image_view"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/item_bus_route_start"
+        app:layout_constraintEnd_toStartOf="@+id/item_bus_route_end"
+        app:layout_constraintStart_toEndOf="@+id/item_bus_route_start"
+        app:layout_constraintTop_toTopOf="@+id/item_bus_route_start"
+        app:srcCompat="@drawable/vector_drawable_bus_travel" />
+
+    <TextView
+        android:id="@+id/item_bus_stop_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_light"
+        android:textColor="@color/colorWetasphalt"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/item_bus_travel_direction_image_view"
+        app:layout_constraintEnd_toEndOf="@+id/item_bus_route_number"
+        tools:text="26 stops" />
+
+    <TextView
+        android:id="@+id/item_bus_departure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWetasphalt"
+        app:layout_constraintStart_toStartOf="@+id/item_bus_route_start"
+        app:layout_constraintTop_toBottomOf="@+id/item_bus_travel_direction_image_view"
+        tools:text="Boarding @ Bell" />
+
+    <TextView
+        android:id="@+id/item_bus_arrival"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/colorWetasphalt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_bus_departure"
+        tools:text="Left @ New" />
+
+    <ImageView
+        android:id="@+id/item_bus_drawable_divider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/recylerview_divider_drawable" />
+</android.support.constraint.ConstraintLayout>

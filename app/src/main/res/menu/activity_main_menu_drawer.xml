@@ -6,8 +6,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_ipv6_free_tv"
-            android:icon="@drawable/vector_drawable_television"
-            android:title="@string/ipv6_tv_label" />
+            android:icon="@drawable/vector_drawable_calendar"
+            android:title="@string/school_calendar" />
         <item
             android:id="@+id/nav_position_label"
             android:icon="@drawable/vector_drawable_position_label"
@@ -22,12 +22,12 @@
             android:title="@string/action_settings" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/city_service">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_bus_services"
+                android:icon="@drawable/vector_drawable_bus"
+                android:title="@string/bus_service" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

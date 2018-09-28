@@ -11,11 +11,11 @@
         android:id="@+id/arrival_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/colorOrange"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -110,11 +110,12 @@
         android:id="@+id/arrival_card1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/colorOrange"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

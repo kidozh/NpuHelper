@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android'
 
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.kidozh.npuhelper"
         minSdkVersion 23
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 2
         versionName "0.2.0.180904_alpha"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -34,20 +34,19 @@ android {
     }
 }
 
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
     implementation 'com.google.firebase:firebase-core:16.0.3'
     //implementation 'com.google.firebase:firebase-messaging:17.3.0'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'com.github.GrenderG:Toasty:1.3.0'
     def lifecycle_version = "1.1.1"
@@ -63,23 +62,23 @@ dependencies {
     implementation "android.arch.persistence.room:guava:$room_version"
     // Test helpers
     testImplementation "android.arch.persistence.room:testing:$room_version"
-    implementation 'com.android.support:mediarouter-v7:27.1.1'
+    implementation 'com.android.support:mediarouter-v7:28.0.0'
 
     def butter_knife_version = "9.0.0-SNAPSHOT"
     implementation "com.jakewharton:butterknife:$butter_knife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
 
     // android plot
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    //implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     //annotationProcessor "com.neenbedankt.android-apt:1.8"
 
-    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'ru.noties:markwon:1.1.0'
     implementation 'ru.noties:markwon-image-loader:1.1.0' // optional
     implementation 'ru.noties:markwon-syntax:1.1.0' // optional
     implementation 'ru.noties:markwon-view:1.1.0' // optional
-    def commonmark = "0.10.0";
+    def commonmark = "0.10.0"
     implementation "com.atlassian.commonmark:commonmark:$commonmark"
     implementation "com.atlassian.commonmark:commonmark-ext-autolink:$commonmark"
     implementation "com.atlassian.commonmark:commonmark-ext-gfm-strikethrough:$commonmark"
@@ -95,7 +94,14 @@ dependencies {
     implementation 'com.amap.api:map2d:latest.integration'
     implementation 'com.amap.api:3dmap:latest.integration'
     implementation 'com.amap.api:search:latest.integration'
+
+    implementation 'com.haibin:calendarview:3.4.4'
+
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }
+
+
 
 apply plugin: 'com.google.gms.google-services'
 repositories {

@@ -13,7 +13,8 @@
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:paddingBottom="16dp"
-        android:paddingTop="8dp">
+        android:paddingTop="8dp"
+        app:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

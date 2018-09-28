@@ -31,7 +31,7 @@
             android:id="@+id/campus_address_book_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabSelectedTextColor="?attr/colorControlActivated">
+            >
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                 android:id="@+id/campus_address_book_tabitem_colleges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/individual_college" />
+                android:text="@string/detailed" />
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
 

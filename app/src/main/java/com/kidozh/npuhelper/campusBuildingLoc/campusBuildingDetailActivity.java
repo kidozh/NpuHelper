@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,6 +29,11 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.kidozh.npuhelper.R;
 import com.kidozh.npuhelper.markdownUtils.htmlHelper;
 
@@ -107,16 +115,85 @@ public class campusBuildingDetailActivity extends AppCompatActivity {
 
         // bitmap label
         if(!mDetailCampusBuildingPicFilePath.equals("")){
-            File picFile = new File(mDetailCampusBuildingPicFilePath);
-            Log.d(TAG,"Get Pic path: "+mDetailCampusBuildingPicFilePath);
-            if(picFile.exists()){
-                Bitmap bitmap = BitmapFactory.decodeFile(picFile.getAbsolutePath());
-                Drawable drawable = new BitmapDrawable(getResources(),bitmap);
-                mCampusBuildingDetailAppbar.setBackground(drawable);
-            }
-            else {
-                mCampusBuildingDetailAppbar.setBackgroundColor(getColor(R.color.colorAccent));
-            }
+            // taDrawable drawable = mCampusBuildingDetailAppbar.getBackground();
+            Log.d(TAG,"Resource URL " + mDetailCampusBuildingPicFilePath);
+            Target<Bitmap> bitmapTarget = new Target<Bitmap>() {
+                @Override
+                public void onLoadStarted(@Nullable Drawable placeholder) {
+                    mCampusBuildingDetailAppbar.setBackgroundColor(mContext.getColor(R.color.colorEmerland));
+                }
+
+                @Override
+                public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                    mCampusBuildingDetailAppbar.setBackgroundColor(mContext.getColor(R.color.colorConcreteTransparent));
+                }
+
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Log.d(TAG,"Resource Get To Map Appbar");
+                    Drawable drawable = new BitmapDrawable(getResources(),resource);
+                    mCampusBuildingDetailAppbar.setBackground(drawable);
+                }
+
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                }
+
+                @Override
+                public void getSize(@NonNull SizeReadyCallback cb) {
+                    mCampusBuildingDetailAppbar.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            int picHeight = mCampusBuildingDetailAppbar.getMeasuredHeight();
+                            int picWidth = mCampusBuildingDetailAppbar.getMeasuredWidth();
+                            Log.d(TAG,"pic size :"+picHeight+" "+picWidth);
+                            cb.onSizeReady(picWidth,picHeight);
+                        }
+                    });
+
+
+                }
+
+                @Override
+                public void removeCallback(@NonNull SizeReadyCallback cb) {
+
+                }
+
+                @Override
+                public void setRequest(@Nullable com.bumptech.glide.request.Request request) {
+
+                }
+
+                @Nullable
+                @Override
+                public com.bumptech.glide.request.Request getRequest() {
+                    return null;
+                }
+
+
+                @Override
+                public void onStart() {
+
+                }
+
+                @Override
+                public void onStop() {
+
+                }
+
+                @Override
+                public void onDestroy() {
+
+                }
+            };
+            Glide.with(mContext.getApplicationContext())
+                    .asBitmap()
+
+                    .load(mDetailCampusBuildingPicFilePath)
+
+
+                    .into(bitmapTarget);
 
         }
         else {

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.kidozh.npuhelper.preference.SettingsActivity;
+import com.kidozh.npuhelper.xianCityBus.cityBusPortalActivity;
 
 public class mainMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -94,7 +95,10 @@ public class mainMenuActivity extends AppCompatActivity
             startActivity(intent);
             return true;
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_bus_services) {
+            Intent intent = new Intent(this,cityBusPortalActivity.class);
+            startActivity(intent);
+            return true;
 
         } else if (id == R.id.nav_send) {
 

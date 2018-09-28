@@ -260,6 +260,7 @@
     <string name="pref_title_data_save_mode">Mobile Data Save Mode</string>
     <string name="pref_description_data_save_mode">Only under Wi-Fi condition could app download pic, database, etc.</string>
     <string name="pref_key_data_save_mode">pref_key_data_save_mode</string>
+    <string name="pref_title_when_download_pic">Data Save Mode</string>
     <string name="title_activity_campus_building_detail">CampusBuildingDetailActivity</string>
     <string name="campus_building_description_not_exist">No description found</string>
     <string name="dragon_boat_festival">Dragon boat festival</string>
@@ -287,5 +288,77 @@
     </string-array>
     <string name="rain_distance_1000_plus">999+</string>
     <string name="search_phone_hint">Department\'s name, branch or work</string>
+    <string name="school_calendar">School Calendar</string>
+    <string name="holiday">holiday</string>
+    <string name="detailed">detail</string>
+
+    <string-array name="week_string_array">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+    <string name="spring_semester">Spring</string>
+    <string name="fall_semester">Fall</string>
+    <string name="vacation">Vacation</string>
+    <string name="rest">Rest</string>
+    <string name="work">Work</string>
+    <string name="today">Today</string>
+    <string name="start_label">B</string>
+    <string name="end_label">E</string>
+    <string name="week_number_template">Week #%s</string>
+    <string name="school_news_title">NPU News</string>
+    <string name="semester_start_tag">start school</string>
+    <string name="semester_end_tag">off school</string>
+
+    <string name="pref_title_calendar_start_day">Start day of calendar</string>
+    <string name="pref_key_calendar_start_day">pref_key_calendar_start_day</string>
+    <string-array name="pref_array_calendar_start_day_entries">
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+    </string-array>
+
+    <string-array name="pref_array_calendar_start_day_entries_value">
+        <item>sat</item>
+        <item>sun</item>
+        <item>mon</item>
+    </string-array>
+    <string name="hot_news">Hot News</string>
+    <string name="city_service">City Service</string>
+    <string name="bus_service">Bus Services at Xi\'an City</string>
+    <string name="title_activity_city_bus_portal">cityBusPortalActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="section_format">Under Dev @ section: %1$d</string>
+    <string name="guide_path">navigate</string>
+    <string name="route_tabitem_text">route</string>
+    <string name="bus_stop_tabitem_text">bus stop</string>
+    <string name="developing_later">Under development</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bus_destination_tag">From:</string>
+    <string name="departure_hint">Departure</string>
+    <string name="destination_hint">Destination</string>
+    <string name="bus_fastest_label">Fastest</string>
+    <string name="bus_less_transfer_label">Less Transfer</string>
+    <string name="bus_travel_stop_template">%s stop(s)</string>
+    <string name="bus_my_location_label">My Location</string>
+    <string name="leave_at_stop_template">Boarding @ %s</string>
+    <string name="bus_search_location_hint">Search location in Xi\'an</string>
+    <string name="request_location_dialog_title">Provide your location?</string>
+    <string name="request_location_dialog_message">Your location will be used for bus navigation, if you don\'t want to provide your location, youyi campus will be selected as departure.</string>
+    <string name="request_location_dialog_ok">OK</string>
+    <string name="request_location_dialog_refuse">No</string>
+    <string name="no_location_provided_error">No location provider</string>
+    <string name="rmb_tag">RMB</string>
+    <string name="bus_travel_left_template">Left @ %s</string>
+    <string name="or_divider">OR</string>
+    <string name="next_divider">Next</string>
 
 </resources>

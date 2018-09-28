@@ -77,7 +77,17 @@
             android:name=".campusBuildingLoc.campusBuildingDetailActivity"
             android:label="@string/title_activity_campus_building_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".campusAddressBook.campusAddressBookMainActivity"></activity>
+        <activity android:name=".campusAddressBook.campusAddressBookMainActivity" />
+        <activity
+            android:name=".schoolCalendar.schoolCalendarMainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".xianCityBus.cityBusPortalActivity"
+            android:label="@string/title_activity_city_bus_portal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".xianCityBus.cityLocationSelectActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
     </application>
 
 </manifest>
