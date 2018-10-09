@@ -128,6 +128,7 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
         suggestions.saveRecentQuery(recentLocation, null);
     }
 
+    @SuppressLint("StaticFieldLeak")
     class randomGetLocationTask extends AsyncTask<Void,Void,Void>{
         campusBuildingInfoEntity randomCampusBuildingInfoEntity;
 

@@ -360,5 +360,6 @@
     <string name="bus_travel_left_template">Left @ %s</string>
     <string name="or_divider">OR</string>
     <string name="next_divider">Next</string>
+    <string name="portal_request_location_message">Your location will be used to provide your local weather information and bus navigation. If you want to keep location private, auto-filled location will be NPU.</string>
 
 </resources>

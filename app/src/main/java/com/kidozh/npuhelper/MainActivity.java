@@ -783,7 +783,7 @@ public class MainActivity extends AppCompatActivity {
             else {
                 currentLocation = GEO_LOCATION;
                 showRequestLocationPermissionDialog();
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
+                //ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
             }
 
         }
@@ -816,7 +816,7 @@ public class MainActivity extends AppCompatActivity {
          */
         final AlertDialog.Builder normalDialog = new AlertDialog.Builder(this);
         normalDialog.setTitle(getString(R.string.request_location_dialog_title));
-        normalDialog.setMessage(getString(R.string.request_location_dialog_message));
+        normalDialog.setMessage(getString(R.string.portal_request_location_message));
         normalDialog.setPositiveButton(getString(R.string.request_location_dialog_ok),
                 new DialogInterface.OnClickListener() {
                     @Override

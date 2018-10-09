@@ -153,4 +153,5 @@
     <string name="next_divider">转</string>
     <string name="pref_title_system_sync_settings">系统同步设置</string>
     <string name="pref_title_sync_frequency">同步频率</string>
+    <string name="portal_request_location_message">您的位置将被用于作为的依据，如果您不想提供您当前的地理位置，西北工业大学友谊校区的位置将被设为默认的出发地。</string>
 </resources>
