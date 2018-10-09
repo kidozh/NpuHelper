@@ -117,6 +117,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:descendantFocusability="blocksDescendants"
+        android:scrollbars="vertical"
         tools:listitem="@layout/city_bus_route_list_item" />
 
 </LinearLayout>

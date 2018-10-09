@@ -58,9 +58,9 @@
     <string name="pref_header_notifications">通知</string>
     <string name="pref_title_bus_notice_time">校车提示时间</string>
     <string name="pref_summary_bus_notice_time">提前多少时间提醒校车即将出发</string>
-    <string name="campus_location_guide">校园位置</string>
+    <string name="campus_location_guide">地点开放介绍</string>
     <string name="building_location_search_hint">搜索校园的地点</string>
-    <string name="location_search_banner_text">校园检索</string>
+    <string name="location_search_banner_text">搜索校园</string>
     <string name="i_am_feeling_lucky">随便溜达</string>
     <string name="failed_to_connected_to_location_api">无法连接上服务器</string>
     <string name="failed_to_parse_json">无法解析服务器信息</string>
@@ -151,4 +151,6 @@
     <string name="bus_travel_left_template">在%s下车</string>
     <string name="or_divider">或者</string>
     <string name="next_divider">转</string>
+    <string name="pref_title_system_sync_settings">系统同步设置</string>
+    <string name="pref_title_sync_frequency">同步频率</string>
 </resources>
