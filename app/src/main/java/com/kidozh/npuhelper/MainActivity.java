@@ -10,6 +10,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -37,6 +38,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -54,17 +56,20 @@ import android.widget.Toast;
 
 import com.amap.api.location.DPoint;
 import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.SuggestionCity;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
+import com.amap.api.services.help.Tip;
 import com.kidozh.npuhelper.campusAddressBook.campusAddressBookMainActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusNetworkUtils;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
 import com.kidozh.npuhelper.preference.SettingsActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusListActivity;
 import com.kidozh.npuhelper.schoolCalendar.schoolCalendarMainActivity;
+import com.kidozh.npuhelper.utilities.locationUtils;
 import com.kidozh.npuhelper.weatherUtils.WeatherDetailActivity;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherDatabase;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherEntry;
@@ -74,6 +79,7 @@ import com.kidozh.npuhelper.weatherUtils.caiyunWeatherViewModelFactory;
 import com.kidozh.npuhelper.weatherUtils.addCaiyunWeatherViewModel;
 import com.kidozh.npuhelper.campusBuildingLoc.campusBuildingPortalActivity;
 import com.kidozh.npuhelper.xianCityBus.cityBusPortalActivity;
+import com.kidozh.npuhelper.xianCityBus.suggestCityLocation;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.SyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -100,7 +106,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int FORECAST_LOADER_ID = 0;
@@ -148,73 +154,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ButterKnife.bind(this);
 
         mTitle = mDrawerTitle = getTitle();
+        mContext = this;
 
         // get database connection
         mDb = caiyunWeatherDatabase.getsInstance(getApplicationContext());
 
         // check permission
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            Log.d(TAG,"GET LOCATION PERMIT "+locationManager);
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_COARSE_LOCATION)){
-                // 应用之前请求过此权限但用户拒绝了请求，此方法将返回 true
-                Toasty.info(this,getString(R.string.location_denied_notice),Toast.LENGTH_LONG,true).show();
-            }
-            else {
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
-
-
-
-            }
-
-
-
-        } else {
-            Log.d(TAG,"USER permits location request");
-            //ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},8);
-            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-            List<String> providers = locationManager.getProviders(true);
-            Location bestLocation = null;
-            for (String provider : providers) {
-                Location l = locationManager.getLastKnownLocation(provider);
-                if (l == null) {
-                    continue;
-                }
-                if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
-                    // Found best last known location: %s", l);
-                    bestLocation = l;
-                }
-            }
-
-            // LocationProvider netProvider = locationManager.getProvider(LocationManager.NETWORK_PROVIDER);
-            //Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            Location location = bestLocation;
-            if(location != null){
-                currentLocation = location.getLongitude()+","+location.getLatitude();
-                locLatitude = location.getLatitude();
-                locLongitude = location.getLongitude();
-            }
-            else {
-                // use default value
-                location = getLastKnownLocation();
-                if(location != null){
-                    currentLocation = location.getLongitude()+","+location.getLatitude();
-                    locLatitude = location.getLatitude();
-                    locLongitude = location.getLongitude();
-                }
-                else {
-                    currentLocation = caiyunWeatherUtils.GEO_LOCATION;
-                }
-
-            }
-
-
-            Log.d(TAG,"Loc"+currentLocation +" Manager "+location);
-
-
-        }
+        suggestCityLocation suggestionCityLocation = getCurrentSuggestCityLocation();
+        LatLonPoint latLonPoint = suggestionCityLocation.locationTip.getPoint();
+        currentLocation = String.format("%s,%s",latLonPoint.getLongitude(),latLonPoint.getLatitude());
+        locLatitude = latLonPoint.getLatitude();
+        locLongitude = latLonPoint.getLongitude();
 
         // setSupportActionBar(toolbar);
 
@@ -256,11 +206,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
 
-
-        LoaderManager.LoaderCallbacks<String> callback = MainActivity.this;
-        int loaderId = FORECAST_LOADER_ID;
         mContext = getApplicationContext();
         new getCalenderFromApiTask(mContext).execute();
+        new getWeatherInfoTask().execute();
 
         displaySchoolBus(this);
 
@@ -268,9 +216,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // weather query
         //weather data observe
         //getSupportLoaderManager().initLoader(loaderId,bundleForLoader,callback);
-        getLoaderManager().initLoader(loaderId,null,callback);
         Log.d(TAG,"Main thread finished.");
-        renderGeoLocation();
+        renderGeoLocationByAmap();
+        // renderGeoLocation();
         getWeatherFromDb();
 
 
@@ -279,9 +227,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onResume() {
         super.onResume();
-
-        LoaderManager.LoaderCallbacks<String> callback = MainActivity.this;
-        getLoaderManager().restartLoader(FORECAST_LOADER_ID,null,callback);
     }
 
     public void getWeatherFromDb(){
@@ -304,149 +249,117 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
     }
 
-    @SuppressLint("StaticFieldLeak")
-    @Override
-    public Loader<String> onCreateLoader(int id, Bundle args) {
-        return new AsyncTaskLoader<String>(this) {
-            String mWeatherData = null;
-
-            @Override
-            protected void onStartLoading() {
-                Log.d(TAG, "ON START RENDERING CACHE" + mWeatherData);
-                if (mWeatherData != null) {
-                    deliverResult(mWeatherData);
-                } else {
-                    Log.d(TAG,"Weather Data is " + mWeatherData);
-                    mWeatherCard.setVisibility(View.INVISIBLE);
-                    mLoadingWeatherProgressBar.setVisibility(View.VISIBLE);
-                    forceLoad();
-                }
-
-
-                super.onStartLoading();
-            }
-
-            @Override
-            public String loadInBackground() {
-                String location = null;
-                if(currentLocation != null){
-                    location = currentLocation;
-                }
-                else {
-                    location = caiyunWeatherUtils.get_GEO_LOCATION();
-                }
-
-
-
-
-                try{
-                    URL caiyunWeatherApiUrl = caiyunWeatherUtils.build_realtime_api_url(location);
-                    Log.d(TAG, "START QUERYING " + caiyunWeatherApiUrl);
-                    String jsonResponse = caiyunWeatherUtils.getResponseFromHttpUrl(caiyunWeatherApiUrl);
-                    return jsonResponse;
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                    return null;
-                }
-            }
-
-            public void deliverResult(String data) {
-                mWeatherData = data;
-                Log.d(TAG,"Deliver data "+data);
-                if(data != null){
-
-                    super.deliverResult(data);
-                }
-                else {
-                    super.deliverResult(null);
-                }
-
-            }
-
-
-        };
-    }
-
-
-
-    @Override
-    public void onLoaderReset(Loader<String> loader) {
-
-    }
-
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void onLoadFinished(Loader<String> loader, String data) {
-        mLoadingWeatherProgressBar.setVisibility(View.INVISIBLE);
-        mWeatherCard.setVisibility(View.VISIBLE);
-        Log.d(TAG,"On query load finished, response is "+data);
-        // set Text
-        if(data == null){
-            mLocationName.setText(getString(R.string.geo_parse_failed));
-            mLocationTemperature.setText(getString(R.string.unknown_temperature));
-            Toasty.error(this, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
-            return;
+    class getWeatherInfoTask extends AsyncTask<Void,Void,String>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
         }
-        mRealTimeInfo = data;
-        JSONObject jsonData ;
-        try {
-            jsonData = new JSONObject(data);
-            String status = (String) jsonData.get("status");
-            Log.i(TAG,"status " + status);
-            if(!status.equals("ok")){
-                mLocationTemperature.setText(getString(R.string.unknown_temperature));
-                Toasty.error(this,(String) jsonData.get("error"),Toast.LENGTH_LONG,true).show();
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String location = null;
+            if(currentLocation != null){
+                location = currentLocation;
             }
             else {
-                // Geometry decoder
-                  JSONObject weatherResult = jsonData.getJSONObject("result");
-                  String localTemperature = weatherResult.getString("temperature");
-                  String weatherCondition = weatherResult.getString("skycon");
-
-                // save it to database
-                final caiyunWeatherEntry weatherEntry = new caiyunWeatherEntry(
-                        localTemperature,
-                        String.format("%s,%s",locLatitude,locLongitude),
-                        data,
-                        new Date()
-                );
-
-                 new insertDataTask(weatherEntry).execute();
-
-
-                //mDb.caiyunWeatherDao().insertCaiyunWeatherRecord(weatherEntry);
-
-                caiyunWeatherViewModelFactory factory = new caiyunWeatherViewModelFactory(mDb);
-                final addCaiyunWeatherViewModel viewModel = ViewModelProviders.of(this,factory).get(addCaiyunWeatherViewModel.class);
-                viewModel.getCaiyunWeatherEntryLiveData().observe(this, new Observer<caiyunWeatherEntry>() {
-                    @Override
-                    public void onChanged(@Nullable caiyunWeatherEntry caiyunWeatherEntry) {
-                        viewModel.getCaiyunWeatherEntryLiveData().removeObserver(this);
-                        try {
-                            populateWeatherUI(weatherEntry);
-                        } catch (JSONException e) {
-                            Log.d(TAG,"JSON error when configured with weather");
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                //finish();
-                populateWeatherUI(weatherEntry);
-
-
-
+                location = caiyunWeatherUtils.get_GEO_LOCATION();
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toasty.error(this, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
+
+
+
+            try{
+                URL caiyunWeatherApiUrl = caiyunWeatherUtils.build_realtime_api_url(location);
+                Log.d(TAG, "START QUERYING " + caiyunWeatherApiUrl);
+                String jsonResponse = caiyunWeatherUtils.getResponseFromHttpUrl(caiyunWeatherApiUrl);
+                return jsonResponse;
+            }
+            catch (IOException e){
+                e.printStackTrace();
+                return null;
+            }
         }
 
-        Log.d(TAG,"Weather condition finished..");
+        @Override
+        protected void onPostExecute(String data) {
+            mLoadingWeatherProgressBar.setVisibility(View.INVISIBLE);
+            mWeatherCard.setVisibility(View.VISIBLE);
+            Log.d(TAG,"On query load finished, response is "+data);
+            // set Text
+            if(data == null){
+                mLocationName.setText(getString(R.string.geo_parse_failed));
+                mLocationTemperature.setText(getString(R.string.unknown_temperature));
+                Toasty.error(mContext, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
+                return;
+            }
+            mRealTimeInfo = data;
+            JSONObject jsonData ;
+            try {
+                jsonData = new JSONObject(data);
+                String status = (String) jsonData.get("status");
+                Log.i(TAG,"status " + status);
+                if(!status.equals("ok")){
+                    mLocationTemperature.setText(getString(R.string.unknown_temperature));
+                    Toasty.error(mContext,(String) jsonData.get("error"),Toast.LENGTH_LONG,true).show();
+                }
+                else {
+                    // Geometry decoder
+                    JSONObject weatherResult = jsonData.getJSONObject("result");
+                    String localTemperature = weatherResult.getString("temperature");
+                    String weatherCondition = weatherResult.getString("skycon");
+
+                    // save it to database
+                    final caiyunWeatherEntry weatherEntry = new caiyunWeatherEntry(
+                            localTemperature,
+                            String.format("%s,%s",locLatitude,locLongitude),
+                            data,
+                            new Date()
+                    );
+
+                    new insertDataTask(weatherEntry).execute();
+                    populateWeatherUI(weatherEntry);
 
 
 
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toasty.error(mContext, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
+            }
+
+            Log.d(TAG,"Weather condition finished..");
+            super.onPostExecute(data);
+        }
+    }
+
+    public void renderGeoLocationByAmap(){
+        GeocodeSearch geocoderSearch = new GeocodeSearch(this);
+        geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+            @Override
+            public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+                if(i == 1000){
+                    RegeocodeAddress geoCodeAddr = regeocodeResult.getRegeocodeAddress();
+                    String locationName = geoCodeAddr.getTownship();
+                    Log.d(TAG,"Get Neighbor : "+locationName);
+                    mLocationName.setText(locationName);
+
+                }
+                else {
+                    Log.d(TAG,"Get Result Code "+i);
+                    Toasty.error(mContext, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
+                }
+            }
+
+            @Override
+            public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
+            }
+        });
+        LatLonPoint latLonPoint = new LatLonPoint(locLatitude,locLongitude);
+        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,GeocodeSearch.GPS);
+
+        geocoderSearch.getFromLocationAsyn(query);
     }
 
     public void renderGeoLocation(){
@@ -475,7 +388,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             catch (Exception e){
                 mLocationName.setText(getString(R.string.geo_parse_failed));
                 Toasty.error(this, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
-                // e.printStackTrace();
+                e.printStackTrace();
             }
             //assert locationList != null;
             Log.d(TAG,"Ended Loading Weather condition");
@@ -844,6 +757,95 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
+    public suggestCityLocation getCurrentSuggestCityLocation(){
+        String currentLocationName = mContext.getString(R.string.bus_my_location_label);
+        String currentLocation = "";
+        Tip currentTip = new Tip();
+        currentTip.setName(currentLocationName);
+        String GEO_LOCATION = "108.91148,34.24626";
 
+        // check permission
+        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_COARSE_LOCATION)){
+                Toasty.info(mContext,mContext.getString(R.string.location_denied_notice),Toast.LENGTH_SHORT,true).show();
+                // use youyi campus
+                String youyiCampusName = mContext.getString(R.string.youyi_campus_name);
+                double locLatitude = 34.24626;
+                double locLongitude = 108.91148;
+
+                LatLonPoint campuslatLonPoint = new LatLonPoint(locLatitude,locLongitude);
+                currentTip.setPostion(campuslatLonPoint);
+                return new suggestCityLocation(youyiCampusName,youyiCampusName,currentTip);
+
+
+            }
+            else {
+                currentLocation = GEO_LOCATION;
+                showRequestLocationPermissionDialog();
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
+            }
+
+        }
+        Log.d(TAG,"USER permits location request");
+        Location location = locationUtils.getLastKnownLocation(mContext);
+        if(location != null){
+            currentLocation = location.getLongitude()+","+location.getLatitude();
+            locLatitude = location.getLatitude();
+            locLongitude = location.getLongitude();
+        }
+        else {
+            // use default value
+            currentLocation = GEO_LOCATION;
+
+        }
+
+
+        Log.d(TAG,"Loc "+currentLocation +" Manager "+ location);
+        currentLocationName = mContext.getString(R.string.bus_my_location_label);
+        LatLonPoint campuslatLonPoint = new LatLonPoint(locLatitude,locLongitude);
+        currentTip.setPostion(campuslatLonPoint);
+        return new suggestCityLocation(currentLocationName,currentLocationName,currentTip);
+    }
+
+    private void showRequestLocationPermissionDialog(){
+        /* @setIcon 设置对话框图标
+         * @setTitle 设置对话框标题
+         * @setMessage 设置对话框消息提示
+         * setXXX方法返回Dialog对象，因此可以链式设置属性
+         */
+        final AlertDialog.Builder normalDialog = new AlertDialog.Builder(this);
+        normalDialog.setTitle(getString(R.string.request_location_dialog_title));
+        normalDialog.setMessage(getString(R.string.request_location_dialog_message));
+        normalDialog.setPositiveButton(getString(R.string.request_location_dialog_ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
+                        getCurrentLocation();
+                    }
+                });
+        normalDialog.setNegativeButton(getString(R.string.request_location_dialog_refuse),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        // 显示
+        normalDialog.show();
+    }
+
+    private Location getCurrentLocation(){
+        Location location = locationUtils.getLastKnownLocation(mContext);
+        if(location != null){
+            currentLocation = location.getLongitude()+","+location.getLatitude();
+            locLatitude = location.getLatitude();
+            locLongitude = location.getLongitude();
+        }
+
+        return location;
+    }
 
 }
