@@ -83,7 +83,7 @@
     <string name="dragon_boat_festival">端午节</string>
     <string name="mid_fall_festival">中秋节</string>
     <string name="national_day">国庆节</string>
-    <string name="school_department_address_book">校园通讯录</string>
+    <string name="school_department_address_book">学校黄页</string>
     <string name="general_tag">通用</string>
     <string name="individual_college">各学院</string>
     <string name="others_tag">其他</string>
@@ -154,4 +154,15 @@
     <string name="pref_title_system_sync_settings">系统同步设置</string>
     <string name="pref_title_sync_frequency">同步频率</string>
     <string name="portal_request_location_message">您的位置将被用于作为的依据，如果您不想提供您当前的地理位置，西北工业大学友谊校区的位置将被设为默认的出发地。</string>
+    <string name="qingming_festival">清明节</string>
+    <string name="spring_festival">春节</string>
+    <string name="larbor_day">劳动节</string>
+    <string name="sign_in_text">登录</string>
+    <string name="ecampus_label">翱翔门户</string>
+    <string name="login_trouble_text">登录遇到问题？</string>
+    <string name="account_label">学号</string>
+    <string name="password_label">密码</string>
+    <string name="title_activity_login_university">登录</string>
+    <string name="account_or_password_required">账号和密码都需要填上</string>
+    <string name="sign_in_now_text">登录中...</string>
 </resources>

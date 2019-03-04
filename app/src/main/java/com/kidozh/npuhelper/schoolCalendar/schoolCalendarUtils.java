@@ -42,7 +42,7 @@ public class schoolCalendarUtils {
     }
 
     public static URL build_school_news_url(Context mContext){
-        String api_string = "http://news.nwpu.edu.cn/system/resource/newsdata/getData.jsp";
+        String api_string = "https://news.nwpu.edu.cn/system/resource/newsdata/getData.jsp";
         Log.d(TAG,"NEWS api source : "+api_string);
 
         Uri buildUri = Uri.parse(api_string).buildUpon()
@@ -59,7 +59,7 @@ public class schoolCalendarUtils {
     }
 
     public static URL build_hot_news_url(Context mContext){
-        String api_string = "http://news.nwpu.edu.cn/system/resource/js/news/hotdynpullnews.jsp";
+        String api_string = "https://news.nwpu.edu.cn/system/resource/js/news/hotdynpullnews.jsp";
         Log.d(TAG,"Hot NEWS api source : "+api_string);
 
         Uri buildUri = Uri.parse(api_string).buildUpon()

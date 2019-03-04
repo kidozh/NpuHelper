@@ -12,14 +12,10 @@
         <!--<item name="windowNoTitle">true</item>-->
         <!--<item name="windowActionBar">false</item>-->
 
-        <!--<item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>-->
+        <item name="colorPrimary">@color/colorCloud</item>
+        <item name="colorPrimaryDark">@color/colorCloud</item>
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
 
-        <!--<item name="android:colorPrimary">@color/colorPrimary</item>
-        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/colorCloud</item> -->
 
         <!-- reference the card view -->
         <item name="cardViewStyle">@style/CardView</item>
@@ -34,6 +30,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
@@ -51,6 +48,25 @@
         <item name="colorControlNormal">@color/colorSilver</item>
         <item name="android:textCursorDrawable">@null</item>
         <item name="android:cursorVisible">true</item>
+    </style>
+
+    <style name="AppTheme.ToolBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorCloud</item>
+        <item name="android:textColorPrimary">@color/colorCloud</item>
+    </style>
+
+    <!--定义ToolBar上Title的文字样式-->
+    <style name="AppTheme.ToolbarTitleTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorWetasphalt</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title" parent="TextAppearance.AppCompat.Title">
+
+        <item name="android:textColor">@color/colorCloud</item>
     </style>
 
 </resources>

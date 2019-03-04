@@ -9,14 +9,17 @@ android {
         applicationId "com.kidozh.npuhelper"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 2
-        versionName "0.2.0.180904_alpha"
+        versionCode 3
+        versionName "1.0.1.181009_beta"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        repositories {
+            maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases/' }
         }
     }
 
@@ -90,15 +93,16 @@ dependencies {
     implementation 'com.zzhoujay.markdown:markdown:1.0.5'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'com.amap.api:location:latest.integration'
-    implementation 'com.amap.api:map2d:latest.integration'
-    implementation 'com.amap.api:3dmap:latest.integration'
-    implementation 'com.amap.api:search:latest.integration'
+    implementation 'com.amap.api:location:4.4.0'
+    implementation 'com.amap.api:map2d:5.2.0'
+    implementation 'com.amap.api:search:6.5.0.1'
 
     implementation 'com.haibin:calendarview:3.4.4'
 
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    implementation 'com.google.code.ksoap2-android:ksoap2-android:3.6.3'
 }
 
 

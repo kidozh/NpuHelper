@@ -36,15 +36,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:ellipsize="marquee"
                 android:maxEms="5"
-                android:singleLine="true"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Department" />
+                tools:text="Department11111111111111111111111111" />
 
             <TextView
                 android:id="@+id/branch_name"

@@ -49,6 +49,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -63,6 +64,7 @@ import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.help.Tip;
+import com.kidozh.npuhelper.accountAuth.LoginUniversityActivity;
 import com.kidozh.npuhelper.campusAddressBook.campusAddressBookMainActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusNetworkUtils;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
@@ -84,6 +86,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.SyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import org.apache.tools.ant.Main;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.location_temperature)  TextView mLocationTemperature;
     @BindView(R.id.weather_icon)  ImageView mWeatherIcon;
 
+
     static private String celsius_temperature_unit_label = "°C";
 
     private LocationManager locationManager;
@@ -127,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.shuttle_start_time1)  TextView mShuttleStartTime1;
     @BindView(R.id.left_time)  TextView mShuttleLeftTime;
     @BindView(R.id.left_time1) TextView mShuttleLeftTime1;
+
 
 
     private double locLatitude = 34.24626;
@@ -152,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         // bind data
         ButterKnife.bind(this);
+
+
 
         mTitle = mDrawerTitle = getTitle();
         mContext = this;
@@ -205,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 return MainActivity.this.onNavigationItemSelected(item);
             }
         });
+        Button mAuthBtn = (Button) navigationView.getHeaderView(0).findViewById(R.id.auth_status_btn);
 
         mContext = getApplicationContext();
         new getCalenderFromApiTask(mContext).execute();
@@ -213,13 +221,18 @@ public class MainActivity extends AppCompatActivity {
         displaySchoolBus(this);
 
         countDownTimer.start();
-        // weather query
-        //weather data observe
-        //getSupportLoaderManager().initLoader(loaderId,bundleForLoader,callback);
-        Log.d(TAG,"Main thread finished.");
+        Log.d(TAG,"Main thread finished."+mAuthBtn);
         renderGeoLocationByAmap();
         // renderGeoLocation();
         getWeatherFromDb();
+
+        mAuthBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,LoginUniversityActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

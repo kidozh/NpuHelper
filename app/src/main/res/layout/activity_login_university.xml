@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadingEdge="none"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.NoActionBar"
+        app:expanded="false">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/login_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:fitsSystemWindows="true"
+            android:padding="0dp"
+            android:textAlignment="center"
+            android:theme="@style/AppTheme.ToolBar"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:id="@+id/login_toolbar_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="64dp"
+                android:fontFamily="@font/pt_sans"
+                android:gravity="fill_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="@string/sign_in_text"
+
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/loginTitleColor"
+                android:textSize="24sp"
+                app:titleTextAppearance="@style/AppTheme.ToolbarTitleTextStyle" />
+
+        </android.support.v7.widget.Toolbar>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:fillViewport="true"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/loginBgColor"
+            tools:context=".accountAuth.LoginUniversityActivity">
+
+            <TextView
+                android:id="@+id/login_title_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/ecampus_label"
+                android:textColor="@color/loginTitleColor"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/account_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:hint="@string/account_label"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:textColor="@color/colorMidnightblue"
+                android:textCursorDrawable="@color/colorMidnightblue"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/matric_number_image"
+                app:layout_constraintTop_toBottomOf="@+id/login_title_textview" />
+
+            <EditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:hint="@string/password_label"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/colorMidnightblue"
+                android:textCursorDrawable="@color/colorMidnightblue"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/account_edit_text"
+                app:layout_constraintStart_toStartOf="@+id/account_edit_text"
+                app:layout_constraintTop_toBottomOf="@+id/account_edit_text" />
+
+            <Button
+                android:id="@+id/login_btn"
+                style="@android:style/Widget.Material.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/loginAlertTextColor"
+                android:fontFamily="@font/pt_sans"
+                android:text="@string/sign_in_text"
+                android:textColor="@color/colorPureWhite"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/password_edit_text"
+                app:layout_constraintStart_toStartOf="@+id/password_imageview"
+                app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
+
+            <TextView
+                android:id="@+id/trouble_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/titillium_web"
+                android:text="@string/login_trouble_text"
+                android:textColor="@color/loginNoticeTextColor"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/login_btn"
+                app:layout_constraintStart_toStartOf="@+id/login_btn"
+                app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+
+            <ImageView
+                android:id="@+id/matric_number_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                app:layout_constraintBottom_toBottomOf="@+id/account_edit_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_title_textview"
+                app:srcCompat="@drawable/vector_drawable_matric_number" />
+
+            <ImageView
+                android:id="@+id/password_imageview"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/password_edit_text"
+                app:layout_constraintStart_toStartOf="@+id/matric_number_image"
+                app:srcCompat="@drawable/vector_drawable_key" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

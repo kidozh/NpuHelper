@@ -361,5 +361,28 @@
     <string name="or_divider">OR</string>
     <string name="next_divider">Next</string>
     <string name="portal_request_location_message">Your location will be used to provide your local weather information and bus navigation. If you want to keep location private, auto-filled location will be NPU.</string>
+    <string name="qingming_festival">QingMing</string>
+    <string name="spring_festival">Spring Festival</string>
+    <string name="larbor_day">Larbor\'s Day</string>
+    <string name="title_activity_login_university">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="sign_in_text">Sign In</string>
+    <string name="ecampus_label">E-campus</string>
+    <string name="account_label">Account</string>
+    <string name="password_label">Password</string>
+    <string name="login_trouble_text">Trouble in login?</string>
+    <string name="account_or_password_required">Account and Password is all required.</string>
+    <string name="sign_in_now_text">Login, please wait...</string>
 
 </resources>

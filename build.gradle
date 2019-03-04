@@ -13,12 +13,13 @@ buildscript {
             url 'https://maven.google.com'
         }
         maven {
-            url 'https://oss.sonatype.org/content/repositories/snapshots'
+            url "https://oss.sonatype.org/content/repositories/ksoap2-android-releases/"
         }
         maven {
             url 'https://jitpack.io'
         }
         google()
+
 
 
 
@@ -34,8 +35,9 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath 'com.google.gms:google-services:3.1.1'
+        classpath 'com.google.gms:google-services:4.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.code.ksoap2-android:ksoap2-android:3.6.0'
     }
 }
 

@@ -118,7 +118,7 @@ public class ArticleAdapter extends GroupRecyclerAdapter<String, Article> {
             super(itemView);
             mTextTitle = (TextView) itemView.findViewById(R.id.tv_title);
             //mTextContent = (TextView) itemView.findViewById(R.id.tv_content);
-            mImageView = (ImageView) itemView.findViewById(R.id.imageView);
+            mImageView = (ImageView) itemView.findViewById(R.id.login_status_imageView);
             cardView = (CardView) itemView.findViewById(R.id.news_cardview);
             mNewsNumber = (TextView) itemView.findViewById(R.id.number_view);
             mPublishDate = (TextView) itemView.findViewById(R.id.news_publish_date_textview);

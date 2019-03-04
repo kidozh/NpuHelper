@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1abc9c</color>
-    <color name="colorPrimaryDark">#16a085</color>
-    <color name="colorAccent">#e74c3c</color>
+    <color name="colorPrimary">#52d681</color>
+    <color name="colorPrimaryDark">#00ad7c</color>
+    <color name="colorAccent">#fff8b5</color>
+    <color name="colorAccentDark">#b5ff7d</color>
 
 
     <color name="colorAlizarin">#e74c3c</color>
@@ -25,12 +26,18 @@
     <color name="colorWisteria">#8e44ad</color>
     <color name="colorWetasphalt">#34495e</color>
     <color name="colorMidnightblue">#2c3e50</color>
-    <color name="colorPureWhite">#FFFFFF</color>
+    <color name="colorPureWhite">#ffffff</color>
     <color name="colorConcreteTransparent">#6495a5a6</color>
     <color name="colorCalendarWorkDayLabel">@color/colorOrange</color>
     <color name="colorCalendarHolidayDayLabel">@color/colorEmerland</color>
     <color name="colorCalendarStartSemesterLabel">@color/colorAccent</color>
     <color name="colorCalendarEndSemesterLabel">@color/colorAccent</color>
     <color name="colorCityBusActionBar">@color/colorGreensea</color>
+    <color name="loginBgColor">#ecf0f1</color>
+    <color name="loginTitleColor">@color/colorWetasphalt</color>
+    <color name="loginNoticeTextColor">@color/colorConcrete</color>
+    <color name="loginAlertTextColor">@color/colorTurquoise</color>
+    <color name="authStatusBg">#782d4059</color>
+
 
 </resources>
