@@ -2,13 +2,16 @@ package com.kidozh.npuhelper.schoolBusUtils;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.kidozh.npuhelper.R;
@@ -105,6 +108,7 @@ public class schoolBusListActivity extends AppCompatActivity {
         busRecyclerView.setAdapter(mSchoolBusAdapter);
 
         setActionBar();
+        configureStatusBar();
 
         // scroll to fit view
         int cur_bus_index = schoolBusUtils.getNearestIndex(bus_list);
@@ -129,8 +133,19 @@ public class schoolBusListActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         // 去掉logo图标
         actionBar.setDisplayShowHomeEnabled(true);
-        //actionBar.setTitle(R.string.back_label);
+        actionBar.setTitle(R.string.campus_shuttle_timetable);
+        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
+        getSupportActionBar().setBackgroundDrawable(drawable);
+
     }
+
+    private void configureStatusBar(){
+        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

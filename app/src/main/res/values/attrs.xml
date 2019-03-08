@@ -10,5 +10,6 @@
         <attr name="group_padding_left" format="dimension" />
         <attr name="group_padding_right" format="dimension" />
         <attr name="group_has_header" format="boolean" />
+
     </declare-styleable>
 </resources>

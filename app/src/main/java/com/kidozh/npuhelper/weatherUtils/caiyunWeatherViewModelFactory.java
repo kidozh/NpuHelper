@@ -1,8 +1,8 @@
 package com.kidozh.npuhelper.weatherUtils;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 public class caiyunWeatherViewModelFactory extends ViewModelProvider.NewInstanceFactory{
     private final caiyunWeatherDatabase mDb;

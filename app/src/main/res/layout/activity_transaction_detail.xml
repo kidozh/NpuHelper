@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".campusTransaction.TransactionDetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/transaction_detail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/toolbar_blue_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:id="@+id/transaction_detail_title_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/transaction_detail"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPureWhite"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="14dp"
+            tools:text="@string/transaction_detail" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/transaction_detail_info_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transaction_detail_toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/transaction_detail_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/transaction_detail_type_imageview"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/transaction_detail_precise_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/colorMidnightblue"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/transaction_detail_type_imageview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/transaction_detail_type_imageview"
+                app:layout_constraintTop_toTopOf="@+id/transaction_detail_type_imageview"
+                tools:text="Canteen" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/transaction_detail_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/colorPureBlack"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="@+id/transaction_detail_header"
+            app:layout_constraintStart_toStartOf="@+id/transaction_detail_header"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_detail_header"
+            tools:text="17.76" />
+
+        <TextView
+            android:id="@+id/transaction_detail_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/colorDividerMidnightblue"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/transaction_detail_number"
+            app:layout_constraintStart_toStartOf="@+id/transaction_detail_number"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_detail_number"
+            tools:text="Pay Successful" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/transaction_detail_recv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transaction_detail_info_constraint_layout">
+
+        <TextView
+            android:id="@+id/transaction_detail_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/transaction_type"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/transaction_detail_place_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/transaction_general_place"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/transaction_detail_type_label"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_detail_type_label" />
+
+        <TextView
+            android:id="@+id/transaction_detail_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorMidnightblue"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/transaction_detail_type_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/transaction_detail_type_label"
+            app:layout_constraintTop_toTopOf="@+id/transaction_detail_type_label"
+            tools:text="Drink" />
+
+        <TextView
+            android:id="@+id/transaction_detail_place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorMidnightblue"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/transaction_detail_place_label"
+            app:layout_constraintEnd_toEndOf="@+id/transaction_detail_type"
+            app:layout_constraintStart_toEndOf="@+id/transaction_detail_place_label"
+            app:layout_constraintTop_toTopOf="@+id/transaction_detail_place_label"
+            tools:text="Fooy" />
+
+        <View
+            android:id="@+id/transaction_detail_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/color_midnight_divider"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/transaction_detail_type"
+            app:layout_constraintStart_toStartOf="@+id/transaction_detail_type_label"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_detail_place" />
+
+        <TextView
+            android:id="@+id/transaction_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/transaction_balance"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/transaction_detail_place_label"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_detail_divider" />
+
+        <TextView
+            android:id="@+id/transaction_detail_balance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorMidnightblue"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/transaction_balance"
+            app:layout_constraintEnd_toEndOf="@+id/transaction_detail_type"
+            app:layout_constraintStart_toEndOf="@+id/transaction_balance"
+            app:layout_constraintTop_toTopOf="@+id/transaction_balance"
+            tools:text="120.59" />
+
+        <TextView
+            android:id="@+id/transaction_detail_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/payment_time"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/transaction_balance"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_balance" />
+
+        <TextView
+            android:id="@+id/transaction_detail_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAlignment="viewEnd"
+            android:textSize="18sp"
+            android:textColor="@color/colorMidnightblue"
+            app:layout_constraintBottom_toBottomOf="@+id/transaction_detail_time_label"
+            app:layout_constraintEnd_toEndOf="@+id/transaction_detail_balance"
+            app:layout_constraintStart_toEndOf="@+id/transaction_detail_time_label"
+            app:layout_constraintTop_toTopOf="@+id/transaction_detail_time_label"
+            tools:text="2019-02-03 15:23:47" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

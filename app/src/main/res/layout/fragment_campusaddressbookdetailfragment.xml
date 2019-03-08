@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -16,7 +16,7 @@
         android:paddingTop="8dp"
         app:cardUseCompatPadding="true">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -36,15 +36,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:ellipsize="marquee"
                 android:maxEms="5"
-                android:singleLine="true"
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Department" />
+                tools:text="Department of Mechanical College" />
 
             <TextView
                 android:id="@+id/branch_name"
@@ -57,7 +56,7 @@
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="branchbfssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssbbdbsssddddssssssssss" />
+                tools:text="Security Center" />
 
             <TextView
                 android:id="@+id/branch_phone_number"
@@ -66,7 +65,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorTurquoise"
                 android:textIsSelectable="true"
                 app:layout_constraintStart_toStartOf="@+id/branch_name"
                 app:layout_constraintTop_toBottomOf="@+id/branch_name"
@@ -92,11 +91,12 @@
                 android:id="@+id/branch_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto"
+                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
                 android:textColor="@color/colorTurquoise"
                 android:textStyle="bold"
@@ -105,7 +105,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/department_location"
                 app:layout_constraintStart_toStartOf="@+id/department_location"
                 app:layout_constraintTop_toBottomOf="@+id/department_location"
-                tools:text="Room 101" />
+                tools:text="Room 101, Library of Northwestern Polytechinical University" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -116,8 +116,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/branch_location"
                 app:layout_constraintTop_toTopOf="@+id/branch_location"
                 app:srcCompat="@drawable/vector_drawable_pin_green" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

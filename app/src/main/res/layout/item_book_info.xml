@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/book_info_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="auto"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/item_book_avatar"
+                android:layout_width="64dp"
+                android:layout_height="96dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/book_description"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/item_book_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/colorMidnightblue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_book_avatar"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Abaqus analysis" />
+
+            <TextView
+                android:id="@+id/item_book_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="true"
+                app:layout_constraintEnd_toStartOf="@+id/item_book_publish_date"
+                app:layout_constraintStart_toStartOf="@+id/item_book_title"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_title"
+                tools:text="Kidozh" />
+
+            <TextView
+                android:id="@+id/item_book_publisher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/item_book_title"
+                app:layout_constraintStart_toStartOf="@+id/item_book_author"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_author"
+                tools:text="People's education Press" />
+
+            <TextView
+                android:id="@+id/item_book_publish_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/colorPureBlack"
+                app:layout_constraintEnd_toEndOf="@+id/item_book_title"
+                app:layout_constraintTop_toTopOf="@+id/item_book_author"
+                tools:text="2018.9" />
+
+            <TextView
+                android:id="@+id/item_book_total_number_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/library_total"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/item_book_author"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_publisher" />
+
+            <TextView
+                android:id="@+id/item_book_total_number_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/item_book_total_number_tag"
+                app:layout_constraintTop_toTopOf="@+id/item_book_total_number_tag"
+                tools:text="8" />
+
+            <TextView
+                android:id="@+id/item_book_accessible_number_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/library_accessible"
+                android:textAlignment="viewEnd"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/item_book_accessible_number_value"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/item_book_total_number_value"
+                app:layout_constraintTop_toTopOf="@+id/item_book_total_number_value" />
+
+            <TextView
+                android:id="@+id/item_book_accessible_number_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGreensea"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_book_title"
+                app:layout_constraintTop_toTopOf="@+id/item_book_accessible_number_tag"
+                tools:text="4" />
+
+            <View
+                android:id="@+id/item_book_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

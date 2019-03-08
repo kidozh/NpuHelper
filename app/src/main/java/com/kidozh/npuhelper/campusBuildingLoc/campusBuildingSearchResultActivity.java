@@ -3,14 +3,15 @@ package com.kidozh.npuhelper.campusBuildingLoc;
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.provider.SearchRecentSuggestions;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,6 @@ import android.widget.ProgressBar;
 
 import android.Manifest;
 import com.kidozh.npuhelper.R;
-import com.kidozh.npuhelper.schoolBusUtils.schoolBusAdapter;
 
 import java.util.List;
 
@@ -76,12 +76,20 @@ public class campusBuildingSearchResultActivity extends AppCompatActivity {
         new searchLocationTask(search_location_name).execute();
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},8);
         setActionBar();
+        configureStatusBar();
+    }
+
+    private void configureStatusBar(){
+        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     private void setActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
+        getSupportActionBar().setBackgroundDrawable(drawable);
     }
 
     @SuppressLint("StaticFieldLeak")

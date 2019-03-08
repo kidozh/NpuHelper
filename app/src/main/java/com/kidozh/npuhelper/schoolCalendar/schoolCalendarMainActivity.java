@@ -4,13 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -73,7 +75,7 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
     TextView mSemesterTextView;
     @BindView(R.id.tv_week_number)
     TextView mWeekNumberTextView;
-    Boolean isCalendarFinished;
+    Boolean isCalendarFinished = false;
     JSONObject calendarJSONObj;
     Map<String, Calendar> calendarHolidayMap = new HashMap<>();
     ArticleAdapter articleAdapter;
@@ -93,17 +95,19 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_school_calendar_main);
         ButterKnife.bind(this);
         Log.d(TAG,"Create Butter knife");
+
         initView();
         Log.d(TAG,"Init view successfully");
         initData();
         Log.d(TAG,"Init data successfully");
-        new getSchoolCalendarTask(this).execute();
+        new getSchoolCalendarTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
 
     }
 
     @SuppressLint("SetTextI18n")
     protected void initView() {
-        getWindow().setStatusBarColor(getColor(R.color.colorGreensea));
+        getWindow().setStatusBarColor(getColor(R.color.colorPureWhite));
+        getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this) ;
         String api_string = prefs.getString(getString(R.string.pref_key_calendar_start_day),"mon");
         if(api_string.equals("mon")){
@@ -169,6 +173,7 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         mTextMonthDay.setText(mCalendarView.getCurMonth() + "月" + mCalendarView.getCurDay() + "日");
         mTextLunar.setText(R.string.today);
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
+        //mCalendarView.scrollToCurrent();
     }
 
     private void addHolidayInfoToCalendar(Calendar calendarInfo){
@@ -185,8 +190,10 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Article>());
         mRecyclerView.setAdapter(articleAdapter);
         mRecyclerView.notifyDataSetChanged();
-        new getHotNewsTask(this).execute();
-        new getNewsFromPortalTask(this).execute();
+        mCalendarView.scrollToCurrent();
+
+        new getHotNewsTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
+        new getNewsFromPortalTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
 
     }
 
@@ -229,7 +236,7 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
 
         if(lastMonth != calendar.getMonth()){
             lastMonth = calendar.getMonth();
-            new getNewsFromPortalTask(this,calendar.getYear(),calendar.getMonth()).execute();
+            new getNewsFromPortalTask(this,calendar.getYear(),calendar.getMonth()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
         }
         java.util.Calendar calendarObj = java.util.Calendar.getInstance();
         calendarObj.set(calendar.getYear(),calendar.getMonth()-1,calendar.getDay());
@@ -243,7 +250,7 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         mCalendarCardLunarTextView.setText(calendar.getLunar());
         // judge whether today is off
         String curScheme = calendar.getScheme();
-        Log.d(TAG,"current scheme"+curScheme);
+        Log.d(TAG,"current scheme "+curScheme);
         if(curScheme == null || curScheme.length() == 0){
             if(calendar.isCurrentDay()){
                 mCalendarCardScheme.setText(getString(R.string.today));
@@ -611,13 +618,18 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         Context mContext;
         URL api_url;
         private Request request;
-        private final OkHttpClient client = new OkHttpClient();
+        private OkHttpClient client;
         int year = -1 , month=-1;
         RequestBody requestBody;
+        String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
 
 
         getNewsFromPortalTask(Context context){
             this.mContext = context;
+            OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
+            mBuilder.sslSocketFactory(TrustAllCerts.createSSLSocketFactory());
+            mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+            client = mBuilder.build();
 
         }
 
@@ -625,6 +637,10 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
             this.mContext = context;
             this.year = year;
             this.month = month;
+            OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
+            mBuilder.sslSocketFactory(TrustAllCerts.createSSLSocketFactory());
+            mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+            client = mBuilder.build();
         }
 
         @Override
@@ -656,8 +672,10 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
             request = new Request.Builder()
                     .url(api_url)
                     .post(requestBody)
+                    .addHeader("User-Agent", userAgent)
                     .build();
         }
+
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -667,13 +685,14 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
 
                 if (response.isSuccessful()) {
                     jsonResponse = response.body().string();
-                    //Log.d(TAG," "+jsonResponse);
+                    Log.d(TAG,"JSON TEXT FROM SCHOOL NEWS : "+jsonResponse);
                     return jsonResponse;
 
                 } else {
                     throw new IOException("Unexpected code " + response);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 return null;
             }
         }
@@ -681,7 +700,7 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //Log.d(TAG,s);
+            Log.d(TAG,"Recv News "+s);
             List<Article> articleList = new ArrayList<>();
             try{
                 JSONArray respArr = new JSONArray(s);
@@ -717,12 +736,17 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         Context mContext;
         URL api_url;
         private Request request;
-        private final OkHttpClient client = new OkHttpClient();
+        private OkHttpClient client;
         RequestBody requestBody;
+        String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
 
 
         getHotNewsTask(Context context){
             this.mContext = context;
+            OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
+            mBuilder.sslSocketFactory(TrustAllCerts.createSSLSocketFactory());
+            mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+            client = mBuilder.build();
 
         }
 
@@ -749,6 +773,7 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
             request = new Request.Builder()
                     .url(api_url)
                     .post(requestBody)
+                    .addHeader("User-Agent", userAgent)
                     .build();
         }
 
@@ -760,13 +785,14 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
 
                 if (response.isSuccessful()) {
                     jsonResponse = response.body().string();
-                    //Log.d(TAG," "+jsonResponse);
+                    Log.d(TAG,"STRING: "+jsonResponse);
                     return jsonResponse;
 
                 } else {
                     throw new IOException("Unexpected code " + response);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 return null;
             }
         }
@@ -774,9 +800,9 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //Log.d(TAG,s);
-            final String HOT_NEWS_PREFIX = "http://news.nwpu.edu.cn/";
-            final String PIC_NEWS_PREFIX = "http://news.nwpu.edu.cn";
+            Log.d(TAG,"Recv HOT NEWS "+s);
+            final String HOT_NEWS_PREFIX = "https://news.nwpu.edu.cn/";
+            final String PIC_NEWS_PREFIX = "https://news.nwpu.edu.cn";
             List<Article> articleList = new ArrayList<>();
             // Base 64 decoder
             try{

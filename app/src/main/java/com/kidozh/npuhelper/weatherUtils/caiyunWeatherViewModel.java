@@ -1,9 +1,9 @@
 package com.kidozh.npuhelper.weatherUtils;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.annotation.NonNull;
 
 public class caiyunWeatherViewModel extends AndroidViewModel {
 

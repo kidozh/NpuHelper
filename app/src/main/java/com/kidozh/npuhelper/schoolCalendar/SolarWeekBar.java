@@ -17,7 +17,7 @@ public class SolarWeekBar extends WeekBar {
     public SolarWeekBar(Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.solar_week_bar, this, true);
-        setBackgroundColor(context.getColor(R.color.colorGreensea));
+        //setBackgroundColor(context.getColor(R.color.colorCloud));
     }
 
     /**

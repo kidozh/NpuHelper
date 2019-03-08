@@ -14,6 +14,17 @@
 
     <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
          design guidelines. -->
+    <ListPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="y"
+        android:entries="@array/pref_array_location_selection_entries"
+        android:entryValues="@array/pref_array_location_selection_entries_value"
+        android:key="@string/pref_key_location_selection"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="%s"
+        android:title="@string/pref_title_location_selection" />
     <Preference android:title="@string/pref_title_system_sync_settings">
         <intent android:action="android.settings.SYNC_SETTINGS" />
     </Preference>

@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
+    android:layout_height="wrap_content"
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
-    android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/login_status_imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:contentDescription="@string/nav_header_desc"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/snowy_forest" />
 
-    <TextView
-        android:id="@+id/nav_header_title"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/auth_status_btn"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/app_name"
+        android:layout_margin="0dp"
+        android:background="@color/authStatusBg"
+        android:elevation="0dp"
+        android:fontFamily="@font/open_sans"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:text="@string/title_activity_login_university"
         android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+        android:textAllCaps="true"
+        android:textColor="@color/colorCloud"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/login_status_imageView"
+        app:layout_constraintEnd_toEndOf="@+id/login_status_imageView"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/place_input_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/vector_drawable_current_location"
+            app:srcCompat="@drawable/vector_drawable_current_location"
             app:layout_constraintBottom_toBottomOf="@+id/bus_departure_editText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bus_departure_editText" />
@@ -63,7 +63,7 @@
             android:padding="8dp"
             android:radius="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/vector_drawable_exchange"
+            app:srcCompat="@drawable/vector_drawable_exchange"
             app:layout_constraintBottom_toBottomOf="@+id/bus_arrival_editText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bus_departure_editText" />
@@ -72,7 +72,7 @@
             android:id="@+id/arrival_tag"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:src="@drawable/vector_drawable_pin_wap"
+            app:srcCompat="@drawable/vector_drawable_pin_wap"
             app:layout_constraintBottom_toBottomOf="@+id/bus_arrival_editText"
             app:layout_constraintStart_toStartOf="@+id/destination_tag"
             app:layout_constraintTop_toTopOf="@+id/bus_arrival_editText" />
@@ -102,7 +102,7 @@
             app:layout_constraintTop_toBottomOf="@+id/bus_departure_editText"
             tools:text="South Gate, NPU" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar
         android:id="@+id/bus_search_progressbar"
@@ -112,7 +112,7 @@
         android:indeterminate="true"
         android:visibility="invisible" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bus_result_recylerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

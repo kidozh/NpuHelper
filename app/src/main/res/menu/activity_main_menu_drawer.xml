@@ -22,17 +22,14 @@
             android:title="@string/action_settings" />
     </group>
 
-    <item android:title="@string/city_service">
-        <menu>
-            <item
-                android:id="@+id/nav_bus_services"
-                android:icon="@drawable/vector_drawable_bus"
-                android:title="@string/bus_service" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <!--<item android:title="@string/auth_services" android:id="@+id/auth_service_item">-->
+        <!--<menu>-->
+            <!--&lt;!&ndash;<item&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/nav_bus_services"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:icon="@drawable/vector_drawable_bus"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:title="@string/bus_service" />&ndash;&gt;-->
+
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

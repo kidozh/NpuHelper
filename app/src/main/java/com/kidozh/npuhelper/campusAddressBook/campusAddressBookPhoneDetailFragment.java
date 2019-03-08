@@ -1,25 +1,14 @@
 package com.kidozh.npuhelper.campusAddressBook;
 
-import android.annotation.SuppressLint;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
-import android.widget.TextView;
 
 import com.kidozh.npuhelper.R;
 
@@ -32,6 +21,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.OkHttpClient;
@@ -124,8 +121,15 @@ public class campusAddressBookPhoneDetailFragment extends Fragment {
                 return true;
             }
         });
+        try{
+            new getDetailInfoTask(getActivity()).execute();
+        }
+        catch (Exception e){
+            e.printStackTrace();
 
-        new getDetailInfoTask(getActivity()).execute();
+        }
+
+
 
         // Set the adapter
         if (view instanceof RecyclerView) {

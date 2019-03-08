@@ -17,13 +17,13 @@ import java.util.Scanner;
 public final class caiyunWeatherUtils {
     private static final String TAG = caiyunWeatherUtils.class.getSimpleName();
 
-    final static private String CAIYUN_HOST = "https://api.caiyunapp.com/v2";
+    final static private String CAIYUN_HOST = "https://api.caiyunapp.com/v2.4";
     // TODO : APPLY FOR A REAL VALUE
     final static private String API_KEY = "XVhE=bHyaIzLeaym";
     final static private String RESOPNSE_RES = "forecast.json";
     final static private String REALTIME_RESPONSE_RES = "realtime.json";
     final static private String RAIN_UNIT_KEY = "unit";
-    final static private String RAIN_UNIT_VALUE = "metric:v2";
+    final static private String RAIN_UNIT_VALUE = "";
     public static String GEO_LOCATION = "108.91148,34.24626";
 
 
@@ -41,6 +41,11 @@ public final class caiyunWeatherUtils {
         }
         Log.v(TAG,"Build URI"+url);
         return url;
+    }
+
+    public static String get_realtime_api_string(String geo_location){
+        final String api_string = CAIYUN_HOST + "/" + API_KEY + "/" + geo_location + "/" + REALTIME_RESPONSE_RES;
+        return api_string;
     }
 
     public static URL build_realtime_api_url(String geo_location){

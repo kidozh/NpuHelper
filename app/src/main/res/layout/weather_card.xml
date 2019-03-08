@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:visibility="invisible" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/weather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         app:cardBackgroundColor="@color/colorEmerland"
         app:cardElevation="8dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:theme="?attr/cardViewStyle">
@@ -47,12 +47,14 @@
                 android:id="@+id/location_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/lato"
                 android:textAlignment="center"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorCloud"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/weather_icon"
@@ -62,10 +64,10 @@
                 android:id="@+id/location_temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/overpass"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/oxygen"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/colorCloud"
                 android:textSize="42sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -79,16 +81,17 @@
                 android:id="@+id/caiyun_support_notice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="@string/caiyun_support_notice"
                 android:textAppearance="@android:style/TextAppearance.Small"
+                android:textColor="@color/colorMidnightblue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/location_temperature" />
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </FrameLayout>

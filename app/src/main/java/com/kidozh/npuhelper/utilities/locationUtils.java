@@ -1,23 +1,13 @@
 package com.kidozh.npuhelper.utilities;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.help.Tip;
-import com.kidozh.npuhelper.R;
-import com.kidozh.npuhelper.xianCityBus.suggestCityLocation;
+import androidx.core.app.ActivityCompat;
 
 import java.util.List;
-
-import es.dmoral.toasty.Toasty;
 
 public class locationUtils {
     private final static String TAG = locationUtils.class.getSimpleName();

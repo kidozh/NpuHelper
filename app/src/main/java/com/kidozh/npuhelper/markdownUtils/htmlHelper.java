@@ -1,16 +1,11 @@
 package com.kidozh.npuhelper.markdownUtils;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.view.HapticFeedbackConstants;
-import android.widget.PopupMenu;
-import android.widget.TextView;
 
-import com.kidozh.npuhelper.R;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+
+import android.widget.TextView;
 
 import net.nightwhistler.htmlspanner.HtmlSpanner;
 import net.nightwhistler.htmlspanner.handlers.BoldHandler;

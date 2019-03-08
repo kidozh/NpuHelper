@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/transaction_record_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="auto"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/colorPureWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/transaction_record_imageview"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/transaction_image_description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/vector_drawable_transaction"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/transaction_record_precise_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorMidnightblue"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/transaction_record_payment"
+                app:layout_constraintStart_toEndOf="@+id/transaction_record_imageview"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Canteen #1" />
+
+            <TextView
+                android:id="@+id/transaction_record_secondary_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:maxEms="8"
+                android:textColor="@color/colorTextMidnightblue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/transaction_record_payment"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/transaction_record_precise_location"
+                app:layout_constraintTop_toBottomOf="@+id/transaction_record_precise_location"
+                tools:text="121" />
+
+            <TextView
+                android:id="@+id/transaction_record_general_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextMidnightblue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/transaction_record_payment"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toEndOf="@+id/transaction_record_secondary_location"
+                app:layout_constraintTop_toTopOf="@+id/transaction_record_secondary_location"
+                tools:text="Youyi Campus" />
+
+            <TextView
+                android:id="@+id/transaction_record_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/transaction_record_payment"
+                app:layout_constraintStart_toStartOf="@+id/transaction_record_secondary_location"
+                app:layout_constraintTop_toBottomOf="@+id/transaction_record_secondary_location"
+                tools:text="2017-07-05 12:30" />
+
+            <TextView
+                android:id="@+id/transaction_record_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/transaction_record_precise_location"
+                tools:text="3.5" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/color_midnight_divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/transaction_record_payment"
+                app:layout_constraintStart_toStartOf="@+id/transaction_record_secondary_location"
+                app:layout_constraintTop_toBottomOf="@+id/transaction_record_time" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

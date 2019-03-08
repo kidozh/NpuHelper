@@ -2,15 +2,12 @@ package com.kidozh.npuhelper.campusBuildingLoc;
 
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
-import android.content.AsyncQueryHandler;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.provider.SearchRecentSuggestions;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -18,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.kidozh.npuhelper.R;
@@ -32,6 +28,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
@@ -71,6 +71,7 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
         curlJsonFromData();
         //init Search bar
         initSearchBar(mLocationSearchDiv);
+        configureStatusBar();
 
         mDb = campusBuildingInfoDatabase.getsInstance(getApplicationContext());
 
@@ -104,11 +105,18 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
         });
     }
 
+    private void configureStatusBar(){
+        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
+
     private void setActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setTitle(R.string.location_search_banner_text);
+        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
+        getSupportActionBar().setBackgroundDrawable(drawable);
     }
 
     private void saveRecentLocation(Intent intent){
@@ -244,7 +252,7 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
 //        final SearchManager searchManager =
 //                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
-                (SearchView) searchItem.getActionView();
+                (SearchView) MenuItemCompat.getActionView(searchItem);
         initSearchBar(searchView);
 //        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 //        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
@@ -275,7 +283,7 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
 //            }
 //        });
 
-        MenuItem.OnActionExpandListener expandListener = new MenuItem.OnActionExpandListener() {
+        MenuItemCompat.OnActionExpandListener expandListener = new MenuItemCompat.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {
                 return true;
@@ -287,7 +295,7 @@ public class campusBuildingPortalActivity extends AppCompatActivity {
                 return true;
             }
         };
-        searchItem.setOnActionExpandListener(expandListener);
+        MenuItemCompat.setOnActionExpandListener(searchItem, expandListener);
 
         return true;
     }

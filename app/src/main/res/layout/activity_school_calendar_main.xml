@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/cardview_light_background"
+    android:background="@color/colorPureWhite"
     android:fitsSystemWindows="true"
     tools:context=".schoolCalendar.schoolCalendarMainActivity">
 
@@ -13,7 +13,7 @@
         android:id="@+id/rl_tool"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@color/colorGreensea">
+        android:background="@color/colorPureWhite">
 
         <TextView
             android:id="@+id/tv_month_day"
@@ -22,7 +22,7 @@
             android:fontFamily="@font/pt_sans"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
-            android:textColor="@color/cardview_light_background"
+            android:textColor="@color/colorMidnightblue"
             android:textSize="26sp"
             android:textStyle="bold"
             tools:ignore="RtlSymmetry" />
@@ -46,7 +46,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/pt_sans"
                 android:gravity="center"
-                android:textColor="@color/cardview_light_background"
+                android:textColor="@color/colorMidnightblue"
                 android:textSize="10sp" />
 
             <TextView
@@ -56,7 +56,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/pt_sans"
                 android:gravity="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textColor="@color/colorMidnightblue"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />
         </LinearLayout>
@@ -79,7 +79,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/pt_sans"
                 android:gravity="center"
-                android:textColor="@color/cardview_light_background"
+                android:textColor="@color/colorMidnightblue"
                 android:textSize="12sp" />
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/pt_sans"
                 android:gravity="center"
-                android:textColor="@color/cardview_light_background"
+                android:textColor="@color/colorGreensea"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -110,7 +110,7 @@
                 android:fontFamily="@font/lato"
                 android:gravity="center"
                 android:text="13"
-                android:textColor="@color/colorCloud"
+                android:textColor="@color/colorWetasphalt"
                 android:textSize="24sp" />
         </FrameLayout>
     </RelativeLayout>
@@ -119,8 +119,8 @@
     <com.haibin.calendarview.CalendarLayout
         android:id="@+id/calendarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
+        android:layout_height="match_parent"
+        android:background="@color/colorPureWhite"
         android:orientation="vertical"
         app:calendar_content_view_id="@+id/calendar_detailed_info_layout"
         app:calendar_show_mode="both_month_week_view"
@@ -130,13 +130,13 @@
             android:id="@+id/school_calendar_calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorGreensea"
+            android:background="@color/colorPureWhite"
             android:fontFamily="@font/dosis"
             app:current_day_lunar_text_color="@color/colorSunflower"
             app:current_day_text_color="@color/colorSunflower"
 
-            app:current_month_lunar_text_color="#CFCFCF"
-            app:current_month_text_color="@color/cardview_light_background"
+            app:current_month_lunar_text_color="@color/colorMidnightblue"
+            app:current_month_text_color="@color/colorMidnightblue"
             app:day_text_size="18sp"
             app:lunar_text_size="12sp"
             app:max_year="2020"
@@ -146,19 +146,19 @@
             app:other_month_lunar_text_color="@color/colorSilver"
             app:other_month_text_color="@color/colorSilver"
             app:scheme_text="@string/holiday"
-            app:scheme_text_color="@color/cardview_light_background"
-            app:scheme_theme_color="@color/colorGreensea"
-            app:selected_lunar_text_color="@color/colorGreensea"
-            app:selected_text_color="@color/colorGreensea"
-            app:selected_theme_color="@color/cardview_light_background"
-            app:week_background="@color/cardview_light_background"
+            app:scheme_text_color="@color/colorWetasphalt"
+            app:scheme_theme_color="@color/colorWetasphalt"
+            app:selected_lunar_text_color="@color/colorPureWhite"
+            app:selected_text_color="@color/colorPureWhite"
+            app:selected_theme_color="@color/colorAsbestos"
+            app:week_background="@color/colorCloud"
             app:week_bar_view="com.kidozh.npuhelper.schoolCalendar.SolarWeekBar"
             app:week_start_with="mon"
-            app:week_text_color="@color/cardview_dark_background"
+            app:week_text_color="@color/colorWetasphalt"
             app:week_view="com.kidozh.npuhelper.schoolCalendar.meizuStyleWeekView"
             app:year_view_day_text_color="#333333"
             app:year_view_day_text_size="9sp"
-            app:year_view_month_text_color="@color/cardview_light_background"
+            app:year_view_month_text_color="@color/colorMidnightblue"
             app:year_view_month_text_size="20sp"
             app:year_view_scheme_color="@color/colorCarrot">
 
@@ -170,16 +170,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/calendar_selected_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:clickable="true"
                 android:focusable="auto"
-                android:foreground="?android:attr/selectableItemBackground">
+                android:foreground="?attr/selectableItemBackground">
 
-                <android.support.constraint.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -189,6 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
+                        android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -198,8 +199,8 @@
                         android:id="@+id/calendar_card_semester_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:fontFamily="@font/pt_sans"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/calendar_card_lunar_tv"
@@ -221,9 +222,9 @@
                         android:id="@+id/calendar_card_scheme"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="16dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="8dp"
                         android:fontFamily="@font/dosis"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textSize="18sp"
@@ -231,15 +232,15 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="@string/rest" />
-                </android.support.constraint.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <com.kidozh.npuhelper.schoolCalendar.GroupRecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/cardview_light_background" />
+                android:background="@color/colorPureWhite" />
 
         </LinearLayout>
 

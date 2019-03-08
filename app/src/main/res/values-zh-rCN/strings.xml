@@ -38,7 +38,7 @@
     <string name="RAIN">雨</string>
     <string name="SNOW">雪</string>
     <string name="WIND">大风</string>
-    <string name="HAZE">雾霾</string>
+    <string name="HAZE">霾</string>
     <string name="relative_humidity">相对湿度</string>
     <string name="nearst_rain_strength">最近降雨地点</string>
     <string name="rain_strength">降雨量</string>
@@ -83,7 +83,7 @@
     <string name="dragon_boat_festival">端午节</string>
     <string name="mid_fall_festival">中秋节</string>
     <string name="national_day">国庆节</string>
-    <string name="school_department_address_book">校园通讯录</string>
+    <string name="school_department_address_book">学校黄页</string>
     <string name="general_tag">通用</string>
     <string name="individual_college">各学院</string>
     <string name="others_tag">其他</string>
@@ -154,4 +154,289 @@
     <string name="pref_title_system_sync_settings">系统同步设置</string>
     <string name="pref_title_sync_frequency">同步频率</string>
     <string name="portal_request_location_message">您的位置将被用于作为的依据，如果您不想提供您当前的地理位置，西北工业大学友谊校区的位置将被设为默认的出发地。</string>
+    <string name="qingming_festival">清明节</string>
+    <string name="spring_festival">春节</string>
+    <string name="larbor_day">劳动节</string>
+    <string name="sign_in_text">登录</string>
+    <string name="ecampus_label">翱翔门户</string>
+    <string name="login_trouble_text">登录遇到问题？</string>
+    <string name="account_label">学号</string>
+    <string name="password_label">密码</string>
+    <string name="title_activity_login_university">登录</string>
+    <string name="account_or_password_required">账号和密码都需要填上</string>
+    <string name="sign_in_now_text">登录中...</string>
+    <string name="wrong_acc_or_pwd">账号或者密码错误</string>
+    <string name="login_successful_text">成功登陆</string>
+    <string name="exit_account_text">退出当前帐号</string>
+    <string name="id_role">身份</string>
+    <string name="student">学生</string>
+    <string name="college">学院（部门）</string>
+    <string name="major_code">专业代码</string>
+    <string name="major_name">专业名称</string>
+    <string name="class_name">班级</string>
+    <string name="grade">年级</string>
+    <string name="app_token">应用令牌</string>
+    <string name="TGT_ticket">TGT 准入</string>
+    <string name="ST_ticket">ST 准入</string>
+    <string name="personal_center_text">我的信息</string>
+    <string name="logout_account_notice">您是否想退出当前帐号？</string>
+    <string name="logout_account_yes">确定</string>
+    <string name="logout_account_cancel">取消</string>
+    <string name="Error_in_getting_documentID">未能获得您的ID信息</string>
+    <string name="document_ID_name">账号唯一标识符</string>
+    <string name="app_token_is_wrong">App令牌失效，请重新登录。</string>
+    <string name="date_of_birth_text">出生日期</string>
+    <string name="format_date_yy_mm_dd">yyyy年MM年d日</string>
+    <string name="mobile_phone_text">电话号码</string>
+    <string name="auth_services">用户服务</string>
+    <string name="transaction_label">账单</string>
+    <string name="remaining_label">余额</string>
+    <string name="expenditure_text">支出</string>
+    <string name="income">收入</string>
+    <string name="campus_card_balance_text">校园卡余额 (￥)</string>
+    <string name="transaction_image_description">本次交易图标</string>
+    <string name="fail_to_get_balance_info_text">无法获得校园卡信息</string>
+    <string name="card_number_format">编号 %s</string>
+    <string name="campus_shuttle_timetable">校车时刻表</string>
+    <string name="developing_later">正在开发中。</string>
+    <string name="gitee_location_api_source">码云</string>
+    <string name="online_recharge_text">在线充值</string>
+    <string name="unknown_deduction">未知扣款</string>
+    <string name="transaction_detail">账单详情</string>
+    <string name="transaction_type">交易类型</string>
+    <string name="transaction_general_place">交易对象</string>
+    <string name="transaction_balance">交易后余额</string>
+    <string name="payment_time">交易时间</string>
+    <string name="payment_successful">支付成功</string>
+    <string name="recharge_successful">充值成功</string>
+    <string name="simple_recharge_text">充值</string>
+    <string name="NPU_name">西北工业大学</string>
+    <string name="app_token_error_title">应用令牌出错</string>
+    <string name="i_get_it">了解</string>
+    <string name="app_token_demonstration">应用令牌无法通过服务器鉴别。这可能是因为上次登陆时间过久或者您在其他设备及应用上登陆过本账号。无论如何，您的登陆已经失效，于本应用的账号信息已经被擦除，请重新登录恢复正常的服务。</string>
+    <string name="unknown">未知</string>
+    <string name="FOG">雾</string>
+    <string name="LIGHT_HAZE">轻度雾霾</string>
+    <string name="MODERATE_HAZE">中度雾霾</string>
+    <string name="HEAVY_HAZE">重度雾霾</string>
+    <string name="LIGHT_RAIN">小雨</string>
+    <string name="MODERATE_RAIN">中雨</string>
+    <string name="STORM_RAIN">暴雨</string>
+    <string name="HEAVY_RAIN">大雨</string>
+    <string name="LIGHT_SNOW">小雪</string>
+    <string name="MODERATE_SNOW">中雪</string>
+    <string name="HEAVY_SNOW">大雪</string>
+    <string name="STORM_SNOW">暴雪</string>
+
+    <string name="DUST">浮尘</string>
+    <string name="SAND">沙尘</string>
+    <string name="THUNDER_SHOWER">雷阵雨</string>
+    <string name="ICE_RAIN">冻雨</string>
+    <string name="HAIL">冰雹</string>
+    <string name="SLEET">雨夹雪</string>
+    <string name="TORNADO">龙卷风</string>
+
+    <string name="wind_scale_0_txt">无风</string>
+    <string name="wind_scale_1_txt">软风</string>
+    <string name="wind_scale_2_txt">轻风</string>
+    <string name="wind_scale_3_txt">微风</string>
+    <string name="wind_scale_4_txt">和风</string>
+    <string name="wind_scale_5_txt">清风</string>
+    <string name="wind_scale_6_txt">强风</string>
+    <string name="wind_scale_7_txt">疾风／劲风</string>
+    <string name="wind_scale_8_txt">大风</string>
+    <string name="wind_scale_9_txt">烈风</string>
+    <string name="wind_scale_10_txt">狂风</string>
+    <string name="wind_scale_11_txt">暴风</string>
+    <string name="wind_scale_12_txt">飓风</string>
+    <string name="wind_scale_13_txt">飓风／台风</string>
+    <string name="wind_scale_14_txt">强飓风／　强台风</string>
+    <string name="wind_scale_15_txt">强飓风／　强台风</string>
+    <string name="wind_scale_16_txt">超强飓风／超强台风</string>
+    <string name="wind_scale_17_txt">超强飓风／超强台风</string>
+    <string name="wind_scale_18_txt">极强飓风／极强台风</string>
+
+    <string name="wind_scale_ocean_describe_0_txt">无浪</string>
+    <string name="wind_scale_ocean_describe_1_txt">平静／无浪／海平：波纹柔和，如鳞状，波峰不起白沬。</string>
+    <string name="wind_scale_ocean_describe_2_txt">平静／小浪／海平至有微波：小波相隔仍短，但波浪显著；波峰似玻璃，光滑而不破碎。</string>
+    <string name="wind_scale_ocean_describe_3_txt">小浪／微波：小波较大，波峰开始破碎，波逢间中有白头浪。</string>
+    <string name="wind_scale_ocean_describe_4_txt">小至中浪／微波至小浪：小波渐高，形状开始拖长，白头浪颇频密。</string>
+    <string name="wind_scale_ocean_describe_5_txt">中浪／小至中浪：中浪，形状明显拖长，白头浪更多，间中有浪花飞溅。</string>
+    <string name="wind_scale_ocean_describe_6_txt">大浪／中浪：大浪出现，四周都是白头浪，浪花颇大。</string>
+    <string name="wind_scale_ocean_describe_7_txt">大浪至非常大浪：海浪突涌堆叠，碎浪之白沬，随风吹成条纹状。</string>
+    <string name="wind_scale_ocean_describe_8_txt">非常大浪至巨浪：接近高浪，浪峰碎成浪花，白沬被风吹成明显条纹状。</string>
+    <string name="wind_scale_ocean_describe_9_txt">巨浪／狂浪／猛浪：高浪，泡沫浓密；浪峰卷曲倒悬，颇多白沬。</string>
+    <string name="wind_scale_ocean_describe_10_txt">巨浪至非常巨浪／狂浪至狂涛：非常高浪。海面变成白茫茫，波涛冲击，能见度下降。</string>
+    <string name="wind_scale_ocean_describe_11_txt">非常巨浪至极巨浪／狂涛：波涛澎湃，浪高可以遮掩中型船只；白沬被风吹成长片于空中摆动，遍及海面，能见度减低。</string>
+    <string name="wind_scale_ocean_describe_12_txt">极巨浪／狂涛至非常巨浪：海面空气中充满浪花及白沬，全海皆白；巨浪如江倾河泻，能见度大为降低。</string>
+    <string name="wind_scale_ocean_describe_13_txt">极巨浪／狂涛／非常巨浪：海面巨浪滔天，不堪设想。</string>
+    <string name="wind_scale_ocean_describe_14_txt">极巨浪／狂涛／非常巨浪：海面巨浪滔天，不堪设想。</string>
+    <string name="wind_scale_ocean_describe_15_txt">极巨浪／狂涛／非常巨浪：海面巨浪滔天，不堪设想。</string>
+    <string name="wind_scale_ocean_describe_16_txt">极巨浪／狂涛／非常巨浪：海面巨浪滔天，不堪设想。</string>
+    <string name="wind_scale_ocean_describe_17_txt">极巨浪／狂涛／非常巨浪：海面巨浪滔天，不堪设想。</string>
+    <string name="wind_scale_ocean_describe_18_txt">极巨浪／狂涛／非常巨浪：海面巨浪滔天，不堪设想，可扫平一切。</string>
+
+    <string name="wind_scale_land_describe_0_txt">静，烟直向上</string>
+    <string name="wind_scale_land_describe_1_txt">烟能表示风向，风向标不转动</string>
+    <string name="wind_scale_land_describe_2_txt">人面感觉有风，树叶有微响，风向标转动</string>
+    <string name="wind_scale_land_describe_3_txt">树叶及小树枝摇动不息，旗展开</string>
+    <string name="wind_scale_land_describe_4_txt">吹起地面灰尘和纸张，小树枝摇动。</string>
+    <string name="wind_scale_land_describe_5_txt">有叶的小树整棵摇摆；内陆水面有波纹。</string>
+    <string name="wind_scale_land_describe_6_txt">大树枝摇摆，持伞有困难，电线有呼呼声。</string>
+    <string name="wind_scale_land_describe_7_txt">全树摇动，人迎风前行有困难。</string>
+    <string name="wind_scale_land_describe_8_txt">小树枝折断，人向前行阻力甚大。</string>
+    <string name="wind_scale_land_describe_9_txt">烟囱顶部移动，木屋受损。</string>
+    <string name="wind_scale_land_describe_10_txt">大树连根拔起，建筑物损毁。</string>
+    <string name="wind_scale_land_describe_11_txt">陆上少见，建筑物普遍损毁。</string>
+    <string name="wind_scale_land_describe_12_txt">陆上少见，建筑物普遍严重损毁。</string>
+    <string name="wind_scale_land_describe_13_txt">陆上难以出现，如有必成灾祸。</string>
+    <string name="wind_scale_land_describe_14_txt">陆上难以出现，如有必成灾祸。</string>
+    <string name="wind_scale_land_describe_15_txt">陆上难以出现，如有必成灾祸。</string>
+    <string name="wind_scale_land_describe_16_txt">陆上难以出现，如有必成灾祸。</string>
+    <string name="wind_scale_land_describe_17_txt">陆上难以出现，如有必成灾祸。</string>
+    <string name="wind_scale_land_describe_18_txt">陆上极难出现，毁灭性破坏。</string>
+
+    <string name="air_quality_good">优</string>
+    <string name="air_quality_moderate">良</string>
+    <string name="air_quality_unhealthy_for_sensitive_group">轻度污染</string>
+    <string name="air_quality_unhealthy">中度污染</string>
+    <string name="air_quality_very_unhealthy">严重污染</string>
+    <string name="air_quality_hazardous">重度污染</string>
+    <string name="wind_scale_format">%d级风</string>
+    <string name="comfort_text">舒适度</string>
+    <string name="ultraviolet">紫外线</string>
+    <string name="cloudrate_tag">云量</string>
+    <string name="visibility_tag">可见度（千米）</string>
+    <string name="air_pressure_tag">大气压</string>
+    <string name="kpa_format">%.2f 千帕</string>
+    <string name="km_format">%s 千米</string>
+    <string name="cloudrate_description">云量介于0和100之间</string>
+    <string name="air_pressure_demonstrate">标准大气压为101.325 kPa</string>
+    <string name="little_or_no_rain">可忽略的雨或雪</string>
+    <string name="north_wind">北风</string>
+    <string name="northeast_wind">东北风</string>
+    <string name="east_wind">东北风</string>
+    <string name="southeast_wind">东南风</string>
+    <string name="south_wind">南风</string>
+    <string name="southwest_wind">西南风</string>
+    <string name="west_wind">西风</string>
+    <string name="northwest_wind">西北风</string>
+    <string name="wind_strength">风力</string>
+    <string name="light_rain_or_snow">小雨或雪</string>
+    <string name="moderate_rain_or_snow">中雨或雪</string>
+    <string name="heavy_rain_or_snow">大雨或雪</string>
+    <string name="storm_rain_or_snow">暴雨或雪</string>
+    <string name="very_good">非常好</string>
+    <string name="good">好</string>
+    <string name="general">一般</string>
+    <string name="rather_poor">较差</string>
+    <string name="poor">差</string>
+    <string name="very_poor">非常差</string>
+    <string name="extremely_poor">极差</string>
+    <string name="nearly_invisible">几乎不可见</string>
+    <string name="none">无</string>
+    <string name="blue_sky">碧空</string>
+    <string name="clear">晴</string>
+    <string name="partial_time_with_sun">部分时间有阳光</string>
+    <string name="sparse_cloud">疏云</string>
+    <string name="dense_cloud">密云</string>
+    <string name="crack_cloud">裂云</string>
+    <string name="partly_cloudy">多云</string>
+    <string name="a_short_time_with_sunshine">非常短暂的阳光</string>
+    <string name="co">一氧化碳</string>
+    <string name="pm10">可吸入颗粒物</string>
+    <string name="so2">二氧化硫</string>
+    <string name="o3">臭氧</string>
+    <string name="no2">二氧化氮</string>
+    <string name="weight_score">加权学分积</string>
+    <string name="query_score">查询成绩</string>
+    <string name="credit_weight">学分</string>
+    <string name="us_gpa">美式标准GPA</string>
+    <string name="score_free_duty_demonstration">数据应以翱翔门户中的信息或者图书馆出具的成绩单为准</string>
+    <string name="npu_gpa">工大标准GPA</string>
+    <string name="campus_library">学校图书馆</string>
+    <string name="search_book">搜索图书</string>
+    <string name="Me">我的</string>
+    <string name="search_book_hint">键入书名以便搜索</string>
+
+    <string-array name="list_library_entries">
+        <item>任意</item>
+        <item>题名</item>
+        <item>作者</item>
+        <item>主题</item>
+        <item>ISBN</item>
+        <item>分类号</item>
+        <item>索书号</item>
+        <item>出版社</item>
+        <item>丛书名</item>
+    </string-array>
+    <string name="library_total">馆藏复本</string>
+    <string name="library_accessible">可借复本</string>
+    <string name="search_item_number">搜索个数</string>
+    <string name="search_second">搜索时间</string>
+    <string name="search_time_format">%s 秒</string>
+    <string name="not_applicable">不适用</string>
+    <string name="unavailable_to_borrow">无法借阅</string>
+    <string name="book_borrow_status">借阅状态</string>
+    <string name="book_location">所在地</string>
+    <string name="book_year">年卷号</string>
+    <string name="bar_code_text">条码号</string>
+    <string name="book_call_number_text">索书号</string>
+    <string name="book_borrow_expired">已到期</string>
+    <string name="in_day_format">%d天后</string>
+    <string name="lend_due_day">还书时间</string>
+    <string name="can_borrow">能够借阅</string>
+    <string name="douban_summary">豆瓣简介</string>
+    <string name="douban_author_intro">豆瓣作者介绍</string>
+    <string name="max_borrow_text">最多可借</string>
+    <string name="can_not_find_account">无法于图书馆系统中找到你的账号</string>
+    <string name="max_reserve_text">最多可预约</string>
+    <string name="max_commission_text">最多可委托</string>
+    <string name="from_to_format">%s 至 %s</string>
+    <string name="book_popular">热门</string>
+    <string name="book_top_circulation_text">热门借阅</string>
+    <string name="book_top_ratings_text">热门评分</string>
+    <string name="book_top_favorites_text">热门收藏</string>
+    <string name="book_top_books_text">热门图书</string>
+    <string name="book_lend_time">借阅次数</string>
+    <string name="book_remark">评分</string>
+    <string name="book_collect_times">收藏</string>
+    <string name="book_browse">浏览</string>
+    <string name="book_borrow_at">借阅于</string>
+    <string name="book_due_date">失效于</string>
+    <string name="borrow_book_number">已借阅书本数</string>
+    <string-array name="popular_book_category">
+        <item>所有种类</item>
+        <item>马列主义、毛泽东思想、邓小平理论</item>
+        <item>哲学、宗教</item>
+        <item>社会科学总论</item>
+        <item>政治、法律</item>
+        <item>军事</item>
+        <item>经济</item>
+        <item>文化、科学、教育、体育</item>
+        <item>语言、文字</item>
+        <item>文学</item>
+        <item>艺术</item>
+        <item>历史、地理</item>
+        <item>自然科学总论</item>
+        <item>数理科学与化学</item>
+        <item>天文学、地球科学</item>
+        <item>生物科学</item>
+        <item>医药、卫生</item>
+        <item>农业科学</item>
+        <item>工业技术</item>
+        <item>交通运输</item>
+        <item>航空、航天</item>
+        <item>环境科学,安全科学</item>
+        <item>综合性图书</item>
+    </string-array>
+
+    <string name="pref_title_location_selection">选择校区</string>
+    <string-array name="pref_array_location_selection_entries">
+        <item>友谊（老）校区</item>
+        <item>长安（新）校区</item>
+    </string-array>
+
+
+
 </resources>

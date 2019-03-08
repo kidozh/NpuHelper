@@ -229,6 +229,19 @@
         <item>30</item>
         <item>60</item>
     </string-array>
+
+    <string name="pref_title_location_selection">Location Selection</string>
+    <string-array name="pref_array_location_selection_entries">
+        <item>Youyi (Old) Campus</item>
+        <item>Chang\'an (New) Campus</item>
+    </string-array>
+
+    <string-array name="pref_array_location_selection_entries_value">
+        <item>y</item>
+        <item>c</item>
+    </string-array>
+    <string name="pref_key_location_selection">pref_key_location_selection</string>
+
     <string name="pref_summary_bus_notice_time">Which time app will label shuttle as waiting</string>
     <string name="shuttle_advanced_time">shuttle_advanced_time</string>
     <string name="campus_location_guide">Campus Location</string>
@@ -304,8 +317,8 @@
     <string name="spring_semester">Spring</string>
     <string name="fall_semester">Fall</string>
     <string name="vacation">Vacation</string>
-    <string name="rest">Rest</string>
-    <string name="work">Work</string>
+    <string name="rest">:)</string>
+    <string name="work">:(</string>
     <string name="today">Today</string>
     <string name="start_label">B</string>
     <string name="end_label">E</string>
@@ -361,5 +374,305 @@
     <string name="or_divider">OR</string>
     <string name="next_divider">Next</string>
     <string name="portal_request_location_message">Your location will be used to provide your local weather information and bus navigation. If you want to keep location private, auto-filled location will be NPU.</string>
+    <string name="qingming_festival">QingMing</string>
+    <string name="spring_festival">Spring Festival</string>
+    <string name="larbor_day">Larbor\'s Day</string>
+    <string name="title_activity_login_university">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="sign_in_text">Sign In</string>
+    <string name="ecampus_label">E-campus</string>
+    <string name="account_label">Account</string>
+    <string name="password_label">Password</string>
+    <string name="login_trouble_text">Trouble in login?</string>
+    <string name="account_or_password_required">Account and Password is all required.</string>
+    <string name="sign_in_now_text">Login, please wait...</string>
+    <string name="wrong_acc_or_pwd">Wrong account or Password</string>
+    <string name="login_successful_text">Login successfully</string>
+    <string name="title_activity_personal_info_display">personalInfoDisplayActivity</string>
+    <string name="user_image">User\'s Image</string>
+    <string name="exit_account_text">Logout</string>
+    <string name="id_role">Role</string>
+    <string name="student">Student</string>
+    <string name="college">College / Department</string>
+    <string name="major_code">Major code</string>
+    <string name="major_name">Major name</string>
+    <string name="class_name">Class</string>
+    <string name="grade">Grade</string>
+    <string name="app_token">App token</string>
+    <string name="TGT_ticket">TGT ticket</string>
+    <string name="ST_ticket">ST ticket</string>
+    <string name="personal_center_text">Personal Center</string>
+    <string name="logout_account_notice">Do you want to logout current account?</string>
+    <string name="logout_account_yes">Sure</string>
+    <string name="logout_account_cancel">Cancel</string>
+    <string name="Error_in_getting_documentID">Fail to get your ID in portal system</string>
+    <string name="document_ID_name">Hex ID</string>
+    <string name="app_token_is_wrong">App token is out of date, please re-login.</string>
+    <string name="date_of_birth_text">Date of birth</string>
+
+    <string name="format_date_yy_mm_dd">d MMM yyyy</string>
+    <string name="mobile_phone_text">Phone Number</string>
+    <string name="auth_services">User Services</string>
+    <string name="transaction_label">Campus Transaction</string>
+    <string name="remaining_label">Balance</string>
+    <string name="title_activity_transaction_timeline">Sign in</string>
+    <string name="expenditure_text">Expenditure</string>
+    <string name="income">Income</string>
+    <string name="campus_card_balance_text">Campus card balance (￥)</string>
+    <string name="transaction_image_description">Transaction icon</string>
+    <string name="fail_to_get_balance_info_text">Failed to get campus card information</string>
+    <string name="card_number_format">No. %s</string>
+    <string name="campus_shuttle_timetable">Campus Shuttle Timetable</string>
+    <string name="online_recharge_text">Online Recharge</string>
+    <string name="unknown_deduction">Unknown deduction</string>
+    <string name="title_activity_transaction_detail">TransactionDetailActivity</string>
+    <string name="transaction_detail">Transaction Detail</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="transaction_general_place">Transaction Place</string>
+    <string name="transaction_balance">Transaction Balance</string>
+    <string name="payment_time">Payment Time</string>
+    <string name="payment_successful">Payment Successful</string>
+    <string name="recharge_successful">Recharge Successful</string>
+    <string name="simple_recharge_text">Recharge</string>
+    <string name="NPU_name">Northwestern Polytechnical University</string>
+    <string name="app_token_error_title">App Token is error</string>
+    <string name="i_get_it">I get it</string>
+    <string name="app_token_demonstration">App token is not recognized by server. This may be caused by login expire or another login in other device and app. Anyway, your login to this app is no longer valid. Please re-login to make sure the use of this account.</string>
+    <string name="unknown">Unknown</string>
+    <string name="title_activity_teacher_info_portal">TeacherInfoPortalActivity</string>
+    <string name="FOG">Fog</string>
+    <string name="LIGHT_HAZE">Light haze</string>
+    <string name="MODERATE_HAZE">Moderate haze</string>
+    <string name="HEAVY_HAZE">Heavy haze</string>
+    <string name="LIGHT_RAIN">Light rain</string>
+    <string name="MODERATE_RAIN">Moderate rain</string>
+    <string name="HEAVY_RAIN">Heavy rain</string>
+    <string name="STORM_RAIN">Rainstorm</string>
+    <string name="LIGHT_SNOW">Light snow</string>
+    <string name="MODERATE_SNOW">Moderate snow</string>
+    <string name="HEAVY_SNOW">Heavy snow</string>
+    <string name="STORM_SNOW">Snowstorm</string>
+
+    <string name="DUST">dust</string>
+    <string name="SAND">sand</string>
+    <string name="THUNDER_SHOWER">Thunder</string>
+    <string name="ICE_RAIN">Ice rain</string>
+    <string name="HAIL">Hail</string>
+    <string name="SLEET">Steel</string>
+    <string name="TORNADO">Tornado</string>
+
+    <string name="wind_scale_0_txt">Calm</string>
+    <string name="wind_scale_1_txt">Light/Light air</string>
+    <string name="wind_scale_2_txt">Light/Light breeze</string>
+    <string name="wind_scale_3_txt">Moderate/Gentle breeze</string>
+    <string name="wind_scale_4_txt">Moderate/Moderate breeze</string>
+    <string name="wind_scale_5_txt">Fresh</string>
+    <string name="wind_scale_6_txt">Strong</string>
+    <string name="wind_scale_7_txt">Strong/Near gale</string>
+    <string name="wind_scale_8_txt">Gale</string>
+    <string name="wind_scale_9_txt">Gale/Strong Gale</string>
+    <string name="wind_scale_10_txt">Storm</string>
+    <string name="wind_scale_11_txt">Storm/Violent storm</string>
+    <string name="wind_scale_12_txt">Hurricane</string>
+    <string name="wind_scale_13_txt">Hurricane／Typhoon</string>
+    <string name="wind_scale_14_txt">Severe Hurricane/Severe Typhoon</string>
+    <string name="wind_scale_15_txt">Severe Hurricane/Severe Typhoon</string>
+    <string name="wind_scale_16_txt">Super Hurricane/Super Typhoon</string>
+    <string name="wind_scale_17_txt">Super Hurricane/Super Typhoon</string>
+    <string name="wind_scale_18_txt">Hyper Hurricane/Hyper Typhoon</string>
+
+    <string name="wind_scale_ocean_describe_0_txt">Sea like a mirror</string>
+    <string name="wind_scale_ocean_describe_1_txt">Ripples with appearance of scales are formed, without foam crests</string>
+    <string name="wind_scale_ocean_describe_2_txt">Small wavelets still short but more pronounced; crests have a glassy appearance but do not break</string>
+    <string name="wind_scale_ocean_describe_3_txt">Large wavelets; crests begin to break; foam of glassy appearance; perhaps scattered white horses</string>
+    <string name="wind_scale_ocean_describe_4_txt">Small waves becoming longer; fairly frequent white horses</string>
+    <string name="wind_scale_ocean_describe_5_txt">Moderate waves taking a more pronounced long form; many white horses are formed; chance of some spray</string>
+    <string name="wind_scale_ocean_describe_6_txt">Large waves begin to form; the white foam crests are more extensive everywhere; probably some spray</string>
+    <string name="wind_scale_ocean_describe_7_txt">Sea heaps up and white foam from breaking waves begins to be blown in streaks along the direction of the wind; spindrift begins to be seen</string>
+    <string name="wind_scale_ocean_describe_8_txt">Moderately high waves of greater length; edges of crests break into spindrift; foam is blown in well-marked streaks along the direction of the wind</string>
+    <string name="wind_scale_ocean_describe_9_txt">High waves; dense streaks of foam along the direction of the wind; sea begins to roll; spray affects visibility</string>
+    <string name="wind_scale_ocean_describe_10_txt">Very high waves with long overhanging crests; resulting foam in great patches is blown in dense white streaks along the direction of the wind; on the whole the surface of the sea takes on a white appearance; rolling of the sea becomes heavy; visibility affected</string>
+    <string name="wind_scale_ocean_describe_11_txt">Exceptionally high waves; small- and medium-sized ships might be for a long time lost to view behind the waves; sea is covered with long white patches of foam; everywhere the edges of the wave crests are blown into foam; visibility affected</string>
+    <string name="wind_scale_ocean_describe_12_txt">The air is filled with foam and spray; sea is completely white with driving spray; visibility very seriously affected</string>
+    <string name="wind_scale_ocean_describe_13_txt">The air is filled with foam and spray; sea is completely white with driving spray; visibility very seriously affected</string>
+    <string name="wind_scale_ocean_describe_14_txt">The air is filled with foam and spray; sea is completely white with driving spray; visibility very seriously affected</string>
+    <string name="wind_scale_ocean_describe_15_txt">The air is filled with foam and spray; sea is completely white with driving spray; visibility very seriously affected</string>
+    <string name="wind_scale_ocean_describe_16_txt">The air is filled with foam and spray; sea is completely white with driving spray; visibility very seriously affected</string>
+    <string name="wind_scale_ocean_describe_17_txt">The air is filled with foam and spray; sea is completely white with driving spray; visibility very seriously affected</string>
+    <string name="wind_scale_ocean_describe_18_txt">The air is filled with foam and spray; sea is completely white with driving spray; visibility very seriously affected</string>
+
+    <string name="wind_scale_land_describe_0_txt">Smoke rises vertically.</string>
+    <string name="wind_scale_land_describe_1_txt">Direction shown by smoke drift but not by wind vanes.</string>
+    <string name="wind_scale_land_describe_2_txt">Wind felt on face; leaves rustle; wind vane moved by wind.</string>
+    <string name="wind_scale_land_describe_3_txt">Leaves and small twigs in constant motion; light flags extended.</string>
+    <string name="wind_scale_land_describe_4_txt">Raises dust and loose paper; small branches moved.</string>
+    <string name="wind_scale_land_describe_5_txt">Small trees in leaf begin to sway; crested wavelets form on inland waters.</string>
+    <string name="wind_scale_land_describe_6_txt">Large branches in motion; whistling heard in telegraph wires; umbrellas used with difficulty.</string>
+    <string name="wind_scale_land_describe_7_txt">Whole trees in motion; inconvenience felt when walking against the wind.</string>
+    <string name="wind_scale_land_describe_8_txt">Twigs break off trees; generally impedes progress.</string>
+    <string name="wind_scale_land_describe_9_txt">Slight structural damage (chimney pots and slates removed).</string>
+    <string name="wind_scale_land_describe_10_txt">Seldom experienced inland; trees uprooted; considerable structural damage.</string>
+    <string name="wind_scale_land_describe_11_txt">Very rarely experienced; accompanied by widespread damage.</string>
+    <string name="wind_scale_land_describe_12_txt">Devastation.</string>
+    <string name="wind_scale_land_describe_13_txt">Devastation.</string>
+    <string name="wind_scale_land_describe_14_txt">Devastation.</string>
+    <string name="wind_scale_land_describe_15_txt">Devastation.</string>
+    <string name="wind_scale_land_describe_16_txt">Devastation.</string>
+    <string name="wind_scale_land_describe_17_txt">Devastation.</string>
+    <string name="wind_scale_land_describe_18_txt">Devastation.</string>
+
+    <string name="air_quality_good">Good</string>
+    <string name="air_quality_moderate">Moderate</string>
+    <string name="air_quality_unhealthy_for_sensitive_group">Unhealthy for Sensitive Groups</string>
+    <string name="air_quality_unhealthy">Unhealthy</string>
+    <string name="air_quality_very_unhealthy">Very Unhealthy</string>
+    <string name="air_quality_hazardous">Hazardous</string>
+    <string name="wind_scale_format">%d grade</string>
+    <string name="comfort_text">Comfort</string>
+    <string name="ultraviolet">Ultra Violet</string>
+    <string name="percent_number_format">%d %%</string>
+    <string name="pref_description_when_download_pic">Download picture and database only under Wi-Fi mode</string>
+    <string name="cloudrate_tag">Cloud Rate</string>
+    <string name="visibility_tag">Visibility(km)</string>
+    <string name="air_pressure_tag">Air Pressure</string>
+    <string name="kpa_format">%.2f kPa</string>
+    <string name="km_format">%s km</string>
+    <string name="cloudrate_description">Cloud Rate between 0 and 1 shows the cloud situation in sky.</string>
+    <string name="air_pressure_demonstrate">Standard atmospheric pressure is 101.325 kPa</string>
+    <string name="little_or_no_rain">Very little rain(snow) or even no rain(snow)</string>
+    <string name="light_rain_or_snow">Light rain or snow</string>
+    <string name="moderate_rain_or_snow">Moderate rain or snow</string>
+    <string name="heavy_rain_or_snow">Heavy rain or snow</string>
+    <string name="storm_rain_or_snow">Rainstorm or snowstorm</string>
+    <string name="north_wind">North wind</string>
+    <string name="northeast_wind">Northeast wind</string>
+    <string name="east_wind">East wind</string>
+    <string name="southeast_wind">Southeast wind</string>
+    <string name="south_wind">South wind</string>
+    <string name="southwest_wind">Southwest wind</string>
+    <string name="west_wind">West wind</string>
+    <string name="northwest_wind">Northwest wind</string>
+    <string name="wind_strength">Wind Strength</string>
+    <string name="km_per_h_format">%s km/h</string>
+    <string name="very_good">Very Good</string>
+    <string name="good">Good</string>
+    <string name="general">General</string>
+    <string name="rather_poor">Rather Poor</string>
+    <string name="poor">Poor</string>
+    <string name="very_poor">Very Poor</string>
+    <string name="extremely_poor">Extremely Poor</string>
+    <string name="nearly_invisible">Nearly Invisible</string>
+    <string name="none">None</string>
+    <string name="blue_sky">Blue Sky</string>
+    <string name="clear">Clear</string>
+    <string name="partial_time_with_sun">Partial time with sun</string>
+    <string name="sparse_cloud">Sparse cloud</string>
+    <string name="partly_cloudy">Partly cloudy</string>
+    <string name="crack_cloud">Crack cloud</string>
+    <string name="dense_cloud">Dense cloud</string>
+    <string name="a_short_time_with_sunshine">Short time with sunshine</string>
+    <string name="co">CO</string>
+    <string name="pm10">PM10</string>
+    <string name="so2">SO2</string>
+    <string name="o3">O3</string>
+    <string name="no2">NO2</string>
+    <string name="weight_score">Weighted Score</string>
+    <string name="us_gpa">GPA(US standard)</string>
+    <string name="query_score">Score Query</string>
+    <string name="credit_weight">credit</string>
+    <string name="score_free_duty_demonstration">The exact score should be refered by NPU official website or its related department</string>
+    <string name="npu_gpa">GPA(NPU standard)</string>
+    <string name="title_activity_library_portal">libraryPortalActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="campus_library">Library of University</string>
+    <string name="search_book">Search Book</string>
+    <string name="Me">Me</string>
+    <string name="search_book_hint">Search book by name</string>
+
+    <string-array name="list_library_entries">
+        <item>Any</item>
+        <item>Title</item>
+        <item>Author</item>
+        <item>Subject</item>
+        <item>ISBN</item>
+        <item>Category</item>
+        <item>Call Num.</item>
+        <item>Press</item>
+        <item>Series</item>
+    </string-array>
+    <string name="library_total">Holding</string>
+    <string name="library_accessible">Available</string>
+    <string name="book_description">book description</string>
+    <string name="search_item_number">Search Item</string>
+    <string name="search_second">Search Time</string>
+    <string name="search_time_format">%s s</string>
+    <string name="book_call_number_text">Call Number</string>
+    <string name="bar_code_text">Bar code</string>
+    <string name="book_year">Year</string>
+    <string name="book_location">Book Location</string>
+    <string name="book_borrow_status">Borrowable status</string>
+    <string name="unavailable_to_borrow">Unavailable</string>
+    <string name="not_applicable">Not Applicable</string>
+    <string name="book_borrow_expired">Borrow Expired</string>
+    <string name="in_day_format">In %d Day</string>
+    <string name="lend_due_day">Due day</string>
+    <string name="can_borrow">Available</string>
+    <string name="douban_summary">Douban Summary</string>
+    <string name="douban_author_intro">Douban Author Intro</string>
+    <string name="max_borrow_text">Total Number of Borrowable Book</string>
+    <string name="max_reserve_text">Total Number of Reservable Book</string>
+    <string name="max_commission_text">Max commission book Number</string>
+    <string name="can_not_find_account">Unable to find your account in library system</string>
+    <string name="from_to_format">%s - %s</string>
+    <string name="book_popular">Popular</string>
+    <string name="book_top_circulation_text">Top Circulation</string>
+    <string name="book_top_ratings_text">Top Ratings</string>
+    <string name="book_top_favorites_text">Top Favorites</string>
+    <string name="book_top_books_text">Top Books</string>
+    <string name="book_lend_time">Lent times</string>
+    <string name="book_remark">Remark</string>
+    <string name="book_collect_times">Collected</string>
+    <string name="book_browse">Browsed</string>
+    <string name="book_borrow_at">Borrow at</string>
+    <string name="book_due_date">Return at</string>
+    <string name="borrow_book_number">Borrowed Book Number</string>
+    <string-array name="popular_book_category">
+        <item>All Categories</item>
+        <item>Marxism, Leninism, Maoism, Deng Xiaoping Theory</item>
+        <item>Philosophy and Religion</item>
+        <item>Social Sciences</item>
+        <item>Politics and Law</item>
+        <item>Military Science</item>
+        <item>Economics</item>
+        <item>Culture, Science, Education and Sports</item>
+        <item>Languages and Linguistics</item>
+        <item>Literature</item>
+        <item>Art</item>
+        <item>History and Geography</item>
+        <item>Natural Science</item>
+        <item>Mathematics, Physics and Chemistry</item>
+        <item>Astronomy and Geoscience</item>
+        <item>Life Sciences</item>
+        <item>Medicine and Health Sciences</item>
+        <item>Agricultural Science</item>
+        <item>Industrial Technology</item>
+        <item>Transportation</item>
+        <item>Aviation and Aerospace</item>
+        <item>Environmental Science</item>
+        <item>General, Miscellaneous, Auxiliary and Others</item>
+    </string-array>
 
 </resources>

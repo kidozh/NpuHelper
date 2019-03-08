@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <!-- migrate to material design Theme.AppCompat.Light.DarkActionBar ->  android:Theme.Material-->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
         <!-- Customize your theme here. -->
 
         <!--<item name="windowActionBar">false</item>-->
@@ -12,14 +12,15 @@
         <!--<item name="windowNoTitle">true</item>-->
         <!--<item name="windowActionBar">false</item>-->
 
-        <!--<item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>-->
+        <item name="colorPrimary">@color/colorPeterRiver</item>
+        <item name="colorPrimaryDark">@color/colorBelizahole</item>
+        <item name="colorPrimaryVariant">@color/colorBelizahole</item>
+        <item name="colorOnPrimary">@color/colorPureWhite</item>
+        <item name="colorSecondary">@color/colorTurquoise</item>
+        <item name="colorSecondaryVariant">@color/colorGreensea</item>
+        <item name="colorOnSecondary">@color/colorMidnightblue</item>
+        <item name="colorAccent">@color/colorNephritis</item>
 
-        <!--<item name="android:colorPrimary">@color/colorPrimary</item>
-        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/colorCloud</item> -->
 
         <!-- reference the card view -->
         <item name="cardViewStyle">@style/CardView</item>
@@ -34,9 +35,10 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
@@ -46,11 +48,53 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+
+
+
+
     <style name="cityBusEditTextStyle" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">@color/cardview_light_background</item>
+        <item name="colorControlActivated">@color/colorPureWhite</item>
         <item name="colorControlNormal">@color/colorSilver</item>
         <item name="android:textCursorDrawable">@null</item>
         <item name="android:cursorVisible">true</item>
+    </style>
+
+    <style name="AppTheme.ToolBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <item name="android:textColor">@color/colorCloud</item>
+        <item name="android:textColorPrimary">@color/colorCloud</item>
+    </style>
+
+    <!--定义ToolBar上Title的文字样式-->
+    <style name="AppTheme.ToolbarTitleTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorWetasphalt</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title" parent="TextAppearance.AppCompat.Title">
+
+        <item name="android:textColor">@color/colorCloud</item>
+    </style>
+
+    <style name="toolbar_blue_theme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/colorPureWhite</item>
+    </style>
+
+    <style name="toolbar_dark_theme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/colorPureWhite</item>
+    </style>
+
+    <style name="book_chip_dark_style" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background_select_state</item>
+        <item name="chipStrokeColor">@color/colorPeterRiver</item>
+        <item name="android:textColor">@color/chip_text_color_select_state</item>
+        <!--<item name="android:textColorHighlight">@color/colorCloud</item>-->
+        <!--<item name="chipSurfaceColor">@color/colorPeterRiver</item>-->
+        <item name="android:shadowColor">@color/colorBelizahole</item>
+        <item name="rippleColor">@color/colorBelizahole</item>
+        <item name="chipIconVisible">true</item>
     </style>
 
 </resources>

@@ -1,32 +1,41 @@
 package com.kidozh.npuhelper.weatherUtils;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kidozh.npuhelper.R;
-import com.kidozh.npuhelper.preference.SettingsActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WeatherDetailActivity extends AppCompatActivity {
+    final static private String TAG = WeatherDetailActivity.class.getSimpleName();
     @BindView(R.id.weather_app_bar)
     AppBarLayout mWeatherAppBarLayout;
 
@@ -41,21 +50,24 @@ public class WeatherDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.detailed_weather_wind_strength)
     TextView mDetailedWeatherWindSpeed;
+    @BindView(R.id.detailed_weather_wind_direction)
+    TextView mDetailedWeatherWindDirection;
+    @BindView(R.id.weather_recyler_view)
+    RecyclerView mRecyclerview;
+    @BindView(R.id.weather_detail_total_cardView)
+    CardView mWeatherCardview;
+    @BindView(R.id.wind_ocean_desciption)
+    TextView mWindOceanDiscription;
+    @BindView(R.id.wind_land_desciption)
+    TextView mWindLandDiscription;
+    @BindView(R.id.wind_weather_cardview)
+    CardView mWeatherWindCardview;
+    @BindView(R.id.weather_deatil_support_cardview)
+    CardView mWeatherSupportCardview;
+    @BindView(R.id.air_composition_recycelrview)
+    RecyclerView airCompositionRecyclerView;
 
-    @BindView(R.id.detailed_weather_humidity_value)
-    TextView mDetailedWeatherHumidityVal;
-
-    @BindView(R.id.detailed_weather_pm25_value)
-    TextView mDetailedWeatherPm25Val;
-
-    @BindView(R.id.detailed_weather_rain_tag)
-    TextView mDetailedWeatherRainTag;
-
-    @BindView(R.id.detailed_weather_rain_text_1)
-    TextView mDetailWeatherRainText1;
-
-    @BindView(R.id.detailed_weather_rain_unit)
-    TextView mDetailWeatherRainUnit;
+    public int primaryColor = R.color.colorPeterRiver;
 
 
 
@@ -72,7 +84,9 @@ public class WeatherDetailActivity extends AppCompatActivity {
         String realtime_json = intent.getStringExtra("REALTIME_WEATHER");
         getSupportActionBar().setTitle(cur_location);
         setActionBar();
+        Log.d(TAG,"get realtime weather: "+realtime_json);
         populateWeatherCondition(realtime_json);
+        populateAirRecyclerView(realtime_json);
         //toolbar.setBackgroundColor(getBaseContext().getColor(R.color.colorGreensea));
 
 
@@ -86,6 +100,19 @@ public class WeatherDetailActivity extends AppCompatActivity {
         });
     }
 
+    public void setPrimaryBackground(int colorResource){
+        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getColor(colorResource)));
+        //getWindow().setStatusBarColor(getColor(colorResource));
+        mWeatherCardview.setBackgroundColor(getColor(colorResource));
+        CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        toolbarLayout.setContentScrimColor(getColor(colorResource));
+        mWeatherWindCardview.setBackgroundColor(getColor(colorResource));
+        mWeatherSupportCardview.setBackgroundColor(getColor(colorResource));
+        ColorDrawable colorDrawable = new ColorDrawable(getColor(colorResource));
+        toolbarLayout.setStatusBarScrim(colorDrawable);
+
+    }
+
     public void populateWeatherCondition(String realtimeString){
         //background setting
         int pic_id = getResources().getIdentifier("dark_background","mipmap",getPackageName());
@@ -93,64 +120,46 @@ public class WeatherDetailActivity extends AppCompatActivity {
 
         try{
             JSONObject jsonData = new JSONObject(realtimeString);
-            JSONObject weatherResult = jsonData.getJSONObject("result");
+            //JSONObject weatherResult = jsonData.getJSONObject("result");
+            JSONObject weatherRawResult = jsonData.getJSONObject("result");
+            JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
             String localTemperature = weatherResult.getString("temperature");
             String weatherCondition = weatherResult.getString("skycon");
             float fLocalTemperature = Float.parseFloat(localTemperature);
             int intLocalTemperature = (int) fLocalTemperature;
             mDetailedWeatherTempNum.setText(String.format("%s",intLocalTemperature));
-            mDetailedWeatherIcon.setImageDrawable(getDrawable(getDrawableWeatherByString(weatherCondition)));
-            mDetailedWeatherIcon.setColorFilter(getColor(R.color.cardview_light_background));
-            mDetailedWeatherDescription.setText(getWeatherTextByString(weatherCondition));
+            mDetailedWeatherIcon.setImageDrawable(getDrawable(weatherDataUtils.getDrawableWeatherByString(weatherCondition)));
+            mDetailedWeatherIcon.setColorFilter(getColor(R.color.colorPureWhite));
+            mDetailedWeatherDescription.setText(weatherDataUtils.getWeatherTextByString(weatherCondition));
 
             JSONObject windCondition = weatherResult.getJSONObject("wind");
             String windSpeed = windCondition.getString("speed");
-            mDetailedWeatherWindSpeed.setText(windSpeed);
+            String windDirection = windCondition.getString("direction");
+            double windSpeedDouble = Double.parseDouble(windSpeed);
+            float windDirectionFloat = Float.parseFloat(windDirection);
+            mDetailedWeatherWindDirection.setText(getString(weatherDataUtils.getWindDirectionTextResource(windDirectionFloat)));
 
-            //humidty
-            String humidity = weatherResult.getString("humidity");
-            float fHumidity = Float.parseFloat(humidity);
-            int intHumidity = (int) (fHumidity*100);
-            mDetailedWeatherHumidityVal.setText(String.format("%s",intHumidity));
+            mDetailedWeatherWindSpeed.setText(String.format(getString(R.string.wind_scale_format),weatherDataUtils.getWindScaleNumber(windSpeedDouble)));
+
+            List<weatherDetailInfoAdapter.weatherDetailInfoBean> weatherDetailInfoBeanList = parseWeatherRes(jsonData);
+
+            mRecyclerview.setItemAnimator(new DefaultItemAnimator());
+            mRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+            weatherDetailInfoAdapter adapter = new weatherDetailInfoAdapter(this);
+            adapter.mWeatherInfoList = weatherDetailInfoBeanList;
+            adapter.primaryColor = primaryColor;
+            setPrimaryBackground(primaryColor);
+            mRecyclerview.setAdapter(adapter);
+            // air
 
 
-            // pm2.5
-            String pm25Val = weatherResult.getString("aqi");
-            mDetailedWeatherPm25Val.setText(pm25Val);
-
-
-            // rain
-            JSONObject rainResult = weatherResult.getJSONObject("precipitation");
-            JSONObject localRain = rainResult.getJSONObject("local");
-            JSONObject nearstRain = rainResult.getJSONObject("nearest");
-
-            if(nearstRain != null && nearstRain.getString("status").equals("ok")){
-                mDetailedWeatherRainTag.setText(R.string.nearst_rain_strength);
-                String distance = nearstRain.getString("distance");
-                float fDistance = Float.parseFloat(distance);
-                int intDistance = (int) fDistance;
-                if(intDistance > 1000){
-                    mDetailWeatherRainText1.setText(R.string.rain_distance_1000_plus);
-                }
-                else {
-
-                    mDetailWeatherRainText1.setText(String.format("%s",intDistance));
-                }
-
-                String intensity = nearstRain.getString("intensity");
-            }
-            else {
-                mDetailedWeatherRainTag.setText(R.string.rain_strength);
-                String distance = localRain.getString("distance");
-                mDetailWeatherRainText1.setText(distance);
-                String intensity = localRain.getString("intensity");
-            }
 
         }
         catch (JSONException e){
             e.printStackTrace();
         }
         catch (Exception e){
+            e.printStackTrace();
             finish();
         }
 
@@ -158,36 +167,158 @@ public class WeatherDetailActivity extends AppCompatActivity {
 
     }
 
-    private int getDrawableWeatherByString(String skycon_string){
-        Map weather2drawable = new HashMap<String,Integer>();
-        weather2drawable.put("CLEAR_DAY",R.drawable.vector_drawable_weather_sunny);
-        weather2drawable.put("CLEAR_NIGHT", R.drawable.vector_drawable_weather_night);
-        weather2drawable.put("PARTLY_CLOUDY_DAY",R.drawable.vector_drawable_weather_partlycloudy);
-        weather2drawable.put("PARTLY_CLOUDY_NIGHT",R.drawable.vector_drawable_weather_partlycloudy);
-        weather2drawable.put("CLOUDY",R.drawable.vector_drawable_weather_cloudy);
-        weather2drawable.put("RAIN",R.drawable.vector_drawable_weather_rainy);
-        weather2drawable.put("SNOW",R.drawable.vector_drawable_weather_snowy);
-        weather2drawable.put("WIND",R.drawable.vector_drawable_weather_windy);
-        weather2drawable.put("FOG",R.drawable.vector_drawable_weather_fog);
-        weather2drawable.put("HAZE",R.drawable.vector_drawable_weather_fog);
-        int drawable_id = (int) weather2drawable.get(skycon_string);
-        return drawable_id;
+    private void populateAirRecyclerView(String jsonString){
+        List<weatherDetailInfoAdapter.weatherDetailInfoBean> weatherDetailInfoBeanList = new ArrayList<>();
+        try{
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONObject weatherRawResult = jsonObject.getJSONObject("result");
+            JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
+
+            String Val = weatherResult.getJSONObject("air_quality").getString("co");
+            if(Val.equals("0")){
+                Val = "-";
+            }
+
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.co),Val,"","",false));
+
+            Val = weatherResult.getJSONObject("air_quality").getString("pm10");
+            if(Val.equals("0")){
+                Val = "-";
+            }
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.pm10),Val,"","",false));
+
+            Val = weatherResult.getJSONObject("air_quality").getString("pm25");
+            if(Val.equals("0")){
+                Val = "-";
+            }
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.pm25),Val,"","",false));
+
+            Val = weatherResult.getJSONObject("air_quality").getString("so2");
+            if(Val.equals("0")){
+                Val = "-";
+            }
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.so2),Val,"","",false));
+
+            Val = weatherResult.getJSONObject("air_quality").getString("o3");
+            if(Val.equals("0")){
+                Val = "-";
+            }
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.o3),Val,"","",false));
+
+            Val = weatherResult.getJSONObject("air_quality").getString("no2");
+            if(Val.equals("0")){
+                Val = "-";
+            }
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.no2),Val,"","",false));
+
+
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        airCompositionRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        airCompositionRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(6,RecyclerView.VERTICAL));
+        weatherDetailInfoAdapter adapter = new weatherDetailInfoAdapter(this);
+        adapter.mWeatherInfoList = weatherDetailInfoBeanList;
+        adapter.primaryColor = primaryColor;
+        setPrimaryBackground(primaryColor);
+        airCompositionRecyclerView.setAdapter(adapter);
+
+
     }
 
-    private int getWeatherTextByString(String skycon_string){
-        Map weather2drawable = new HashMap<String,Integer>();
-        weather2drawable.put("CLEAR_DAY",R.string.CLEAR_DAY);
-        weather2drawable.put("CLEAR_NIGHT", R.string.CLEAR_NIGHT);
-        weather2drawable.put("PARTLY_CLOUDY_DAY",R.string.PARTLY_CLOUDY_DAY);
-        weather2drawable.put("PARTLY_CLOUDY_NIGHT",R.string.PARTLY_CLOUDY_NIGHT);
-        weather2drawable.put("CLOUDY",R.string.CLOUDY);
-        weather2drawable.put("RAIN",R.string.RAIN);
-        weather2drawable.put("SNOW",R.string.SNOW);
-        weather2drawable.put("WIND",R.string.WIND);
-        weather2drawable.put("FOG",R.string.HAZE);
-        weather2drawable.put("HAZE",R.string.HAZE);
-        int drawable_id = (int) weather2drawable.get(skycon_string);
-        return drawable_id;
+    private List<weatherDetailInfoAdapter.weatherDetailInfoBean> parseWeatherRes(JSONObject jsonObject){
+        List<weatherDetailInfoAdapter.weatherDetailInfoBean> weatherDetailInfoBeanList = new ArrayList<>();
+        try{
+
+            JSONObject weatherRawResult = jsonObject.getJSONObject("result");
+            JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
+
+            String aqiVal = weatherResult.getJSONObject("air_quality").getJSONObject("aqi").getString("chn");
+            primaryColor = weatherDataUtils.getAQIColorResource((int) Float.parseFloat(aqiVal));
+
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.aqi),aqiVal,getString(weatherDataUtils.getAQITextResource((int) Float.parseFloat(aqiVal))),"",true));
+
+            String value = weatherResult.getString("humidity");
+            float relative_humidity = Float.parseFloat(value) * 100;
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.relative_humidity),String.valueOf(relative_humidity),"","",false));
+
+            String cloudvalue = weatherResult.getString("cloudrate");
+            float cloudrate = (float) Float.parseFloat(cloudvalue) * 100;
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.cloudrate_tag),String.format(getString(R.string.percent_number_format),(int) cloudrate),
+                    getString(weatherDataUtils.getCloudRateDescriptionTextResource(Float.parseFloat(cloudvalue))),
+                    "",false));
+
+            value = weatherResult.getString("visibility");
+            Float visibilityFloat = Float.parseFloat(value);
+
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.visibility_tag),String.format(getString(R.string.km_format),value),
+                    getString(weatherDataUtils.getVisibilityTextResource(visibilityFloat)),
+                    "",false));
+
+            // wind
+            JSONObject windCondition = weatherResult.getJSONObject("wind");
+            String windSpeed = windCondition.getString("speed");
+            double windSpeedDouble = Double.parseDouble(windSpeed);
+            int windStrength = weatherDataUtils.getWindScaleNameTextResource(this,windSpeedDouble);
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.wind_strength),getString(windStrength),
+                    String.format(getString(R.string.km_per_h_format),windSpeed),"",false));
+            mWindLandDiscription.setText(weatherDataUtils.getWindScaleLandTextResource(this,windSpeedDouble));
+            mWindOceanDiscription.setText(weatherDataUtils.getWindScaleOceanTextResource(this,windSpeedDouble));
+
+
+
+            value = weatherResult.getString("pressure");
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.air_pressure_tag),String.format(getString(R.string.kpa_format), Float.parseFloat(value) / 1000),"",getString(R.string.air_pressure_demonstrate),false));
+
+            // rain
+            JSONObject rainResult = weatherResult.getJSONObject("precipitation");
+            JSONObject localRain = rainResult.getJSONObject("local");
+            JSONObject nearstRain = rainResult.getJSONObject("nearest");
+
+            if(nearstRain != null && nearstRain.getString("status").equals("ok")){
+
+                String distance = nearstRain.getString("distance");
+                float fDistance = Float.parseFloat(distance);
+                int intDistance = (int) fDistance;
+                if(intDistance > 1000){
+                    weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                            getString(R.string.nearst_rain_strength),String.format(getString(R.string.km_format),getString(R.string.rain_distance_1000_plus)),"","",true));
+                }
+                else {
+                    String intensity = nearstRain.getString("intensity");
+                    weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                            getString(R.string.nearst_rain_strength),String.format(getString(R.string.km_format),
+                            String.valueOf(intDistance)),
+                            getString(weatherDataUtils.getRainTextResource(Float.parseFloat(intensity))),"",true));
+                }
+            }
+            String descVal = weatherResult.getJSONObject("life_index").getJSONObject("comfort").getString("desc");
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.comfort_text),descVal,"","",false));
+            descVal = weatherResult.getJSONObject("life_index").getJSONObject("ultraviolet").getString("desc");
+            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.ultraviolet),descVal,"","",false));
+
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+
+        }
+        return weatherDetailInfoBeanList;
+
     }
 
     private void setActionBar(){

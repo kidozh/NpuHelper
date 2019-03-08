@@ -2,20 +2,16 @@ package com.kidozh.npuhelper.xianCityBus;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.amap.api.services.help.Inputtips;
-import com.amap.api.services.help.InputtipsQuery;
 import com.kidozh.npuhelper.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -66,7 +62,7 @@ public class cityBusRouteAdapter extends RecyclerView.Adapter<cityBusRouteAdapte
         holder.mBusTravelDepatureStop.setText(String.format(mContext.getString(R.string.leave_at_stop_template,curCityBusInfo.departureStop)));
         holder.mFootTravelKilometers.setText(String.format("%.1f %s",curCityBusInfo.footKilometers / 1000,mContext.getString(R.string.kilometer)));
         briefCityBusInfoAdapter cityBusInfoAdapter = new briefCityBusInfoAdapter(mContext);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
         cityBusInfoAdapter.briefCityBusInfoList = curCityBusInfo.cityBusInfos;
         // COMPLETED (41) Set the layoutManager on mRecyclerView
         holder.mRecyclerView.setLayoutManager(layoutManager);

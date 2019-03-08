@@ -1,36 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1abc9c</color>
-    <color name="colorPrimaryDark">#16a085</color>
-    <color name="colorAccent">#e74c3c</color>
+    <!--<color name="colorPrimary">#52d681</color>-->
+    <!--<color name="colorPrimaryDark">#00ad7c</color>-->
+    <!--<color name="colorAccent">#FFF8B5</color>-->
+    <!--<color name="colorAccentDark">#B5FF7D</color>-->
 
 
-    <color name="colorAlizarin">#e74c3c</color>
-    <color name="colorPomegranate">#c0392b</color>
-    <color name="colorPumpkin">#d35400</color>
-    <color name="colorCarrot">#e67e22</color>
-    <color name="colorSunflower">#f1c40f</color>
-    <color name="colorOrange">#f39c12</color>
-    <color name="colorConcrete">#95a5a6</color>
-    <color name="colorSilver">#bdc3c7</color>
+    <color name="colorAlizarin">#E74C3C</color>
+    <color name="colorPomegranate">#C0392B</color>
+    <color name="colorPumpkin">#D35400</color>
+    <color name="colorCarrot">#E67E22</color>
+    <color name="colorSunflower">#F1C40F</color>
+    <color name="colorOrange">#F39C12</color>
+    <color name="colorConcrete">#95A5A6</color>
+    <color name="colorSilver">#BDC3C7</color>
     <color name="colorAsbestos">#7f8c8d</color>
-    <color name="colorCloud">#ecf0f1</color>
-    <color name="colorEmerland">#2ecc71</color>
-    <color name="colorNephritis">#27ae60</color>
-    <color name="colorTurquoise">#1abc9c</color>
-    <color name="colorGreensea">#16a085</color>
-    <color name="colorPeterRiver">#3498db</color>
-    <color name="colorBelizahole">#2980b9</color>
+    <color name="colorCloud">#ECF0F1</color>
+    <color name="colorEmerland">#2ECC71</color>
+    <color name="colorNephritis">#27AE60</color>
+    <color name="colorTurquoise">#1ABC9C</color>
+    <color name="colorGreensea">#16A085</color>
+    <color name="colorPeterRiver">#3498DB</color>
+    <color name="colorBelizahole">#2980B9</color>
     <color name="colorAmethyst">#9b59b6</color>
-    <color name="colorWisteria">#8e44ad</color>
-    <color name="colorWetasphalt">#34495e</color>
-    <color name="colorMidnightblue">#2c3e50</color>
+    <color name="colorWisteria">#8E44AD</color>
+    <color name="colorWetasphalt">#34495E</color>
+    <color name="colorMidnightblue">#2C3E50</color>
     <color name="colorPureWhite">#FFFFFF</color>
+    <color name="colorPureBlack">#000000</color>
     <color name="colorConcreteTransparent">#6495a5a6</color>
     <color name="colorCalendarWorkDayLabel">@color/colorOrange</color>
     <color name="colorCalendarHolidayDayLabel">@color/colorEmerland</color>
-    <color name="colorCalendarStartSemesterLabel">@color/colorAccent</color>
-    <color name="colorCalendarEndSemesterLabel">@color/colorAccent</color>
+    <color name="colorCalendarStartSemesterLabel">@color/colorAmethyst</color>
+    <color name="colorCalendarEndSemesterLabel">@color/colorAmethyst</color>
     <color name="colorCityBusActionBar">@color/colorGreensea</color>
+    <color name="loginBgColor">#ecf0f1</color>
+    <color name="loginTitleColor">@color/colorWetasphalt</color>
+    <color name="loginNoticeTextColor">@color/colorConcrete</color>
+    <color name="loginAlertTextColor">@color/colorTurquoise</color>
+    <color name="authStatusBg">#782d4059</color>
+    <color name="userLoginedStatusBg">#BBDEFB</color>
+    <color name="univeristyLogoColor">#004dff</color>
+    <color name="colorStatusBarBg">@color/colorCloud</color>
+    <color name="colorPrimary">@color/colorStatusBarBg</color>
+
+    <color name="lightBackground">@color/colorEmerland</color>
+    <color name="lightNotImportant">@color/colorSilver</color>
+    <color name="lightRegular">@color/colorSilver</color>
+    <color name="lightAlert">@color/colorPureWhite</color>
+
+    <color name="colorTextWetasphalt">#BF34495E</color>
+    <color name="colorTextMidnightblue">#BF2C3E50</color>
+
+    <color name="colorTextPureWhite">#80FFFFFF</color>
+    <color name="colorTextPureBlack">#80000000</color>
+    <color name="colorTextGreensea">#BF16A085</color>
+
+    <color name="colorDividerMidnightblue">#402C3E50</color>
+
+    <color name="air_quality_good">@color/colorTurquoise</color>
+    <color name="air_quality_moderate">@color/colorPeterRiver</color>
+    <color name="air_quality_unhealthy_for_sensitive_group">@color/colorOrange</color>
+    <color name="air_quality_unhealthy">@color/colorPomegranate</color>
+    <color name="air_quality_very_unhealthy">@color/colorAmethyst</color>
+    <color name="air_quality_hazardous">@color/colorWetasphalt</color>
+    <color name="air_quality_unknown">@color/colorGreensea</color>
+
+
+
 
 </resources>

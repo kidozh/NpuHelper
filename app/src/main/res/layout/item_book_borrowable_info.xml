@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_book_borrowable_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_book_borrowable_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/colorGreensea"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/item_book_borrowable_callNo_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/book_call_number_text"
+                android:textColor="@color/colorTextPureWhite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_callNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPureWhite"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_book_borrowable_callNo_tag"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_book_borrowable_callNo_tag"
+                tools:text="MARC" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_barCode_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/bar_code_text"
+                android:textColor="@color/colorTextPureWhite"
+                app:layout_constraintStart_toStartOf="@+id/item_book_borrowable_callNo_tag"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_borrowable_callNo_tag" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_barCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPureWhite"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_book_borrowable_barCode_tag"
+                app:layout_constraintEnd_toEndOf="@+id/item_book_borrowable_callNo"
+                app:layout_constraintStart_toEndOf="@+id/item_book_borrowable_barCode_tag"
+                tools:text="12-48-89-TLS" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_year_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/book_year"
+                android:textColor="@color/colorTextPureWhite"
+                app:layout_constraintStart_toStartOf="@+id/item_book_borrowable_barCode_tag"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_borrowable_barCode_tag" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_year"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPureWhite"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_book_borrowable_year_tag"
+                app:layout_constraintEnd_toEndOf="@+id/item_book_borrowable_barCode"
+                app:layout_constraintStart_toEndOf="@+id/item_book_borrowable_year_tag"
+                tools:text="2013" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_location_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/book_location"
+                android:textColor="@color/colorTextPureWhite"
+                app:layout_constraintStart_toStartOf="@+id/item_book_borrowable_year_tag"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_borrowable_year_tag"
+                tools:text="@string/book_location" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:singleLine="true"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPureWhite"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_book_borrowable_location_tag"
+                app:layout_constraintEnd_toEndOf="@+id/item_book_borrowable_year"
+                app:layout_constraintStart_toEndOf="@+id/item_book_borrowable_location_tag"
+                tools:text="Library of School" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_status_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/book_borrow_status"
+                android:textColor="@color/colorTextPureWhite"
+                app:layout_constraintStart_toStartOf="@+id/item_book_borrowable_location_tag"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_borrowable_location_tag" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/open_sans"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPureWhite"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_book_borrowable_status_tag"
+                app:layout_constraintEnd_toEndOf="@+id/item_book_borrowable_location"
+                app:layout_constraintStart_toEndOf="@+id/item_book_borrowable_status_tag"
+                tools:text="OK" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_due_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/lend_due_day"
+                android:textColor="@color/colorTextPureWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/item_book_borrowable_status_tag"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_borrowable_status_tag" />
+
+            <TextView
+                android:id="@+id/item_book_borrowable_due"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPureWhite"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_book_borrowable_due_tag"
+                app:layout_constraintEnd_toEndOf="@+id/item_book_borrowable_status"
+                app:layout_constraintStart_toEndOf="@+id/item_book_borrowable_due_tag"
+                tools:text="2014-05-06" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

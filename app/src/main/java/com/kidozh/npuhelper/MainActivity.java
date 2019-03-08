@@ -2,87 +2,84 @@ package com.kidozh.npuhelper;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.LoaderManager;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.AsyncTaskLoader;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Message;
-import android.provider.Settings;
-import android.provider.Telephony;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amap.api.location.DPoint;
 import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.core.SuggestionCity;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.help.Tip;
+import com.kidozh.npuhelper.accountAuth.LoginUniversityActivity;
+import com.kidozh.npuhelper.accountAuth.accountInfoBean;
+import com.kidozh.npuhelper.accountAuth.loginUtils;
+import com.kidozh.npuhelper.accountAuth.personalInfoDisplayActivity;
 import com.kidozh.npuhelper.campusAddressBook.campusAddressBookMainActivity;
+import com.kidozh.npuhelper.campusLibrary.libraryPortalActivity;
+import com.kidozh.npuhelper.campusTransaction.RecentTransactionFragment;
+import com.kidozh.npuhelper.campusTransaction.TransactionHistoryActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusNetworkUtils;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
 import com.kidozh.npuhelper.preference.SettingsActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusListActivity;
 import com.kidozh.npuhelper.schoolCalendar.schoolCalendarMainActivity;
+import com.kidozh.npuhelper.scoreQuery.queryScoreMainActivity;
 import com.kidozh.npuhelper.utilities.locationUtils;
 import com.kidozh.npuhelper.weatherUtils.WeatherDetailActivity;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherDatabase;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherEntry;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherUtils;
-import com.kidozh.npuhelper.weatherUtils.caiyunWeatherViewModel;
-import com.kidozh.npuhelper.weatherUtils.caiyunWeatherViewModelFactory;
-import com.kidozh.npuhelper.weatherUtils.addCaiyunWeatherViewModel;
 import com.kidozh.npuhelper.campusBuildingLoc.campusBuildingPortalActivity;
+import com.kidozh.npuhelper.weatherUtils.weatherDataUtils;
 import com.kidozh.npuhelper.xianCityBus.cityBusPortalActivity;
 import com.kidozh.npuhelper.xianCityBus.suggestCityLocation;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.SyncHttpClient;
-import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,7 +95,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cz.msebera.android.httpclient.Header;
 //import cz.msebera.android.httpclient.client.cache.Resource;
 import es.dmoral.toasty.Toasty;
 import okhttp3.OkHttpClient;
@@ -106,7 +102,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecentTransactionFragment.OnFragmentInteractionListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int FORECAST_LOADER_ID = 0;
@@ -115,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.location_name)  TextView mLocationName;
     @BindView(R.id.location_temperature)  TextView mLocationTemperature;
     @BindView(R.id.weather_icon)  ImageView mWeatherIcon;
+
 
     static private String celsius_temperature_unit_label = "°C";
 
@@ -127,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.shuttle_start_time1)  TextView mShuttleStartTime1;
     @BindView(R.id.left_time)  TextView mShuttleLeftTime;
     @BindView(R.id.left_time1) TextView mShuttleLeftTime1;
+
 
 
     private double locLatitude = 34.24626;
@@ -152,6 +150,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         // bind data
         ButterKnife.bind(this);
+
+
+
+
 
         mTitle = mDrawerTitle = getTitle();
         mContext = this;
@@ -205,28 +207,102 @@ public class MainActivity extends AppCompatActivity {
                 return MainActivity.this.onNavigationItemSelected(item);
             }
         });
+        Button mAuthBtn = (Button) navigationView.getHeaderView(0).findViewById(R.id.auth_status_btn);
 
         mContext = getApplicationContext();
-        new getCalenderFromApiTask(mContext).execute();
-        new getWeatherInfoTask().execute();
+        new getCalenderFromApiTask(mContext).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
+        new getWeatherInfoTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
 
         displaySchoolBus(this);
 
         countDownTimer.start();
-        // weather query
-        //weather data observe
-        //getSupportLoaderManager().initLoader(loaderId,bundleForLoader,callback);
-        Log.d(TAG,"Main thread finished.");
-        renderGeoLocationByAmap();
+        Log.d(TAG,"Main thread finished."+mAuthBtn);
+        configureStatusBar();
+        configureToolbar();
+
+        //renderGeoLocationByAmap();
+
+        renderGeoLocation();
+
         // renderGeoLocation();
         getWeatherFromDb();
+
+        configureAuthBtn(mAuthBtn);
 
 
     }
 
+    private void configureToolbar(){
+        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
+        getSupportActionBar().setBackgroundDrawable(drawable);
+    }
+
+    private void configureStatusBar(){
+        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
+
+    private void configureAuthBtn(Button mAuthBtn){
+        accountInfoBean accountInfo = loginUtils.getTokenInfoToLocal(this);
+        Log.i(TAG,"accountInfo" + accountInfo);
+        if (accountInfo == null){
+            mAuthBtn.setText(R.string.sign_in_text);
+            mAuthBtn.setBackgroundColor(getColor(R.color.authStatusBg));
+            mAuthBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this,LoginUniversityActivity.class);
+                    startActivity(intent);
+                }
+            });
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            // change menu
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.activity_main_menu_drawer);
+
+
+        }
+        else {
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            ImageView mImage = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.login_status_imageView);
+//            mImage.setBackgroundColor(getColor(R.color.colorCloud));
+//            mImage.setImageDrawable(getDrawable(R.drawable.vector_drawable_npu_badge));
+            mImage.setBackgroundResource(R.mipmap.nwpu_library);
+            mImage.setImageResource(R.mipmap.nwpu_library);
+            mAuthBtn.setText(accountInfo.name);
+            mAuthBtn.setBackgroundColor(getColor(R.color.colorPeterRiver));
+            mAuthBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this,personalInfoDisplayActivity.class);
+                    startActivity(intent);
+                }
+            });
+            // change menu
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.activity_auth_main_menu_drawer);
+            addRecentTransactionFragment();
+
+
+        }
+
+    }
+
+    private void addRecentTransactionFragment(){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.recent_transaction_fragment,RecentTransactionFragment.newInstance("",""));
+        transaction.commit();
+    }
+
+
     @Override
     protected void onResume() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Button mAuthBtn = (Button) navigationView.getHeaderView(0).findViewById(R.id.auth_status_btn);
+        configureAuthBtn(mAuthBtn);
         super.onResume();
+
     }
 
     public void getWeatherFromDb(){
@@ -250,13 +326,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class getWeatherInfoTask extends AsyncTask<Void,Void,String>{
+        private final OkHttpClient client = new OkHttpClient();
+        Request request;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
             String location = null;
             if(currentLocation != null){
                 location = currentLocation;
@@ -264,20 +338,33 @@ public class MainActivity extends AppCompatActivity {
             else {
                 location = caiyunWeatherUtils.get_GEO_LOCATION();
             }
+            String api_url = caiyunWeatherUtils.get_realtime_api_string(location);
+            request = new Request.Builder()
+                    .url(api_url)
+                    .build();
+            Log.d(TAG,"START QUERYING "+api_url);
 
+        }
 
-
-
+        @Override
+        protected String doInBackground(Void... voids) {
+            String jsonResponse = "";
             try{
-                URL caiyunWeatherApiUrl = caiyunWeatherUtils.build_realtime_api_url(location);
-                Log.d(TAG, "START QUERYING " + caiyunWeatherApiUrl);
-                String jsonResponse = caiyunWeatherUtils.getResponseFromHttpUrl(caiyunWeatherApiUrl);
-                return jsonResponse;
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()) {
+                    jsonResponse = response.body().string();
+                } else {
+                    throw new IOException("Unexpected code " + response);
+                }
             }
-            catch (IOException e){
+            catch (IOException e) {
                 e.printStackTrace();
-                return null;
+                jsonResponse = "";
+            } catch (NullPointerException e){
+                jsonResponse = "";
             }
+
+            return jsonResponse;
         }
 
         @Override
@@ -295,6 +382,7 @@ public class MainActivity extends AppCompatActivity {
             mRealTimeInfo = data;
             JSONObject jsonData ;
             try {
+                Log.d(TAG,"Recv weather info "+data);
                 jsonData = new JSONObject(data);
                 String status = (String) jsonData.get("status");
                 Log.i(TAG,"status " + status);
@@ -304,7 +392,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     // Geometry decoder
-                    JSONObject weatherResult = jsonData.getJSONObject("result");
+                    JSONObject weatherRawResult = jsonData.getJSONObject("result");
+                    JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
                     String localTemperature = weatherResult.getString("temperature");
                     String weatherCondition = weatherResult.getString("skycon");
 
@@ -333,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void renderGeoLocationByAmap(){
+    public void renderGeoLocationByAmap() throws Exception{
         GeocodeSearch geocoderSearch = new GeocodeSearch(this);
         geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
             @Override
@@ -347,7 +436,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Log.d(TAG,"Get Result Code "+i);
+                    mLocationName.setText("");
                     Toasty.error(mContext, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
+
                 }
             }
 
@@ -433,30 +524,26 @@ public class MainActivity extends AppCompatActivity {
         String jsonString = caiyunWeather.getJson_string();
         Log.d(TAG,"Populate by "+jsonString);
         JSONObject jsonData = new JSONObject(jsonString);
-        JSONObject weatherResult = jsonData.getJSONObject("result");
+        JSONObject weatherRawResult = jsonData.getJSONObject("result");
+        JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
+
         String localTemperature = weatherResult.getString("temperature");
         String weatherCondition = weatherResult.getString("skycon");
+        String aqiVal = weatherResult.getJSONObject("air_quality").getJSONObject("aqi").getString("chn");
+        int primaryColor = weatherDataUtils.getAQIColorResource((int) Float.parseFloat(aqiVal));
+        mWeatherCard.setBackgroundColor(getColor(primaryColor));
         // transfer weather condition
-        Map weather2drawable = new HashMap<String,Integer>();
-        weather2drawable.put("CLEAR_DAY",R.drawable.vector_drawable_weather_sunny);
-        weather2drawable.put("CLEAR_NIGHT", R.drawable.vector_drawable_weather_night);
-        weather2drawable.put("PARTLY_CLOUDY_DAY",R.drawable.vector_drawable_weather_partlycloudy);
-        weather2drawable.put("PARTLY_CLOUDY_NIGHT",R.drawable.vector_drawable_weather_partlycloudy);
-        weather2drawable.put("CLOUDY",R.drawable.vector_drawable_weather_cloudy);
-        weather2drawable.put("RAIN",R.drawable.vector_drawable_weather_rainy);
-        weather2drawable.put("SNOW",R.drawable.vector_drawable_weather_snowy);
-        weather2drawable.put("WIND",R.drawable.vector_drawable_weather_windy);
-        weather2drawable.put("FOG",R.drawable.vector_drawable_weather_fog);
-        weather2drawable.put("HAZE",R.drawable.vector_drawable_weather_fog);
 
         // get Drawable icon
-        Drawable weatherIcon = getDrawable((Integer) weather2drawable.get(weatherCondition));
+        Drawable weatherIcon = getDrawable((weatherDataUtils.getDrawableWeatherByString(weatherCondition)));
         mWeatherIcon.setImageDrawable(weatherIcon);
+        mWeatherIcon.setColorFilter(getColor(R.color.colorPureWhite));
         mLocationTemperature.setText(String.format("%s %s",localTemperature, celsius_temperature_unit_label));
         Log.d(TAG,"Ended Rendering Weather Condition");
         mWeatherCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG,"YOU JUST CLICK CARDVIEW..");
                 Intent intent;
                 intent = new Intent(MainActivity.this,WeatherDetailActivity.class);
                 intent.putExtra("REALTIME_WEATHER",mRealTimeInfo);
@@ -469,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void displaySchoolBus(final Context context){
-        Log.d(TAG, "isFestival "+schoolBusUtils.isFestivalHoliday+" isWorkday "+schoolBusUtils.isFestivalWorkDay);
+        //Log.d(TAG, "isFestival "+schoolBusUtils.isFestivalHoliday+" isWorkday "+schoolBusUtils.isFestivalWorkDay);
         int youyi2changanLeftMinutes = schoolBusUtils.getBusLeftMinutesToChangan();
         int changan2youyiLeftMinutes = schoolBusUtils.getBusLeftMinutesToYouyi();
         if(youyi2changanLeftMinutes == -1){
@@ -556,7 +643,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    // navigation added
+    // library_buttom_navigation added
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -603,7 +690,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressWarnings("StatementWithEmptyBody")
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // Handle library_buttom_navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_ipv6_free_tv) {
@@ -630,8 +717,20 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_transaction) {
+            Intent intent = new Intent(this, TransactionHistoryActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.nav_score) {
+            Intent intent = new Intent(this, queryScoreMainActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.nav_library) {
+            Intent intent = new Intent(this, libraryPortalActivity.class);
+            startActivity(intent);
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -643,6 +742,7 @@ public class MainActivity extends AppCompatActivity {
     public void setTitle(CharSequence title) {
         mTitle = title;
         getSupportActionBar().setTitle(mTitle);
+
     }
 
     private Location getLastKnownLocation() {
@@ -846,6 +946,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return location;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri){
+        //you can leave it empty
     }
 
 }

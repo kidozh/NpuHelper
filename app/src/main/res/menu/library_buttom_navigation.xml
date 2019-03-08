@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/vector_drawable_campus_library"
+        android:title="@string/search_book" />
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/book_popular" />
+
+    <item
+        android:id="@+id/navigation_me"
+        android:icon="@drawable/vector_drawable_me"
+        android:title="@string/Me" />
+
+</menu>

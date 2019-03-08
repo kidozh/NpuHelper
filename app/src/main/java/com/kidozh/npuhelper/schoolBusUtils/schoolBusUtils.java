@@ -20,7 +20,7 @@ public final class schoolBusUtils {
     private static final int[] changan2youyiWeekendTime = {0, 900, 1100, 1230, 1700, 1800, 2100};
     private static final int[] youyi2changanWeekdayTime = {0, 700, 800, 900, 1000, 1100, 1200, 1230, 1400, 1430, 1600, 1700, 1730, 1830, 2100};
     private static final int[] youyi2changanWeekendTime = {0, 800, 900, 1230, 1400, 1800, 2000};
-    private static final String[] festival_list = {"dragon_boat_festival","mid_fall_festival","national_day"};
+    private static final String[] festival_list = {"spring_festival","qingming_festival","larbor_day","dragon_boat_festival","mid_fall_festival","national_day"};
 
     public static String speacialDayName = "";
     public static Boolean isFestivalHoliday = false;

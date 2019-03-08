@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".scoreQuery.queryScoreMainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/query_score_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTurquoise"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/toolbar_dark_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/query_score_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/query_score"
+            android:textColor="@color/colorPureWhite"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="18dp"
+            tools:text="Kidozh's score" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ProgressBar
+        android:id="@+id/query_score_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/score_info_constraint_layout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/score_info_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTurquoise"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/query_score_toolbar">
+
+        <TextView
+            android:id="@+id/weight_average_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/weight_score"
+            android:textColor="@color/colorPureWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/weight_average_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/colorPureWhite"
+            android:textSize="24sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/weight_average_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="35" />
+
+        <TextView
+            android:id="@+id/gpa_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/us_gpa"
+            android:textColor="@color/colorPureWhite"
+            app:layout_constraintStart_toStartOf="@+id/weight_average_label"
+            app:layout_constraintTop_toBottomOf="@+id/weight_average_label" />
+
+        <TextView
+            android:id="@+id/gpa_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/colorPureWhite"
+            android:textSize="24sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/gpa_label"
+            app:layout_constraintBottom_toBottomOf="@+id/gpa_label"
+            app:layout_constraintEnd_toEndOf="@+id/weight_average_score"
+            app:layout_constraintTop_toTopOf="@+id/gpa_label"
+            tools:text="A+" />
+
+        <TextView
+            android:id="@+id/npu_gpa_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/npu_gpa"
+            android:textColor="@color/colorPureWhite"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/gpa_label"
+            app:layout_constraintTop_toBottomOf="@+id/gpa_label" />
+
+        <TextView
+            android:id="@+id/npu_gpa_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/colorPureWhite"
+            android:textSize="24sp"
+            android:visibility="visible"
+            app:layout_constraintBaseline_toBaselineOf="@+id/npu_gpa_label"
+            app:layout_constraintEnd_toEndOf="@+id/gpa_value"
+            tools:text="S+" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/score_free_duty_demonstration"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextPureWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/gpa_label"
+            app:layout_constraintTop_toBottomOf="@+id/npu_gpa_value" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/query_score_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_info_constraint_layout"
+        tools:listitem="@layout/item_score_info" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

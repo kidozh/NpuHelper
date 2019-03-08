@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/arrival_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp">
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/shuttle_start_time"
-                android:textAppearance="@android:style/TextAppearance.Material.Small.Inverse"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
                 app:layout_constraintStart_toStartOf="@+id/depature_place"
                 app:layout_constraintTop_toBottomOf="@+id/depature_place" />
 
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/left_time_label"
-                android:textAppearance="@android:style/TextAppearance.Material.Small.Inverse"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
                 app:layout_constraintEnd_toEndOf="@+id/arrival_tag"
                 app:layout_constraintTop_toTopOf="@+id/shuttle_label" />
 
@@ -97,16 +97,16 @@
                 android:id="@+id/left_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.Material.Large.Inverse"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
                 app:layout_constraintEnd_toEndOf="@+id/left_time_label"
                 app:layout_constraintTop_toBottomOf="@+id/left_time_label"
                 tools:text="1 Hours" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/arrival_card1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp">
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/shuttle_start_time"
-                android:textAppearance="@android:style/TextAppearance.Material.Small.Inverse"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
                 app:layout_constraintStart_toStartOf="@+id/depature_place1"
                 app:layout_constraintTop_toBottomOf="@+id/depature_place1" />
 
@@ -189,7 +189,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/left_time_label"
-                android:textAppearance="@android:style/TextAppearance.Material.Small.Inverse"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
                 app:layout_constraintEnd_toEndOf="@+id/arrival_place1"
                 app:layout_constraintTop_toTopOf="@+id/shuttle_label1" />
 
@@ -197,13 +197,13 @@
                 android:id="@+id/left_time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.Material.Large.Inverse"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
                 app:layout_constraintEnd_toEndOf="@+id/left_time_label1"
                 app:layout_constraintTop_toBottomOf="@+id/left_time_label1"
                 tools:text="1 Hours" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
