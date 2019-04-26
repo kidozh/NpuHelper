@@ -8,6 +8,8 @@
     <string name="geo_parse_failed">Failed to get your location</string>
     <string name="arrivial_tag">To</string>
     <string name="youyi_campus_name">Youyi C.</string>
+    <string name="changan_campus_name_full">Chang\'an Campus</string>
+    <string name="youyi_campus_name_full">Youyi Campus</string>
     <string name="changan_campus_name">Chang\'an C.</string>
     <string name="left_time_label">Time left</string>
     <string name="depature_tag">From</string>

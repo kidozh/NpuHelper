@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
-                    android:fontFamily="@font/lato"
+                    android:fontFamily="@font/oxygen"
                     android:textColor="@color/colorPureWhite"
                     app:layout_constraintBottom_toBottomOf="@+id/detailed_weather_wind_icon"
                     app:layout_constraintStart_toEndOf="@+id/detailed_weather_wind_direction"
@@ -58,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
+                    android:fontFamily="@font/oxygen"
                     android:textColor="@color/colorPureWhite"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/detailed_weather_wind_icon"
@@ -80,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="24dp"
-                    android:fontFamily="@font/lato_light"
+                    android:fontFamily="@font/dosis"
                     android:textColor="@color/cardview_light_background"
                     android:textSize="64sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -118,112 +119,26 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/weather_recyler_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weather_detail_total_cardView" >
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/air_composition_recycelrview"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weather_recyler_view" />
+            app:layout_constraintTop_toBottomOf="@+id/weather_detail_total_cardView"
+            tools:layout_editor_absoluteY="230dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/wind_weather_cardview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:cardBackgroundColor="@color/colorConcrete"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/air_composition_recycelrview">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/miuiWeatherRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/miui_weather_banner">
 
-                <TextView
-                    android:id="@+id/air_quality_notice_textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/PARTLY_CLOUDY_DAY"
-                    android:textColor="@color/colorTextWetasphalt"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.recyclerview.widget.RecyclerView>
 
-                <TextView
-                    android:id="@+id/wind_land_desciption"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:textColor="@color/colorTextPureWhite"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/air_quality_notice_textview"
-                    tools:text="@string/wind_scale_ocean_describe_2_txt" />
 
-                <TextView
-                    android:id="@+id/wind_ocean_desciption"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/wind_scale_ocean_describe_6_txt"
-                    android:textColor="@color/colorTextPureWhite"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/wind_land_desciption"
-                    app:layout_constraintStart_toStartOf="@+id/wind_land_desciption"
-                    app:layout_constraintTop_toBottomOf="@+id/wind_land_desciption" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/weather_deatil_support_cardview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/air_quality_good"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wind_weather_cardview">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/caiyun_support_notice"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextPureWhite"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

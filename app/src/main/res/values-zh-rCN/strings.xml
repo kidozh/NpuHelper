@@ -436,7 +436,8 @@
         <item>友谊（老）校区</item>
         <item>长安（新）校区</item>
     </string-array>
-
+    <string name="changan_campus_name_full">长安校区</string>
+    <string name="youyi_campus_name_full">友谊校区</string>
 
 
 </resources>

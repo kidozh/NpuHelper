@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_weather_banner_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/date_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="昨天"
+        android:textAlignment="center"
+        android:textColor="@color/colorWetasphalt"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/date_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="11/26"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/from_weather_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="霾"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/from_weather_image"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+
+        tools:srcCompat="@drawable/vector_drawable_weather_tornado" />
+
+    <cjh.weatherviewlibarary.WeatherView
+        android:id="@+id/weatherView"
+        android:layout_width="90dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        app:backgroundColor="@color/colorPureWhite"
+        app:dotColor="@android:color/white"
+        app:dotRadiu="4dp"
+        app:highDotColor="@color/colorPomegranate"
+        app:highLineColor="@color/colorAlizarin"
+        app:lineStrokWidth="2dp"
+        app:lowDotColor="@color/colorGreensea"
+        app:lowLineColor="@color/colorGreensea"
+        app:txtColor="@color/colorMidnightblue"
+        app:txtSize="12sp"
+        app:txtToBorder="10dp"
+        app:txtToDot="3dp" />
+
+    <ImageView
+        android:id="@+id/to_weather_image"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+
+        tools:srcCompat="@drawable/vector_drawable_weather_moderate_rain" />
+
+    <TextView
+        android:id="@+id/to_weather_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="霾"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/to_weather_wind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="北风"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/to_weather_power"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="3级"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/to_aqi_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/air_quality_good"
+        android:padding="5dp"
+        android:singleLine="false"
+        android:text="严重"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="12sp" />
+
+
+</LinearLayout>

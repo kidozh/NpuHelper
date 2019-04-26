@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,19 +21,23 @@ import android.widget.TextView;
 
 import com.kidozh.npuhelper.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cjh.weatherviewlibarary.WeatherView;
 
 public class WeatherDetailActivity extends AppCompatActivity {
     final static private String TAG = WeatherDetailActivity.class.getSimpleName();
@@ -52,29 +57,39 @@ public class WeatherDetailActivity extends AppCompatActivity {
     TextView mDetailedWeatherWindSpeed;
     @BindView(R.id.detailed_weather_wind_direction)
     TextView mDetailedWeatherWindDirection;
-    @BindView(R.id.weather_recyler_view)
-    RecyclerView mRecyclerview;
+//    @BindView(R.id.weather_recyler_view)
+//    RecyclerView mRecyclerview;
     @BindView(R.id.weather_detail_total_cardView)
     CardView mWeatherCardview;
-    @BindView(R.id.wind_ocean_desciption)
-    TextView mWindOceanDiscription;
-    @BindView(R.id.wind_land_desciption)
-    TextView mWindLandDiscription;
-    @BindView(R.id.wind_weather_cardview)
-    CardView mWeatherWindCardview;
-    @BindView(R.id.weather_deatil_support_cardview)
-    CardView mWeatherSupportCardview;
-    @BindView(R.id.air_composition_recycelrview)
-    RecyclerView airCompositionRecyclerView;
+    @BindView(R.id.miuiWeatherRecyclerView)
+    RecyclerView miuiDailyForecastRecyclerView;
+
+    private WeatherView<miuiWeatherData> miuiWeatherView;
+
+
 
     public int primaryColor = R.color.colorPeterRiver;
+
+    DisplayMetrics dm;
+    public static WeatherDetailActivity instance;
+
+    public int dip2px(float dip) {
+        return (int) (dip * dm.density + 0.5);
+    }
+
+    public int sp2px(float spValue) {
+        return (int) (spValue * dm.scaledDensity + 0.5f);
+    }
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_weather_detail);
+        dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detailed_weather_toolbar);
         setSupportActionBar(toolbar);
@@ -86,7 +101,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
         setActionBar();
         Log.d(TAG,"get realtime weather: "+realtime_json);
         populateWeatherCondition(realtime_json);
-        populateAirRecyclerView(realtime_json);
+        //populateAirRecyclerView(realtime_json);
         //toolbar.setBackgroundColor(getBaseContext().getColor(R.color.colorGreensea));
 
 
@@ -101,13 +116,9 @@ public class WeatherDetailActivity extends AppCompatActivity {
     }
 
     public void setPrimaryBackground(int colorResource){
-        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getColor(colorResource)));
-        //getWindow().setStatusBarColor(getColor(colorResource));
         mWeatherCardview.setBackgroundColor(getColor(colorResource));
         CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolbarLayout.setContentScrimColor(getColor(colorResource));
-        mWeatherWindCardview.setBackgroundColor(getColor(colorResource));
-        mWeatherSupportCardview.setBackgroundColor(getColor(colorResource));
         ColorDrawable colorDrawable = new ColorDrawable(getColor(colorResource));
         toolbarLayout.setStatusBarScrim(colorDrawable);
 
@@ -121,37 +132,105 @@ public class WeatherDetailActivity extends AppCompatActivity {
         try{
             JSONObject jsonData = new JSONObject(realtimeString);
             //JSONObject weatherResult = jsonData.getJSONObject("result");
-            JSONObject weatherRawResult = jsonData.getJSONObject("result");
-            JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
-            String localTemperature = weatherResult.getString("temperature");
-            String weatherCondition = weatherResult.getString("skycon");
+            JSONObject weatherRawResult = jsonData;
+            JSONObject weatherResult = weatherRawResult.getJSONObject("current");
+            String localTemperature = weatherResult.getJSONObject("temperature").getString("value");
+            String weatherCondition = weatherResult.getString("weather");
             float fLocalTemperature = Float.parseFloat(localTemperature);
             int intLocalTemperature = (int) fLocalTemperature;
             mDetailedWeatherTempNum.setText(String.format("%s",intLocalTemperature));
-            mDetailedWeatherIcon.setImageDrawable(getDrawable(weatherDataUtils.getDrawableWeatherByString(weatherCondition)));
+            mDetailedWeatherIcon.setImageDrawable(getDrawable(miuiWeatherUtils.getDrawableWeatherByString(weatherCondition)));
             mDetailedWeatherIcon.setColorFilter(getColor(R.color.colorPureWhite));
-            mDetailedWeatherDescription.setText(weatherDataUtils.getWeatherTextByString(weatherCondition));
-
+            mDetailedWeatherDescription.setText(miuiWeatherUtils.getWeatherTextByString(weatherCondition));
+            // wind
             JSONObject windCondition = weatherResult.getJSONObject("wind");
-            String windSpeed = windCondition.getString("speed");
-            String windDirection = windCondition.getString("direction");
+            String windSpeed = windCondition.getJSONObject("speed").getString("value");
+            String windDirection = windCondition.getJSONObject("direction").getString("value");
             double windSpeedDouble = Double.parseDouble(windSpeed);
             float windDirectionFloat = Float.parseFloat(windDirection);
             mDetailedWeatherWindDirection.setText(getString(weatherDataUtils.getWindDirectionTextResource(windDirectionFloat)));
-
             mDetailedWeatherWindSpeed.setText(String.format(getString(R.string.wind_scale_format),weatherDataUtils.getWindScaleNumber(windSpeedDouble)));
+            // Daily forecast
+            List<miuiWeatherData> forecastWeatherDataList = new ArrayList<>();
+            JSONObject dailyForecastObj = jsonData.getJSONObject("forecastDaily");
+            JSONArray temperatureArray = dailyForecastObj.getJSONObject("temperature").getJSONArray("value");
+            JSONArray aqiArray = dailyForecastObj.getJSONObject("aqi").getJSONArray("value");
+            JSONArray weatherArray = dailyForecastObj.getJSONObject("weather").getJSONArray("value");
+            JSONArray windArray = dailyForecastObj.getJSONObject("wind").getJSONObject("speed").getJSONArray("value");
+            JSONArray windDirectionArray = dailyForecastObj.getJSONObject("wind").getJSONObject("direction").getJSONArray("value");
+            int lowestTemp = 100, highestTemp=-80;
+            // Date
 
-            List<weatherDetailInfoAdapter.weatherDetailInfoBean> weatherDetailInfoBeanList = parseWeatherRes(jsonData);
+            Date now = new Date();
+            Date currentDate = now;
+            Calendar nowCal = Calendar.getInstance();
+            nowCal.setTime(now);
+            nowCal.add(Calendar.DATE,-1);
+            SimpleDateFormat weekendsFormat = new SimpleDateFormat("MMM dd");
+            SimpleDateFormat weekFormat = new SimpleDateFormat("EEEE");
+            for(int i=0;i<temperatureArray.length();i++){
 
-            mRecyclerview.setItemAnimator(new DefaultItemAnimator());
-            mRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-            weatherDetailInfoAdapter adapter = new weatherDetailInfoAdapter(this);
-            adapter.mWeatherInfoList = weatherDetailInfoBeanList;
-            adapter.primaryColor = primaryColor;
-            setPrimaryBackground(primaryColor);
-            mRecyclerview.setAdapter(adapter);
-            // air
+                String weekendTitle = "";
+                nowCal.add(Calendar.DATE,1);
+                String dayString = weekendsFormat.format(nowCal.getTime());
+                if (i==0){
+                    weekendTitle = getString(R.string.today);
+                }
+                else {
+                    weekendTitle = weekFormat.format(nowCal.getTime());
+                }
+                JSONObject curTemperatureForecast = (JSONObject) temperatureArray.get(i);
+                String highTemp = curTemperatureForecast.getString("from");
+                String lowTemp = curTemperatureForecast.getString("to");
+                // weather
+                if(Integer.parseInt(highTemp) > highestTemp){
+                    highestTemp = Integer.parseInt(highTemp);
+                }
+                if(Integer.parseInt(lowTemp)<lowestTemp){
+                    lowestTemp = Integer.parseInt(lowTemp);
+                }
+                int aqi = Integer.parseInt(aqiArray.get(i).toString());
+                Log.d(TAG,"AQI "+aqi);
+                JSONObject weatherLabel = (JSONObject) weatherArray.get(i);
+                String fromWeatherLabel = weatherLabel.getString("from");
+                String toWeatherLabel = weatherLabel.getString("to");
 
+                JSONObject toWindObj = (JSONObject) windArray.get(i);
+                String toWind = toWindObj.getString("to");
+                JSONObject toWindDirObj = (JSONObject) windDirectionArray.get(i);
+                String toWindDir = toWindDirObj.getString("to");
+                int windPowerScale = weatherDataUtils.getWindScaleNumber(Float.parseFloat(toWind));
+                int WindDirResource = weatherDataUtils.getWindDirectionTextResource(Float.parseFloat(toWindDir));
+                String windPowerString = String.format(getString(R.string.wind_scale_format),windPowerScale);
+                forecastWeatherDataList.add(new miuiWeatherData(
+                        Integer.parseInt(highTemp),
+                        Integer.parseInt(lowTemp),
+                        aqi,
+                        fromWeatherLabel,
+                        toWeatherLabel,
+                        getString(WindDirResource),
+                        windPowerString,
+
+                        String.format("%d",i),
+                        weekendTitle,
+                        dayString
+                ));
+            }
+
+
+
+            //default WeatherView
+            int mScreenWidth = dm.widthPixels;
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            miuiDailyForecastRecyclerView.setLayoutManager(linearLayoutManager);
+
+            miuiDailyForecastRecyclerView.setAdapter(new miuiWeatherAdapter(this,
+                    forecastWeatherDataList, highestTemp, lowestTemp,
+                    mScreenWidth / 6));
+
+
+            Log.d(TAG,"Finished curve drawing");
 
 
         }
@@ -164,72 +243,6 @@ public class WeatherDetailActivity extends AppCompatActivity {
         }
 
         //populate
-
-    }
-
-    private void populateAirRecyclerView(String jsonString){
-        List<weatherDetailInfoAdapter.weatherDetailInfoBean> weatherDetailInfoBeanList = new ArrayList<>();
-        try{
-            JSONObject jsonObject = new JSONObject(jsonString);
-            JSONObject weatherRawResult = jsonObject.getJSONObject("result");
-            JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
-
-            String Val = weatherResult.getJSONObject("air_quality").getString("co");
-            if(Val.equals("0")){
-                Val = "-";
-            }
-
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.co),Val,"","",false));
-
-            Val = weatherResult.getJSONObject("air_quality").getString("pm10");
-            if(Val.equals("0")){
-                Val = "-";
-            }
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.pm10),Val,"","",false));
-
-            Val = weatherResult.getJSONObject("air_quality").getString("pm25");
-            if(Val.equals("0")){
-                Val = "-";
-            }
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.pm25),Val,"","",false));
-
-            Val = weatherResult.getJSONObject("air_quality").getString("so2");
-            if(Val.equals("0")){
-                Val = "-";
-            }
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.so2),Val,"","",false));
-
-            Val = weatherResult.getJSONObject("air_quality").getString("o3");
-            if(Val.equals("0")){
-                Val = "-";
-            }
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.o3),Val,"","",false));
-
-            Val = weatherResult.getJSONObject("air_quality").getString("no2");
-            if(Val.equals("0")){
-                Val = "-";
-            }
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.no2),Val,"","",false));
-
-
-        }
-        catch (JSONException e){
-            e.printStackTrace();
-        }
-        airCompositionRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        airCompositionRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(6,RecyclerView.VERTICAL));
-        weatherDetailInfoAdapter adapter = new weatherDetailInfoAdapter(this);
-        adapter.mWeatherInfoList = weatherDetailInfoBeanList;
-        adapter.primaryColor = primaryColor;
-        setPrimaryBackground(primaryColor);
-        airCompositionRecyclerView.setAdapter(adapter);
-
 
     }
 
@@ -246,7 +259,8 @@ public class WeatherDetailActivity extends AppCompatActivity {
             weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
                     getString(R.string.aqi),aqiVal,getString(weatherDataUtils.getAQITextResource((int) Float.parseFloat(aqiVal))),"",true));
 
-            String value = weatherResult.getString("humidity");
+            String value = jsonObject.getJSONObject("indices").getString("humidity");
+
             float relative_humidity = Float.parseFloat(value) * 100;
             weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
                     getString(R.string.relative_humidity),String.valueOf(relative_humidity),"","",false));
@@ -274,8 +288,6 @@ public class WeatherDetailActivity extends AppCompatActivity {
             weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
                     getString(R.string.wind_strength),getString(windStrength),
                     String.format(getString(R.string.km_per_h_format),windSpeed),"",false));
-            mWindLandDiscription.setText(weatherDataUtils.getWindScaleLandTextResource(this,windSpeedDouble));
-            mWindOceanDiscription.setText(weatherDataUtils.getWindScaleOceanTextResource(this,windSpeedDouble));
 
 
 

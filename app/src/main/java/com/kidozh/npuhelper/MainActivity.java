@@ -49,14 +49,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.geocoder.GeocodeResult;
-import com.amap.api.services.geocoder.GeocodeSearch;
-import com.amap.api.services.geocoder.RegeocodeAddress;
-import com.amap.api.services.geocoder.RegeocodeQuery;
-import com.amap.api.services.geocoder.RegeocodeResult;
-import com.amap.api.services.help.Tip;
 import com.kidozh.npuhelper.accountAuth.LoginUniversityActivity;
 import com.kidozh.npuhelper.accountAuth.accountInfoBean;
 import com.kidozh.npuhelper.accountAuth.loginUtils;
@@ -80,6 +72,7 @@ import com.kidozh.npuhelper.campusBuildingLoc.campusBuildingPortalActivity;
 import com.kidozh.npuhelper.weatherUtils.weatherDataUtils;
 import com.kidozh.npuhelper.xianCityBus.cityBusPortalActivity;
 import com.kidozh.npuhelper.xianCityBus.suggestCityLocation;
+import com.kidozh.npuhelper.weatherUtils.miuiWeatherUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -151,22 +144,11 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         // bind data
         ButterKnife.bind(this);
 
-
-
-
-
         mTitle = mDrawerTitle = getTitle();
         mContext = this;
 
         // get database connection
         mDb = caiyunWeatherDatabase.getsInstance(getApplicationContext());
-
-        // check permission
-        suggestCityLocation suggestionCityLocation = getCurrentSuggestCityLocation();
-        LatLonPoint latLonPoint = suggestionCityLocation.locationTip.getPoint();
-        currentLocation = String.format("%s,%s",latLonPoint.getLongitude(),latLonPoint.getLatitude());
-        locLatitude = latLonPoint.getLatitude();
-        locLongitude = latLonPoint.getLongitude();
 
         // setSupportActionBar(toolbar);
 
@@ -211,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
 
         mContext = getApplicationContext();
         new getCalenderFromApiTask(mContext).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
-        new getWeatherInfoTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
+        new getWeatherInfoTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
 
         displaySchoolBus(this);
 
@@ -220,11 +202,6 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         configureStatusBar();
         configureToolbar();
 
-        //renderGeoLocationByAmap();
-
-        renderGeoLocation();
-
-        // renderGeoLocation();
         getWeatherFromDb();
 
         configureAuthBtn(mAuthBtn);
@@ -326,19 +303,23 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
     }
 
     class getWeatherInfoTask extends AsyncTask<Void,Void,String>{
+
+
+
         private final OkHttpClient client = new OkHttpClient();
         Request request;
+        Context mContext;
+
+        getWeatherInfoTask(Context mContext){
+            this.mContext = mContext;
+        }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            String location = null;
-            if(currentLocation != null){
-                location = currentLocation;
-            }
-            else {
-                location = caiyunWeatherUtils.get_GEO_LOCATION();
-            }
-            String api_url = caiyunWeatherUtils.get_realtime_api_string(location);
+            String miuiLocationKey = miuiWeatherUtils.getLocationKeyInPreference(mContext);
+
+            String api_url = miuiWeatherUtils.build_forecast_api_url(miuiLocationKey);
             request = new Request.Builder()
                     .url(api_url)
                     .build();
@@ -354,7 +335,8 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
                 if (response.isSuccessful()) {
                     jsonResponse = response.body().string();
                 } else {
-                    throw new IOException("Unexpected code " + response);
+                    //throw new IOException("Unexpected code " + response);
+                    return null;
                 }
             }
             catch (IOException e) {
@@ -373,44 +355,36 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
             mWeatherCard.setVisibility(View.VISIBLE);
             Log.d(TAG,"On query load finished, response is "+data);
             // set Text
+            int locationTextResource = miuiWeatherUtils.getLocationPreferenceTextResource(mContext);
+            mLocationName.setText(locationTextResource);
             if(data == null){
-                mLocationName.setText(getString(R.string.geo_parse_failed));
                 mLocationTemperature.setText(getString(R.string.unknown_temperature));
                 Toasty.error(mContext, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
-                return;
             }
             mRealTimeInfo = data;
             JSONObject jsonData ;
             try {
                 Log.d(TAG,"Recv weather info "+data);
                 jsonData = new JSONObject(data);
-                String status = (String) jsonData.get("status");
-                Log.i(TAG,"status " + status);
-                if(!status.equals("ok")){
-                    mLocationTemperature.setText(getString(R.string.unknown_temperature));
-                    Toasty.error(mContext,(String) jsonData.get("error"),Toast.LENGTH_LONG,true).show();
-                }
-                else {
-                    // Geometry decoder
-                    JSONObject weatherRawResult = jsonData.getJSONObject("result");
-                    JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
-                    String localTemperature = weatherResult.getString("temperature");
-                    String weatherCondition = weatherResult.getString("skycon");
+                // Geometry decoder
+                JSONObject weatherRawResult = jsonData;
+                JSONObject weatherResult = weatherRawResult.getJSONObject("current");
+                String localTemperature = weatherResult.getJSONObject("temperature").getString("value");
 
-                    // save it to database
-                    final caiyunWeatherEntry weatherEntry = new caiyunWeatherEntry(
-                            localTemperature,
-                            String.format("%s,%s",locLatitude,locLongitude),
-                            data,
-                            new Date()
-                    );
+                // save it to database
+                final caiyunWeatherEntry weatherEntry = new caiyunWeatherEntry(
+                        localTemperature,
+                        String.format("%s,%s",locLatitude,locLongitude),
+                        data,
+                        new Date()
+                );
 
-                    new insertDataTask(weatherEntry).execute();
-                    populateWeatherUI(weatherEntry);
+                new insertDataTask(weatherEntry).execute();
+                populateWeatherUI(weatherEntry);
 
 
 
-                }
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -422,97 +396,6 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         }
     }
 
-    public void renderGeoLocationByAmap() throws Exception{
-        GeocodeSearch geocoderSearch = new GeocodeSearch(this);
-        geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
-            @Override
-            public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
-                if(i == 1000){
-                    RegeocodeAddress geoCodeAddr = regeocodeResult.getRegeocodeAddress();
-                    String locationName = geoCodeAddr.getTownship();
-                    Log.d(TAG,"Get Neighbor : "+locationName);
-                    mLocationName.setText(locationName);
-
-                }
-                else {
-                    Log.d(TAG,"Get Result Code "+i);
-                    mLocationName.setText("");
-                    Toasty.error(mContext, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
-
-                }
-            }
-
-            @Override
-            public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
-
-            }
-        });
-        LatLonPoint latLonPoint = new LatLonPoint(locLatitude,locLongitude);
-        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,GeocodeSearch.GPS);
-
-        geocoderSearch.getFromLocationAsyn(query);
-    }
-
-    public void renderGeoLocation(){
-        Geocoder gc = new Geocoder(this, Locale.getDefault());
-        if(Geocoder.isPresent()){
-            List<Address> locationList = null;
-            try {
-                // there is backend service
-                locationList = gc.getFromLocation(locLatitude,locLongitude,1);
-                Address address = locationList.get(0);
-
-                String countryName = address.getCountryName();
-                String locality = address.getLocality();
-                String adminArea = address.getAdminArea();
-                String feature = address.getFeatureName();
-
-                String locationFullName = adminArea + " " + locality + " " + feature;
-                Log.d(TAG,"get location name " +  locationFullName);
-
-                Log.d(TAG,address.toString());
-
-                mLocationName.setText(feature);
-
-
-            }
-            catch (Exception e){
-                mLocationName.setText(getString(R.string.geo_parse_failed));
-                Toasty.error(this, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
-                e.printStackTrace();
-            }
-            //assert locationList != null;
-            Log.d(TAG,"Ended Loading Weather condition");
-            //finish();
-        }
-        else {
-            GeocodeSearch geocoderSearch = new GeocodeSearch(this);
-            geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
-                @Override
-                public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
-                    if(i == 1000){
-                        RegeocodeAddress geoCodeAddr = regeocodeResult.getRegeocodeAddress();
-                        String neighborhood = geoCodeAddr.getNeighborhood();
-                        mLocationName.setText(neighborhood);
-
-                    }
-                    else {
-                        Toasty.error(mContext, getString(R.string.connection_error_notice), Toast.LENGTH_SHORT, true).show();
-                    }
-                }
-
-                @Override
-                public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
-
-                }
-            });
-            LatLonPoint latLonPoint = new LatLonPoint(locLatitude,locLongitude);
-            RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,GeocodeSearch.GPS);
-
-            geocoderSearch.getFromLocationAsyn(query);
-        }
-
-    }
 
     public void populateWeatherUI(caiyunWeatherEntry caiyunWeather) throws JSONException {
         if(caiyunWeather == null){
@@ -524,18 +407,19 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         String jsonString = caiyunWeather.getJson_string();
         Log.d(TAG,"Populate by "+jsonString);
         JSONObject jsonData = new JSONObject(jsonString);
-        JSONObject weatherRawResult = jsonData.getJSONObject("result");
-        JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
+        JSONObject weatherRawResult = jsonData;
+        JSONObject weatherResult = weatherRawResult.getJSONObject("current");
 
-        String localTemperature = weatherResult.getString("temperature");
-        String weatherCondition = weatherResult.getString("skycon");
-        String aqiVal = weatherResult.getJSONObject("air_quality").getJSONObject("aqi").getString("chn");
+        String localTemperature = weatherResult.getJSONObject("temperature").getString("value");
+        String weatherCondition = weatherResult.getString("weather");
+
+        String aqiVal = weatherRawResult.getJSONObject("aqi").getString("aqi");
         int primaryColor = weatherDataUtils.getAQIColorResource((int) Float.parseFloat(aqiVal));
         mWeatherCard.setBackgroundColor(getColor(primaryColor));
         // transfer weather condition
 
         // get Drawable icon
-        Drawable weatherIcon = getDrawable((weatherDataUtils.getDrawableWeatherByString(weatherCondition)));
+        Drawable weatherIcon = getDrawable((miuiWeatherUtils.getDrawableWeatherByString(weatherCondition)));
         mWeatherIcon.setImageDrawable(weatherIcon);
         mWeatherIcon.setColorFilter(getColor(R.color.colorPureWhite));
         mLocationTemperature.setText(String.format("%s %s",localTemperature, celsius_temperature_unit_label));
@@ -543,7 +427,6 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         mWeatherCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"YOU JUST CLICK CARDVIEW..");
                 Intent intent;
                 intent = new Intent(MainActivity.this,WeatherDetailActivity.class);
                 intent.putExtra("REALTIME_WEATHER",mRealTimeInfo);
@@ -857,56 +740,6 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         }
     }
 
-    public suggestCityLocation getCurrentSuggestCityLocation(){
-        String currentLocationName = mContext.getString(R.string.bus_my_location_label);
-        String currentLocation = "";
-        Tip currentTip = new Tip();
-        currentTip.setName(currentLocationName);
-        String GEO_LOCATION = "108.91148,34.24626";
-
-        // check permission
-        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_COARSE_LOCATION)){
-                Toasty.info(mContext,mContext.getString(R.string.location_denied_notice),Toast.LENGTH_SHORT,true).show();
-                // use youyi campus
-                String youyiCampusName = mContext.getString(R.string.youyi_campus_name);
-                double locLatitude = 34.24626;
-                double locLongitude = 108.91148;
-
-                LatLonPoint campuslatLonPoint = new LatLonPoint(locLatitude,locLongitude);
-                currentTip.setPostion(campuslatLonPoint);
-                return new suggestCityLocation(youyiCampusName,youyiCampusName,currentTip);
-
-
-            }
-            else {
-                currentLocation = GEO_LOCATION;
-                showRequestLocationPermissionDialog();
-                //ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},8);
-            }
-
-        }
-        Log.d(TAG,"USER permits location request");
-        Location location = locationUtils.getLastKnownLocation(mContext);
-        if(location != null){
-            currentLocation = location.getLongitude()+","+location.getLatitude();
-            locLatitude = location.getLatitude();
-            locLongitude = location.getLongitude();
-        }
-        else {
-            // use default value
-            currentLocation = GEO_LOCATION;
-
-        }
-
-
-        Log.d(TAG,"Loc "+currentLocation +" Manager "+ location);
-        currentLocationName = mContext.getString(R.string.bus_my_location_label);
-        LatLonPoint campuslatLonPoint = new LatLonPoint(locLatitude,locLongitude);
-        currentTip.setPostion(campuslatLonPoint);
-        return new suggestCityLocation(currentLocationName,currentLocationName,currentTip);
-    }
 
     private void showRequestLocationPermissionDialog(){
         /* @setIcon 设置对话框图标
