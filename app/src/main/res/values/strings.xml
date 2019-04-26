@@ -676,5 +676,9 @@
         <item>Environmental Science</item>
         <item>General, Miscellaneous, Auxiliary and Others</item>
     </string-array>
+    <string name="under_querying">Querying</string>
+    <string name="long_click_to_refresh">Long click to refresh the information</string>
+    <string name="somatosensory_temperature">Somatosensory</string>
+    <string name="emergency_alert_tag">Emergency Alert</string>
 
 </resources>

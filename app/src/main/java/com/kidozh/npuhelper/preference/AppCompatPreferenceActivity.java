@@ -12,6 +12,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kidozh.npuhelper.R;
+
 /**
  * A {@link android.preference.PreferenceActivity} which implements and proxies the necessary calls
  * to be used with AppCompat.
@@ -24,7 +26,13 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         getDelegate().installViewFactory();
         getDelegate().onCreate(savedInstanceState);
+        configureStatusBar();
         super.onCreate(savedInstanceState);
+    }
+
+    private void configureStatusBar(){
+        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     @Override

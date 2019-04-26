@@ -84,7 +84,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/caiyun_support_notice"
+                android:text="@string/long_click_to_refresh"
                 android:textAppearance="@android:style/TextAppearance.Small"
                 android:textColor="@color/colorMidnightblue"
                 app:layout_constraintBottom_toBottomOf="parent"

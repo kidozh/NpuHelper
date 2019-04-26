@@ -22,6 +22,8 @@ public class miuiWeatherUtils {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext) ;
         String locationLabel = prefs.getString(mContext.getString(R.string.pref_key_location_selection),"y");
         if(locationLabel.equals("y")){
+            // for debug
+            //return "weathercn:101280209";
             return "weathercn:101110101";
         }
         else {
@@ -57,7 +59,7 @@ public class miuiWeatherUtils {
 
     public static int getDrawableWeatherByString(String miuiWeather){
         Map weather2drawable = new HashMap<String,Integer>();
-        weather2drawable.put("0", R.drawable.vector_drawable_sunny);
+        weather2drawable.put("0", R.drawable.vector_drawable_weather_sunny);
         //weather2drawable.put("CLEAR_NIGHT", R.drawable.vector_drawable_weather_night);
         weather2drawable.put("1",R.drawable.vector_drawable_weather_partly_cloudy);
         //weather2drawable.put("PARTLY_CLOUDY_NIGHT",R.drawable.vector_drawable_weather_partlycloudy);

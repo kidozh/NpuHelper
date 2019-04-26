@@ -45,20 +45,33 @@ public class weatherDetailInfoAdapter extends RecyclerView.Adapter<weatherDetail
     @Override
     public void onBindViewHolder(@NonNull weatherDetailInfoAdapter.weatherDetailInfoViewHolder holder, int position) {
         weatherDetailInfoBean weatherDetailInfo = mWeatherInfoList.get(position);
-        if(weatherDetailInfo.isDarkMode){
-            holder.mWeatherCardView.setBackgroundColor(mContext.getColor(primaryColor));
-            holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorTextPureWhite));
+        if (weatherDetailInfo.isAlerted){
+            // force dark mode
+            holder.mWeatherCardView.setBackgroundColor(mContext.getColor(R.color.colorPumpkin));
+            holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorPureWhite));
             holder.mWeatherValue.setTextColor(mContext.getColor(R.color.colorPureWhite));
             holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorPureWhite));
             holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorTextPureWhite));
         }
-        else {
-            holder.mWeatherCardView.setBackgroundColor(mContext.getColor(R.color.colorPureWhite));
-            holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorTextPureBlack));
-            holder.mWeatherValue.setTextColor(mContext.getColor(R.color.colorPureBlack));
-            holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorPureBlack));
-            holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorTextPureBlack));
+        else{
+            if(weatherDetailInfo.isDarkMode){
+                holder.mWeatherCardView.setBackgroundColor(mContext.getColor(primaryColor));
+                holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorTextPureWhite));
+                holder.mWeatherValue.setTextColor(mContext.getColor(R.color.colorPureWhite));
+                holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorPureWhite));
+                holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorTextPureWhite));
+            }
+            else {
+                holder.mWeatherCardView.setBackgroundColor(mContext.getColor(R.color.colorPureWhite));
+                holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorTextPureBlack));
+                holder.mWeatherValue.setTextColor(mContext.getColor(primaryColor));
+                holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorPureBlack));
+                holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorTextPureBlack));
+            }
         }
+
+
+
 
         if(weatherDetailInfo.title.length()!=0){ holder.mWeatherTitle.setText(weatherDetailInfo.title); }
         else {holder.mWeatherTitle.setVisibility(View.GONE);}
@@ -112,12 +125,21 @@ public class weatherDetailInfoAdapter extends RecyclerView.Adapter<weatherDetail
         public String discribe;
         public String extra;
         public Boolean isDarkMode;
+        public Boolean isAlerted = false;
         weatherDetailInfoBean(String title,String value,String discribe, String extra,boolean isDarkMode){
             this.title = title;
             this.value = value;
             this.discribe = discribe;
             this.extra = extra;
             this.isDarkMode = isDarkMode;
+        }
+        weatherDetailInfoBean(String title,String value,String discribe, String extra,boolean isDarkMode,boolean isAlerted){
+            this.title = title;
+            this.value = value;
+            this.discribe = discribe;
+            this.extra = extra;
+            this.isDarkMode = isDarkMode;
+            this.isAlerted = isAlerted;
         }
     }
 }

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kidozh.npuhelper.R;
@@ -32,6 +33,7 @@ import java.util.Date;
 import java.util.List;
 
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,7 +65,8 @@ public class WeatherDetailActivity extends AppCompatActivity {
     CardView mWeatherCardview;
     @BindView(R.id.miuiWeatherRecyclerView)
     RecyclerView miuiDailyForecastRecyclerView;
-
+    @BindView(R.id.current_weather_recyclerview)
+    RecyclerView currentWeatherRecylerview;
     private WeatherView<miuiWeatherData> miuiWeatherView;
 
 
@@ -133,6 +136,11 @@ public class WeatherDetailActivity extends AppCompatActivity {
             JSONObject jsonData = new JSONObject(realtimeString);
             //JSONObject weatherResult = jsonData.getJSONObject("result");
             JSONObject weatherRawResult = jsonData;
+            // deal with primary color
+            String aqiVal = weatherRawResult.getJSONObject("aqi").getString("aqi");
+            int primaryColorRes = weatherDataUtils.getAQIColorResource((int) Float.parseFloat(aqiVal));
+            mWeatherCardview.setBackgroundColor(primaryColorRes);
+            setPrimaryBackground(primaryColorRes);
             JSONObject weatherResult = weatherRawResult.getJSONObject("current");
             String localTemperature = weatherResult.getJSONObject("temperature").getString("value");
             String weatherCondition = weatherResult.getString("weather");
@@ -231,7 +239,70 @@ public class WeatherDetailActivity extends AppCompatActivity {
 
 
             Log.d(TAG,"Finished curve drawing");
+            // draw aqi
+            LinearLayoutManager manager = new LinearLayoutManager(this);
+            manager.setOrientation(LinearLayoutManager.VERTICAL);
+            currentWeatherRecylerview.setLayoutManager(manager);
 
+            weatherDetailInfoAdapter adapter = new weatherDetailInfoAdapter(this);
+            List<weatherDetailInfoAdapter.weatherDetailInfoBean> mDetailWeatherInfoList = new ArrayList<>();
+            adapter.primaryColor = primaryColorRes;
+            currentWeatherRecylerview.setAdapter(adapter);
+
+            // alert first
+            JSONArray alerts = jsonData.getJSONArray("alerts");
+            for(int i=0;i<alerts.length();i++){
+                JSONObject alert = (JSONObject) alerts.get(i);
+                mDetailWeatherInfoList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                        getString(R.string.emergency_alert_tag),
+                        alert.getString("type"),
+                        alert.getString("title"),
+                        alert.getString("detail"),
+                        true,
+                        true
+                ));
+            }
+            // deal with aqi
+            aqiVal = jsonData.getJSONObject("aqi").getString("aqi");
+            String aqiText = getString(weatherDataUtils.getAQITextResource(Integer.parseInt(aqiVal)));
+            String aqiSuggest = jsonData.getJSONObject("aqi").getString("suggest");
+            mDetailWeatherInfoList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.aqi),
+                    String.format("%s / %s",aqiVal,aqiText),
+                    aqiSuggest,
+                    "",
+                    false
+            ));
+            // feel temperature
+            String feelTemperature = jsonData.getJSONObject("current").getJSONObject("feelsLike").getString("value");
+            mDetailWeatherInfoList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.somatosensory_temperature),
+                    feelTemperature+" ℃",
+                    "",
+                    "",
+                    false
+            ));
+            // humidity
+            String humidity = jsonData.getJSONObject("current").getJSONObject("humidity").getString("value");
+            mDetailWeatherInfoList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.relative_humidity),
+                    humidity+ " %",
+                    "",
+                    "",
+                    false
+            ));
+
+            // air pressure
+            String airPressure = jsonData.getJSONObject("current").getJSONObject("pressure").getString("value");
+            mDetailWeatherInfoList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
+                    getString(R.string.air_pressure_tag),
+                    String.format("%s mb",airPressure),
+                    "",
+                    "",
+                    false
+            ));
+            adapter.mWeatherInfoList = mDetailWeatherInfoList;
+            adapter.notifyDataSetChanged();
 
         }
         catch (JSONException e){
@@ -243,93 +314,6 @@ public class WeatherDetailActivity extends AppCompatActivity {
         }
 
         //populate
-
-    }
-
-    private List<weatherDetailInfoAdapter.weatherDetailInfoBean> parseWeatherRes(JSONObject jsonObject){
-        List<weatherDetailInfoAdapter.weatherDetailInfoBean> weatherDetailInfoBeanList = new ArrayList<>();
-        try{
-
-            JSONObject weatherRawResult = jsonObject.getJSONObject("result");
-            JSONObject weatherResult = weatherRawResult.getJSONObject("realtime");
-
-            String aqiVal = weatherResult.getJSONObject("air_quality").getJSONObject("aqi").getString("chn");
-            primaryColor = weatherDataUtils.getAQIColorResource((int) Float.parseFloat(aqiVal));
-
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.aqi),aqiVal,getString(weatherDataUtils.getAQITextResource((int) Float.parseFloat(aqiVal))),"",true));
-
-            String value = jsonObject.getJSONObject("indices").getString("humidity");
-
-            float relative_humidity = Float.parseFloat(value) * 100;
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.relative_humidity),String.valueOf(relative_humidity),"","",false));
-
-            String cloudvalue = weatherResult.getString("cloudrate");
-            float cloudrate = (float) Float.parseFloat(cloudvalue) * 100;
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.cloudrate_tag),String.format(getString(R.string.percent_number_format),(int) cloudrate),
-                    getString(weatherDataUtils.getCloudRateDescriptionTextResource(Float.parseFloat(cloudvalue))),
-                    "",false));
-
-            value = weatherResult.getString("visibility");
-            Float visibilityFloat = Float.parseFloat(value);
-
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.visibility_tag),String.format(getString(R.string.km_format),value),
-                    getString(weatherDataUtils.getVisibilityTextResource(visibilityFloat)),
-                    "",false));
-
-            // wind
-            JSONObject windCondition = weatherResult.getJSONObject("wind");
-            String windSpeed = windCondition.getString("speed");
-            double windSpeedDouble = Double.parseDouble(windSpeed);
-            int windStrength = weatherDataUtils.getWindScaleNameTextResource(this,windSpeedDouble);
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.wind_strength),getString(windStrength),
-                    String.format(getString(R.string.km_per_h_format),windSpeed),"",false));
-
-
-
-            value = weatherResult.getString("pressure");
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.air_pressure_tag),String.format(getString(R.string.kpa_format), Float.parseFloat(value) / 1000),"",getString(R.string.air_pressure_demonstrate),false));
-
-            // rain
-            JSONObject rainResult = weatherResult.getJSONObject("precipitation");
-            JSONObject localRain = rainResult.getJSONObject("local");
-            JSONObject nearstRain = rainResult.getJSONObject("nearest");
-
-            if(nearstRain != null && nearstRain.getString("status").equals("ok")){
-
-                String distance = nearstRain.getString("distance");
-                float fDistance = Float.parseFloat(distance);
-                int intDistance = (int) fDistance;
-                if(intDistance > 1000){
-                    weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                            getString(R.string.nearst_rain_strength),String.format(getString(R.string.km_format),getString(R.string.rain_distance_1000_plus)),"","",true));
-                }
-                else {
-                    String intensity = nearstRain.getString("intensity");
-                    weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                            getString(R.string.nearst_rain_strength),String.format(getString(R.string.km_format),
-                            String.valueOf(intDistance)),
-                            getString(weatherDataUtils.getRainTextResource(Float.parseFloat(intensity))),"",true));
-                }
-            }
-            String descVal = weatherResult.getJSONObject("life_index").getJSONObject("comfort").getString("desc");
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.comfort_text),descVal,"","",false));
-            descVal = weatherResult.getJSONObject("life_index").getJSONObject("ultraviolet").getString("desc");
-            weatherDetailInfoBeanList.add(new weatherDetailInfoAdapter.weatherDetailInfoBean(
-                    getString(R.string.ultraviolet),descVal,"","",false));
-
-        }
-        catch (JSONException e){
-            e.printStackTrace();
-
-        }
-        return weatherDetailInfoBeanList;
 
     }
 

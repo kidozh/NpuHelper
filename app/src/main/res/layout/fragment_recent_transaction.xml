@@ -18,7 +18,6 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/colorBelizahole"
-            app:cardElevation="8dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"

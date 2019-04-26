@@ -438,6 +438,9 @@
     </string-array>
     <string name="changan_campus_name_full">长安校区</string>
     <string name="youyi_campus_name_full">友谊校区</string>
-
+    <string name="under_querying">查询中\.\.\.</string>
+    <string name="long_click_to_refresh">长按可以刷新界面</string>
+    <string name="somatosensory_temperature">体感温度</string>
+    <string name="emergency_alert_tag">紧急预警</string>
 
 </resources>

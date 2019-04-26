@@ -67,6 +67,14 @@
         <item name="android:textColorPrimary">@color/colorCloud</item>
     </style>
 
+    <style name="AppTheme.SettingActivity" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPureWhite</item>
+        <item name="colorPrimaryDark">@color/colorPureWhite</item>
+        <item name="colorAccent">@color/colorTurquoise</item>
+        <item name="android:textColor">@color/colorPureBlack</item>
+        <item name="android:textColorPrimary">@color/colorPureBlack</item>
+    </style>
+
     <!--定义ToolBar上Title的文字样式-->
     <style name="AppTheme.ToolbarTitleTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">20sp</item>

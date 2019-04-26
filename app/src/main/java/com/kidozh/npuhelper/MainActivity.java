@@ -74,6 +74,7 @@ import com.kidozh.npuhelper.xianCityBus.cityBusPortalActivity;
 import com.kidozh.npuhelper.xianCityBus.suggestCityLocation;
 import com.kidozh.npuhelper.weatherUtils.miuiWeatherUtils;
 
+import org.apache.tools.ant.Main;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -192,8 +193,8 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         Button mAuthBtn = (Button) navigationView.getHeaderView(0).findViewById(R.id.auth_status_btn);
 
         mContext = getApplicationContext();
-        new getCalenderFromApiTask(mContext).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
-        new getWeatherInfoTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
+        new getCalenderFromApiTask(mContext).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new getWeatherInfoTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         displaySchoolBus(this);
 
@@ -323,6 +324,8 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
             request = new Request.Builder()
                     .url(api_url)
                     .build();
+            mLocationTemperature.setText("...");
+
             Log.d(TAG,"START QUERYING "+api_url);
 
         }
@@ -432,6 +435,13 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
                 intent.putExtra("REALTIME_WEATHER",mRealTimeInfo);
                 intent.putExtra("CUR_LOC",mLocationName.getText());
                 startActivity(intent);
+            }
+        });
+        mWeatherCard.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                new getWeatherInfoTask(MainActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                return true;
             }
         });
     }

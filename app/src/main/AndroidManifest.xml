@@ -54,7 +54,7 @@
         <activity
             android:name=".preference.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar" />
+            android:theme="@style/AppTheme.SettingActivity" />
         <activity
             android:name=".weatherUtils.WeatherDetailActivity"
             android:label="@string/title_activity_weather_detail"

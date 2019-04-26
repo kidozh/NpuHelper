@@ -1,5 +1,7 @@
 package com.kidozh.npuhelper.accountAuth;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +35,8 @@ public class LoginUniversityActivity extends AppCompatActivity {
     TextView mLoginToolbarTextview;
     @BindView(R.id.login_progressbar)
     ProgressBar mLoginProgressbar;
-
+    @BindView(R.id.trouble_textview)
+    TextView mTroubleInLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,14 @@ public class LoginUniversityActivity extends AppCompatActivity {
                 else {
                     Toasty.info(LoginUniversityActivity.this,getString(R.string.account_or_password_required),Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+        mTroubleInLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://uis.nwpu.edu.cn/uid/forget");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
     }
