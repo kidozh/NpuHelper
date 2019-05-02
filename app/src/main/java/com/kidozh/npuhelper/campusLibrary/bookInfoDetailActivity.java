@@ -10,31 +10,31 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kidozh.npuhelper.R;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class bookInfoDetailActivity extends AppCompatActivity {
+public class bookInfoDetailActivity extends AppCompatActivity implements bookDetailShowOptionFragment.onSettingsAppliedListener {
     final static String TAG = bookInfoDetailActivity.class.getSimpleName();
     @BindView(R.id.book_detail_title)
     TextView mBookDetailTitle;
-    @BindView(R.id.book_detail_imageView)
-    ImageView mBookDetailImage;
+
     @BindView(R.id.book_borrow_status_recyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.book_information_recyclerview)
@@ -45,9 +45,19 @@ public class bookInfoDetailActivity extends AppCompatActivity {
     CollapsingToolbarLayout toolbarLayout;
     @BindView(R.id.book_borrow_progressBar)
     ProgressBar mBorrowProgressbar;
+    @BindView(R.id.book_detail_filter_floatingActionButton)
+    FloatingActionButton mFilterBtn;
+    @BindView(R.id.book_borrow_search_item)
+    TextView mBookBorrowSearchText;
+    @BindView(R.id.book_borrow_search_filter_size)
+    TextView mBookBorrowSearchFilterSize;
+    @BindView(R.id.book_borrow_search_total_book)
+    TextView mBookBorrowSearchTotalSize;
+
     private final OkHttpClient client = new OkHttpClient();
     bookDetailItemInfoAdapter adapter = new bookDetailItemInfoAdapter();
     bookInfoUtils.bookBeam bookBeam;
+    List<bookInfoUtils.bookBorrowStatus> bookBorrowStatusList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +69,16 @@ public class bookInfoDetailActivity extends AppCompatActivity {
         configureToolbar(bookBeam);
         configureStatusBar();
         configureRecyclerView();
+        configureFloatButton();
         Log.d(TAG,"GET TOTAL BOOK : "+bookBeam.totalNumber);
         if(bookBeam.totalNumber>=1){
-            new getBorrowStatusTask(this,bookBeam.marcRecNumber).execute();
+            getBorrowStatusTask task = new getBorrowStatusTask(this,bookBeam.marcRecNumber);
+            task.execute();
+            bookBorrowStatusList = task.bookBorrowStatusList;
         }
         setmBookDetail(bookBeam);
         new getBookDetailInfoTask(this,bookBeam.marcRecNumber).execute();
+
 
 
     }
@@ -80,15 +94,7 @@ public class bookInfoDetailActivity extends AppCompatActivity {
     }
 
     private void setmBookDetail(bookInfoUtils.bookBeam book){
-        if(book.imgUrl == null || book.imgUrl.length() == 0){
-            mBookDetailImage.setImageDrawable(getDrawable(R.drawable.vector_drawable_book));
-        }
-        else {
-            Glide.with(this)
-                    .load(book.imgUrl)
-                    .transition(new DrawableTransitionOptions().crossFade())
-                    .into(mBookDetailImage);
-        }
+
         mBookDetailTitle.setText(book.title);
 
     }
@@ -107,14 +113,92 @@ public class bookInfoDetailActivity extends AppCompatActivity {
         mBookInfoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    private void configureFloatButton(){
+        mFilterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new bookDetailShowOptionFragment().show(getSupportFragmentManager(), "dialog");
+            }
+        });
+    }
+
+    private String getCampusCode(){
+        Context context = this;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context) ;
+        String selectLibraryCampus = prefs.getString(context.getString(R.string.pref_key_book_select_campus),"follow");
+        if(selectLibraryCampus.equals("follow")){
+            return prefs.getString(getString(R.string.pref_key_location_selection),"y");
+        }
+        else if(selectLibraryCampus.equals("all")) {
+            return "";
+        }
+        else {
+            return selectLibraryCampus;
+        }
+    }
+
+    private Boolean getBookAccessible(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this) ;
+        return prefs.getBoolean(getString(R.string.pref_key_show_accessible_book),true);
+    }
+
+    protected List<bookInfoUtils.bookBorrowStatus> filterBookInfoBySettings(List<bookInfoUtils.bookBorrowStatus> mList){
+        Context context = this;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context) ;
+        String selectLibraryCampus = prefs.getString(context.getString(R.string.pref_key_book_select_campus),"follow");
+        String campus = "";
+        if(selectLibraryCampus.equals("follow")){
+            campus = prefs.getString(getString(R.string.pref_key_location_selection),"y");
+        }
+        else if(selectLibraryCampus.equals("all")) {
+            campus = "";
+        }
+        else {
+            campus = selectLibraryCampus;
+        }
+        Boolean onlyShowAccessBook = prefs.getBoolean(context.getString(R.string.pref_key_show_accessible_book),true);
+        List<bookInfoUtils.bookBorrowStatus> filtered = new ArrayList<>();
+        for(int i=0; i<mList.size();i++){
+            // check
+            bookInfoUtils.bookBorrowStatus bookBorrowStatus = mList.get(i);
+            Log.d(TAG,"Raw campus "+campus+" location "+bookBorrowStatus.location);
+            if(onlyShowAccessBook){
+                // check the accessibility
+                if(!bookBorrowStatus.isAccessible){
+                    // throw data
+                    continue;
+                }
+            }
+            // check campus
+            if(campus.equals("y")){
+                if(!bookBorrowStatus.location.contains("友谊校区")){
+                    continue;
+                }
+            }
+            if(campus.equals("c")){
+                if(!bookBorrowStatus.location.contains("长安校区")){
+                    continue;
+                }
+            }
+            Log.d(TAG,"Add campus "+campus+" location "+bookBorrowStatus.location);
+            filtered.add(bookBorrowStatus);
+
+        }
+
+        return filtered;
+    }
+
     public class getBorrowStatusTask extends AsyncTask<Void,Void,String>{
         Context mContext;
         Request request;
         String marcNumber;
+        List<bookInfoUtils.bookBorrowStatus> bookBorrowStatusList;
         getBorrowStatusTask(Context context, String marcNumber){
             this.mContext = context;
             this.marcNumber = marcNumber;
         }
+
+
 
         @Override
         protected void onPreExecute() {
@@ -124,7 +208,56 @@ public class bookInfoDetailActivity extends AppCompatActivity {
                     .url(api_url)
                     .build();
             mBorrowProgressbar.setVisibility(View.VISIBLE);
+            String selectedCampusCode = getCampusCode();
+            Boolean onlyListAccessibleBook = getBookAccessible();
+            if(selectedCampusCode.equals("")){
+                if(!onlyListAccessibleBook) mBookBorrowSearchText.setText(R.string.not_limit_accessibility);
+                else mBookBorrowSearchText.setText(R.string.only_accessible_book_is_listed);
+            }
+            else if(selectedCampusCode.equals("y")){
+                if(!onlyListAccessibleBook){
+                    mBookBorrowSearchText.setText(
+                            String.format(getString(R.string.book_search_text_format),
+                                    getString(R.string.youyi_campus_name_full),
+                                    getString((R.string.not_limit_accessibility))
+                            )
+                    );
+                }
+                else {
+                    mBookBorrowSearchText.setText(
+                            String.format(getString(R.string.book_search_text_format),
+                                    getString(R.string.youyi_campus_name_full),
+                                    getString((R.string.only_accessible_book_is_listed))
+                            )
+                    );
+                }
 
+            }
+
+            else if(selectedCampusCode.equals("c")){
+                if(!onlyListAccessibleBook){
+                    mBookBorrowSearchText.setText(
+                            String.format(getString(R.string.book_search_text_format),
+                                    getString(R.string.changan_campus_name_full),
+                                    getString((R.string.not_limit_accessibility))
+                            )
+                    );
+                }
+                else {
+                    mBookBorrowSearchText.setText(
+                            String.format(getString(R.string.book_search_text_format),
+                                    getString(R.string.changan_campus_name_full),
+                                    getString((R.string.only_accessible_book_is_listed))
+                            )
+                    );
+                }
+
+            }
+            else {
+                mBookBorrowSearchText.setText(R.string.unknown);
+            }
+            mBookBorrowSearchFilterSize.setText(R.string.unknown);
+            mBookBorrowSearchTotalSize.setText(R.string.unknown);
         }
 
         @Override
@@ -151,10 +284,15 @@ public class bookInfoDetailActivity extends AppCompatActivity {
             mBorrowProgressbar.setVisibility(View.INVISIBLE);
             Log.d(TAG,"Recv book status "+s);
             if(s!= null){
-                List<bookInfoUtils.bookBorrowStatus> bookBorrowStatusList = bookInfoUtils.parseBookBorrowInfo(s);
+                bookBorrowStatusList = bookInfoUtils.parseBookBorrowInfo(s);
                 bookBorrowStatusAdapter adapter = new bookBorrowStatusAdapter(mContext);
-                adapter.bookBorrowStatusList = bookBorrowStatusList;
+                // filter by setting
+                List<bookInfoUtils.bookBorrowStatus> filtered = filterBookInfoBySettings(bookBorrowStatusList);
+                Log.d(TAG,"Filtered Size "+filtered.size());
+                adapter.bookBorrowStatusList = filtered;
                 mRecyclerView.setAdapter(adapter);
+                mBookBorrowSearchFilterSize.setText(String.format(Locale.getDefault(),"%d",filtered.size()));
+                mBookBorrowSearchTotalSize.setText(String.format(Locale.getDefault(),"%d",bookBorrowStatusList.size()));
             }
 
         }
@@ -164,6 +302,7 @@ public class bookInfoDetailActivity extends AppCompatActivity {
         Context mContext;
         Request request;
         String marcNumber;
+        List<bookInfoUtils.bookInfoItem> bookInfoItemList;
         getBookDetailInfoTask(Context context, String marcNumber){
             this.mContext = context;
             this.marcNumber = marcNumber;
@@ -205,7 +344,7 @@ public class bookInfoDetailActivity extends AppCompatActivity {
             //mBorrowProgressbar.setVisibility(View.INVISIBLE);
             //Log.d(TAG,"Recv book status "+s);
             if(s!= null){
-                List<bookInfoUtils.bookInfoItem> bookInfoItemList = bookInfoUtils.parseBookDetailInfo(s);
+                bookInfoItemList = bookInfoUtils.parseBookDetailInfo(s);
 
                 adapter.bookInfoItemList = bookInfoItemList;
                 mBookInfoRecyclerView.setAdapter(adapter);
@@ -283,5 +422,8 @@ public class bookInfoDetailActivity extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    public void onSettingApplied() {
+        new getBorrowStatusTask(this,bookBeam.marcRecNumber).execute();
+    }
 }

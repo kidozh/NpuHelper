@@ -115,14 +115,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:singleLine="true"
+                android:singleLine="false"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/colorPureWhite"
                 android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/item_book_borrowable_location_tag"
                 app:layout_constraintEnd_toEndOf="@+id/item_book_borrowable_year"
                 app:layout_constraintStart_toEndOf="@+id/item_book_borrowable_location_tag"
-                tools:text="Library of School" />
+                tools:text="Library of School1212111111111111111111111111" />
 
             <TextView
                 android:id="@+id/item_book_borrowable_status_tag"
@@ -132,7 +132,7 @@
                 android:text="@string/book_borrow_status"
                 android:textColor="@color/colorTextPureWhite"
                 app:layout_constraintStart_toStartOf="@+id/item_book_borrowable_location_tag"
-                app:layout_constraintTop_toBottomOf="@+id/item_book_borrowable_location_tag" />
+                app:layout_constraintTop_toBottomOf="@+id/item_book_borrowable_location" />
 
             <TextView
                 android:id="@+id/item_book_borrowable_status"

@@ -31,17 +31,24 @@ public class bookBorrowStatusAdapter extends RecyclerView.Adapter<bookBorrowStat
     @NonNull
     @Override
     public bookBorrowStatusViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         Context context = parent.getContext();
         int layoutIdForListItem = R.layout.item_book_borrowable_info;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
-
+        if(bookBorrowStatusList == null || bookBorrowStatusList.size() == 0){
+            return new bookBorrowStatusViewHolder(inflater.inflate(R.layout.item_no_item_listed, parent, false),true);
+        }
         View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
+
         return new bookBorrowStatusViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull bookBorrowStatusViewHolder holder, int position) {
+        if(bookBorrowStatusList == null || bookBorrowStatusList.size() == 0){
+            return;
+        }
         bookInfoUtils.bookBorrowStatus status = bookBorrowStatusList.get(position);
         holder.mBookCallNumber.setText(status.callNumber);
         holder.mBookBarCode.setText(status.barCode);
@@ -49,7 +56,9 @@ public class bookBorrowStatusAdapter extends RecyclerView.Adapter<bookBorrowStat
         holder.mBookLocation.setText(status.location);
         if(!status.isAccessible){
             holder.mBookStatus.setText(R.string.unavailable_to_borrow);
-            holder.mCardview.setBackgroundColor(mContext.getColor(R.color.colorPomegranate));
+            holder.mBookDue.setVisibility(View.VISIBLE);
+            holder.mBookDueTag.setVisibility(View.VISIBLE);
+            holder.mCardview.setBackgroundColor(mContext.getColor(R.color.colorWetasphalt));
             if(status.DueDate==null){
                 holder.mBookStatus.setText(status.status);
                 holder.mBookDue.setText(R.string.not_applicable);
@@ -67,14 +76,21 @@ public class bookBorrowStatusAdapter extends RecyclerView.Adapter<bookBorrowStat
                 }
                 else {
                     int dayNumber = (int) timeInterval / (24*60*60*1000);
-                    holder.mBookDue.setText(String.format(mContext.getString(R.string.in_day_format),dayNumber));
+                    if(dayNumber !=0){
+                        holder.mBookDue.setText(String.format(mContext.getString(R.string.in_day_format),dayNumber));
+                    }
+                    else {
+                        holder.mBookDue.setText(R.string.today);
+                    }
                 }
             }
 
         }
         else {
-            holder.mCardview.setBackgroundColor(mContext.getColor(R.color.colorTurquoise));
+            holder.mCardview.setBackgroundColor(mContext.getColor(R.color.colorPeterRiver));
             holder.mBookStatus.setText(mContext.getString(R.string.can_borrow));
+            holder.mBookDue.setVisibility(View.GONE);
+            holder.mBookDueTag.setVisibility(View.GONE);
             holder.mBookDue.setText(R.string.not_applicable);
 
         }
@@ -82,8 +98,8 @@ public class bookBorrowStatusAdapter extends RecyclerView.Adapter<bookBorrowStat
 
     @Override
     public int getItemCount() {
-        if(bookBorrowStatusList == null){
-            return 0;
+        if(bookBorrowStatusList == null || bookBorrowStatusList.size() == 0){
+            return 1;
         }
         else {
             return bookBorrowStatusList.size();
@@ -104,11 +120,19 @@ public class bookBorrowStatusAdapter extends RecyclerView.Adapter<bookBorrowStat
         TextView mBookStatus;
         @BindView(R.id.item_book_borrowable_due)
         TextView mBookDue;
+        @BindView(R.id.item_book_borrowable_due_tag)
+        TextView mBookDueTag;
         @BindView(R.id.item_book_borrowable_cardview)
         CardView mCardview;
         bookBorrowStatusViewHolder(View view){
             super(view);
             ButterKnife.bind(this,view);
+        }
+        bookBorrowStatusViewHolder(View view, Boolean notLoad){
+            super(view);
+            if(!notLoad){
+                ButterKnife.bind(this,view);
+            }
         }
 
     }

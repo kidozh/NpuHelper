@@ -234,8 +234,8 @@
 
     <string name="pref_title_location_selection">Location Selection</string>
     <string-array name="pref_array_location_selection_entries">
-        <item>Youyi (Old) Campus</item>
-        <item>Chang\'an (New) Campus</item>
+        <item>Youyi Campus</item>
+        <item>Chang\'an Campus</item>
     </string-array>
 
     <string-array name="pref_array_location_selection_entries_value">
@@ -342,6 +342,23 @@
         <item>sun</item>
         <item>mon</item>
     </string-array>
+
+    <string-array name="pref_array_book_select_campus_entries">
+        <item>All the campus</item>
+        <item>Follow system settings</item>
+        <item>Youyi Campus</item>
+        <item>Changan Campus</item>
+    </string-array>
+
+    <string-array name="pref_array_book_select_campus_entries_value">
+        <item>all</item>
+        <item>follow</item>
+        <item>y</item>
+        <item>c</item>
+    </string-array>
+
+    <string name="pref_key_show_accessible_book">pref_key_show_accessible_book</string>
+
     <string name="hot_news">Hot News</string>
     <string name="city_service">City Service</string>
     <string name="bus_service">Bus Services at Xi\'an City</string>
@@ -680,5 +697,16 @@
     <string name="long_click_to_refresh">Long click to refresh the information</string>
     <string name="somatosensory_temperature">Somatosensory</string>
     <string name="emergency_alert_tag">Emergency Alert</string>
+    <string name="select_show_campus_option">Select library of campus</string>
+    <string name="follow_system_setting">Follow system</string>
+    <string name="all_campus">All</string>
+    <string name="show_access_book">Only show accessible book</string>
+    <string name="apply">Apply</string>
+    <string name="pref_key_book_select_campus">pref_key_book_select_campus</string>
+    <string name="book_search_text_format">Only Search library in %s and %s</string>
+    <string name="not_limit_accessibility">all books are listed</string>
+    <string name="only_accessible_book_is_listed">only accessible book is listed</string>
+    <string name="result_not_found">No Result Found</string>
+
 
 </resources>

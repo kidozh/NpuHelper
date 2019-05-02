@@ -13,7 +13,7 @@
         android:layout_height="@dimen/app_bar_height"
         android:background="@mipmap/library_books"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/book_detail_toolbar_layout"
@@ -36,16 +36,21 @@
 
     <include layout="@layout/content_book_info_detail" />
 
-    <ImageView
-        android:id="@+id/book_detail_imageView"
-        android:layout_width="128dp"
-        android:layout_height="200dp"
-        android:scaleType="fitCenter"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/book_detail_filter_floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="16dp"
+        android:backgroundTintMode="add"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/colorPeterRiver"
         app:layout_anchor="@id/book_detail_app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:layout_behavior=".utilities.imageviewBehavior"
-        app:layout_collapseMode="pin"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_collapseMode="parallax"
+        app:srcCompat="@drawable/vector_drawable_filter"
+        app:tint="@color/colorCloud" />
 
     <!--<com.google.android.material.floatingactionbutton.FloatingActionButton-->
     <!--android:id="@+id/fab"-->

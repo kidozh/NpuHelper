@@ -2,6 +2,7 @@ package com.kidozh.npuhelper.campusLibrary;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
 public class bookInfoAdapter extends RecyclerView.Adapter<bookInfoAdapter.bookInfoViewHolder> {
     public List<bookInfoUtils.bookBeam> bookBeamList;
     Context mContext;
+    String TAG = bookInfoAdapter.class.getSimpleName();
 
     bookInfoAdapter(Context context){
         this.mContext = context;
@@ -37,58 +39,71 @@ public class bookInfoAdapter extends RecyclerView.Adapter<bookInfoAdapter.bookIn
         int layoutIdForListItem = R.layout.item_book_info;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
+        if(bookBeamList == null || bookBeamList.size() == 0){
+            bookInfoViewHolder viewHolder =  new bookInfoViewHolder(inflater.inflate(R.layout.item_no_item_listed, parent, shouldAttachToParentImmediately),true);
+            return viewHolder;
 
+        }
         View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
+
+
+
         return new bookInfoViewHolder(view);
+
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull bookInfoViewHolder holder, int position) {
-        bookInfoUtils.bookBeam bookInfo = bookBeamList.get(position);
-        holder.mBookTitle.setText(bookInfo.title);
-        holder.mBookAuthor.setText(bookInfo.author);
-        holder.mBookPublishDate.setText(bookInfo.publishTime);
-        holder.mBookPublisher.setText(bookInfo.publisher);
-        if(bookInfo.totalNumber != -1){
-            holder.mBookTotalNum.setText(String.format(Locale.getDefault(),"%d",bookInfo.totalNumber));
+        if(bookBeamList == null || bookBeamList.size() == 0){
+            return ;
         }
         else {
-            holder.mBookTotalNum.setText(R.string.unknown);
-        }
-        if(bookInfo.accessNumber != -1){
-            holder.mBookAccessNum.setText(String.format(Locale.getDefault(),"%d",bookInfo.accessNumber));
-
-        }
-        else {
-            holder.mBookAccessNum.setText(R.string.unknown);
-        }
-
-        if(bookInfo.imgUrl!= null && (!bookInfo.imgUrl.equals(""))){
-            Glide.with(mContext)
-                    .load(bookInfo.imgUrl)
-                    .transition(new DrawableTransitionOptions().crossFade())
-                    .into(holder.mBookImage);
-
-        }
-        else{
-            holder.mBookImage.setImageResource(R.drawable.vector_drawable_book);
-        }
-        holder.mBookCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext,bookInfoDetailActivity.class);
-                intent.putExtra("bookInfo",bookInfo);
-                mContext.startActivity(intent);
+            Log.d(TAG,"RENDERING "+position+" "+bookBeamList.size());
+            bookInfoUtils.bookBeam bookInfo = bookBeamList.get(position);
+            holder.mBookTitle.setText(bookInfo.title);
+            holder.mBookAuthor.setText(bookInfo.author);
+            holder.mBookPublishDate.setText(bookInfo.publishTime);
+            holder.mBookPublisher.setText(bookInfo.publisher);
+            if(bookInfo.totalNumber != -1){
+                holder.mBookTotalNum.setText(String.format(Locale.getDefault(),"%d",bookInfo.totalNumber));
             }
-        });
+            else {
+                holder.mBookTotalNum.setText(R.string.unknown);
+            }
+            if(bookInfo.accessNumber != -1){
+                holder.mBookAccessNum.setText(String.format(Locale.getDefault(),"%d",bookInfo.accessNumber));
 
+            }
+            else {
+                holder.mBookAccessNum.setText(R.string.unknown);
+            }
 
+            if(bookInfo.imgUrl!= null && (!bookInfo.imgUrl.equals(""))){
+                Glide.with(mContext)
+                        .load(bookInfo.imgUrl)
+                        .transition(new DrawableTransitionOptions().crossFade())
+                        .into(holder.mBookImage);
+
+            }
+            else{
+                holder.mBookImage.setImageResource(R.drawable.vector_drawable_book);
+            }
+            holder.mBookCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext,bookInfoDetailActivity.class);
+                    intent.putExtra("bookInfo",bookInfo);
+                    mContext.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        if(bookBeamList==null){
-            return 0;
+        if(bookBeamList==null || bookBeamList.size() == 0){
+            return 1;
         }
         else {
             return bookBeamList.size();
@@ -115,7 +130,16 @@ public class bookInfoAdapter extends RecyclerView.Adapter<bookInfoAdapter.bookIn
 
         public bookInfoViewHolder(@NonNull View itemView) {
             super(itemView);
+            Log.d(TAG,"Bind QUERY BLOCK");
             ButterKnife.bind(this,itemView);
+        }
+
+        public bookInfoViewHolder(@NonNull View itemView, Boolean notLoad) {
+            super(itemView);
+            if(!notLoad){
+                ButterKnife.bind(this,itemView);
+            }
+
         }
     }
 }

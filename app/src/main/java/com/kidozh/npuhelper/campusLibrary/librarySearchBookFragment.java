@@ -230,8 +230,7 @@ public class librarySearchBookFragment extends Fragment {
         protected void onPreExecute() {
             String api_url = bookInfoUtils.queryLibraryApi;
             adapter.bookBeamList = new ArrayList<>();
-            adapter.bookBeamList.clear();
-            adapter.notifyDataSetChanged();
+            //adapter.notifyDataSetChanged();
             queryBookProgressBar.setVisibility(View.VISIBLE);
             totalBookBeamList.clear();
             curPage = 1;
@@ -293,6 +292,8 @@ public class librarySearchBookFragment extends Fragment {
             List<bookInfoUtils.bookBeam> bookBeamList = bookInfoUtils.parseJson(s);
             totalBookBeamList.addAll(bookBeamList);
             adapter.bookBeamList = totalBookBeamList;
+            mRecyclerView.setAdapter(adapter);
+            //adapter.notifyDataSetChanged();
             // start to crawl each information
 
             for(int i=0;i<adapter.bookBeamList.size();i++){
@@ -381,6 +382,7 @@ public class librarySearchBookFragment extends Fragment {
             Log.d(TAG,"Recv Library String :" +s);
             List<bookInfoUtils.bookBeam> bookBeamList = bookInfoUtils.parseJson(s);
             totalBookBeamList.addAll(bookBeamList);
+            adapter = new bookInfoAdapter(getActivity());
             adapter.bookBeamList = totalBookBeamList;
             adapter.notifyDataSetChanged();
             // start to crawl each information

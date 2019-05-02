@@ -442,5 +442,19 @@
     <string name="long_click_to_refresh">长按可以刷新界面</string>
     <string name="somatosensory_temperature">体感温度</string>
     <string name="emergency_alert_tag">紧急预警</string>
-
+    <string name="select_show_campus_option">选择图书馆校区</string>
+    <string name="all_campus">所有</string>
+    <string name="follow_system_setting">跟随系统设置</string>
+    <string name="show_access_book">仅显示可借书本</string>
+    <string name="apply">应用</string>
+    <string-array name="pref_array_book_select_campus_entries">
+        <item>@string/all_campus</item>
+        <item>@string/follow_system_setting</item>
+        <item>@string/youyi_campus_name_full</item>
+        <item>@string/changan_campus_name_full</item>
+    </string-array>
+    <string name="book_search_text_format">仅检索 %s的图书馆，同时 %s</string>
+    <string name="not_limit_accessibility">显示所有可借和不可借书本</string>
+    <string name="only_accessible_book_is_listed">仅显示可借书本</string>
+    <string name="result_not_found">没有找到条目~</string>
 </resources>

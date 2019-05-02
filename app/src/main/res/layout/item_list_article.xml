@@ -46,14 +46,14 @@
                     android:ellipsize="end"
                     android:singleLine="false"
                     android:textColor="#333333"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     tools:text="马德克群岛发生5.7级地震 震源深度10千米" />
 
                 <TextView
                     android:id="@+id/news_publish_date_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/dosis"
+                    android:fontFamily="sans-serif"
                     android:text="2016-05-01"
                     android:textAlignment="viewEnd"
                     android:textAllCaps="false" />

@@ -278,6 +278,7 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
     protected void onResume() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Button mAuthBtn = (Button) navigationView.getHeaderView(0).findViewById(R.id.auth_status_btn);
+        countDownTimer.start();
         configureAuthBtn(mAuthBtn);
         super.onResume();
 
@@ -636,27 +637,6 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         mTitle = title;
         getSupportActionBar().setTitle(mTitle);
 
-    }
-
-    private Location getLastKnownLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return null;
-        }
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        List<String> providers = locationManager.getAllProviders();
-        Location bestLocation = null;
-        for (String provider : providers) {
-
-            Location l = locationManager.getLastKnownLocation(provider);
-            if (l == null) {
-                continue;
-            }
-            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
-                // Found best last known location: %s", l);
-                bestLocation = l;
-            }
-        }
-        return bestLocation;
     }
 
     @SuppressLint("StaticFieldLeak")
