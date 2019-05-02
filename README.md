@@ -11,7 +11,8 @@ Your encyclopedia in NPU (in Xi'an, Shaanxi province, China.)
 + school calendar and holiday label
 + limited location query
 + address book of all the NPU department
-+ xi'an city transportation support(real-time bus will be added)
++ library services
++ campus card services
 
 # Support
 
