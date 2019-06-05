@@ -7,43 +7,45 @@
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/personal_center_app_bar"
+        android:id="@+id/stadium_display_appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
-        android:background="@color/colorTurquoise"
+
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/personal_center_toolbar_layout"
+            android:id="@+id/stadium_display_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorTurquoise"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="@string/display_all_accessible_stadium"
             app:toolbarId="@+id/stadium_toolbar">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/personal_center_toolbar"
+                android:id="@+id/stadium_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorTurquoise"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+                app:layout_collapseMode="pin"
+
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_personal_info_display" />
+    <include
+        layout="@layout/content_display_stadium" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/personal_center_fab"
+        android:id="@+id/register_stadium_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/colorCloud"
-        app:layout_anchor="@id/personal_center_app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/vector_drawable_log_out" />
+
+        app:layout_anchorGravity="end|center"
+        app:srcCompat="@drawable/vector_drawable_register_stadium" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

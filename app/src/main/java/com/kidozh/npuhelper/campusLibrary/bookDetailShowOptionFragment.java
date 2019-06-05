@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -27,6 +28,7 @@ import com.kidozh.npuhelper.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 import static android.view.View.VISIBLE;
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -35,6 +37,8 @@ public class bookDetailShowOptionFragment extends BottomSheetDialogFragment impl
     private BottomSheetBehavior mBehavior;
     @BindView(R.id.book_detail_show_all_book)
     Switch mShowAllBookSwitch;
+    @BindView(R.id.book_detail_smart_show_all_book)
+    Switch mSmartBookSwitch;
     @BindView(R.id.book_detail_option_all)
     Chip mBookOptionAll;
     @BindView(R.id.book_detail_option_follow_system_setting)
@@ -95,6 +99,9 @@ public class bookDetailShowOptionFragment extends BottomSheetDialogFragment impl
         // check books accessibility
         Boolean onlyShowAccessBook = prefs.getBoolean(context.getString(R.string.pref_key_show_accessible_book),true);
         mShowAllBookSwitch.setChecked(onlyShowAccessBook);
+
+        Boolean smartShowBooks = prefs.getBoolean(context.getString(R.string.pref_key_smart_display_book),true);
+        mSmartBookSwitch.setChecked(smartShowBooks);
         // bind
 
     }
@@ -138,6 +145,18 @@ public class bookDetailShowOptionFragment extends BottomSheetDialogFragment impl
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 editor.putBoolean(context.getString(R.string.pref_key_show_accessible_book),isChecked);
                 editor.apply();
+            }
+        });
+
+
+        mSmartBookSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                editor.putBoolean(getString(R.string.pref_key_smart_display_book),isChecked);
+                editor.apply();
+                if(isChecked){
+                    Toasty.info(context,getString(R.string.smart_book_status_display_demonstration), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -3,22 +3,16 @@ package com.kidozh.npuhelper;
 import android.Manifest;
 import android.annotation.SuppressLint;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -57,6 +51,7 @@ import com.kidozh.npuhelper.campusAddressBook.campusAddressBookMainActivity;
 import com.kidozh.npuhelper.campusLibrary.libraryPortalActivity;
 import com.kidozh.npuhelper.campusTransaction.RecentTransactionFragment;
 import com.kidozh.npuhelper.campusTransaction.TransactionHistoryActivity;
+import com.kidozh.npuhelper.physicalExercise.displayStadiumActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusNetworkUtils;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusUtils;
 import com.kidozh.npuhelper.preference.SettingsActivity;
@@ -67,14 +62,11 @@ import com.kidozh.npuhelper.utilities.locationUtils;
 import com.kidozh.npuhelper.weatherUtils.WeatherDetailActivity;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherDatabase;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherEntry;
-import com.kidozh.npuhelper.weatherUtils.caiyunWeatherUtils;
 import com.kidozh.npuhelper.campusBuildingLoc.campusBuildingPortalActivity;
 import com.kidozh.npuhelper.weatherUtils.weatherDataUtils;
 import com.kidozh.npuhelper.xianCityBus.cityBusPortalActivity;
-import com.kidozh.npuhelper.xianCityBus.suggestCityLocation;
 import com.kidozh.npuhelper.weatherUtils.miuiWeatherUtils;
 
-import org.apache.tools.ant.Main;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -82,10 +74,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -131,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
 
     private caiyunWeatherDatabase mDb;
 
-    @Nullable @BindView(R.id.toolbar) Toolbar toolbar;
+    @Nullable @BindView(R.id.stadium_toolbar) Toolbar toolbar;
 
     private String mRealTimeInfo;
 
@@ -423,6 +411,7 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         // transfer weather condition
 
         // get Drawable icon
+        Log.d(TAG,"Recv Weather is "+weatherCondition);
         Drawable weatherIcon = getDrawable((miuiWeatherUtils.getDrawableWeatherByString(weatherCondition)));
         mWeatherIcon.setImageDrawable(weatherIcon);
         mWeatherIcon.setColorFilter(getColor(R.color.colorPureWhite));
@@ -623,6 +612,12 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
         }
         else if (id == R.id.nav_library) {
             Intent intent = new Intent(this, libraryPortalActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        else if (id == R.id.nav_pe_department) {
+            Intent intent = new Intent(this, displayStadiumActivity.class);
             startActivity(intent);
             return true;
         }

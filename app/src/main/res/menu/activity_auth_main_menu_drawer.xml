@@ -27,7 +27,7 @@
 
             <item
                 android:id="@+id/nav_transaction"
-                android:icon="@drawable/vector_drawable_transaction"
+                android:icon="@drawable/vector_drawable_transcations_icon"
                 android:title="@string/transaction_label" />
             <item
                 android:id="@+id/nav_score"
@@ -37,6 +37,10 @@
                 android:id="@+id/nav_library"
                 android:icon="@drawable/vector_drawable_campus_library"
                 android:title="@string/campus_library" />
+            <item
+                android:id="@+id/nav_pe_department"
+                android:icon="@drawable/vector_drawable_pulse"
+                android:title="@string/physical_exercise_department" />
         </menu>
     </item>
     <item android:title="@string/city_service">

@@ -457,4 +457,19 @@
     <string name="not_limit_accessibility">显示所有可借和不可借书本</string>
     <string name="only_accessible_book_is_listed">仅显示可借书本</string>
     <string name="result_not_found">没有找到条目~</string>
+    <string name="smart_show_books">智能加载借阅信息</string>
+    <string name="smart_book_status_display_demonstration">借阅书本总条目少于5个时将无视过滤条件并直接显示</string>
+    <string name="smart_display_is_enabled">智能加载借阅信息已经生效，无视过滤条件，显示所有的书本信息</string>
+    <string name="pref_title_new_message_notifications">新消息提醒</string>
+    <string name="pref_title_ringtone">铃声</string>
+    <string name="pref_title_vibrate">振动</string>
+    <string name="pref_summary_accessible_book">不显示不可借的图书</string>
+    <string name="physical_exercise_department">体育场馆信息查询</string>
+    <string name="display_all_accessible_stadium">所有有信息的体育馆</string>
+    <string name="marked_stadium">已收藏的体育馆信息</string>
+    <string name="loading">加载中。。。</string>
+    <string name="stadium_long_press_to_mark">长按某条目以收藏或者取消收藏</string>
+    <string name="this_field_is_free">这个场地目前可以使用</string>
+    <string name="person_number_in_field_template">共 %s 人在使用此场地.</string>
+    <string name="flush_to_refresh">下拉以刷新本页面</string>
 </resources>

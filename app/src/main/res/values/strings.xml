@@ -707,6 +707,19 @@
     <string name="not_limit_accessibility">all books are listed</string>
     <string name="only_accessible_book_is_listed">only accessible book is listed</string>
     <string name="result_not_found">No Result Found</string>
-
+    <string name="smart_show_books">Show book smartly</string>
+    <string name="smart_book_status_display_demonstration">The number of booklist, less than 5, will not be filtered</string>
+    <string name="pref_key_smart_display_book">pref_key_smart_display_book</string>
+    <string name="smart_display_is_enabled">Smart display functions and all book items are listed.</string>
+    <string name="pref_summary_accessible_book">The unborrowable book will not be listed</string>
+    <string name="title_activity_display_stadium">displayStadiumActivity</string>
+    <string name="physical_exercise_department">Info of stadium in U.</string>
+    <string name="display_all_accessible_stadium">All stadium</string>
+    <string name="marked_stadium">Marked stadium</string>
+    <string name="loading">Loading...</string>
+    <string name="stadium_long_press_to_mark">Long press one item to mark it or quit marking it</string>
+    <string name="this_field_is_free">This field is accessible.</string>
+    <string name="person_number_in_field_template">Total %s people in this field.</string>
+    <string name="flush_to_refresh">Drop Down To Refresh</string>
 
 </resources>

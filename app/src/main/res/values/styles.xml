@@ -26,6 +26,16 @@
         <item name="cardViewStyle">@style/CardView</item>
     </style>
 
+    <style name="NPUAppTheme" parent="Theme.MaterialComponents">
+        <item name="colorPrimary">@color/colorPeterRiver</item>
+        <item name="colorPrimaryDark">@color/colorBelizahole</item>
+        <item name="colorAccent">@color/colorAlizarin</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
     <style name="WeatherText">
         <item name="android:textColor">@color/colorConcrete</item>
     </style>
@@ -49,9 +59,6 @@
     </style>
 
 
-
-
-
     <style name="cityBusEditTextStyle" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/colorPureWhite</item>
         <item name="colorControlNormal">@color/colorSilver</item>
@@ -70,7 +77,7 @@
     <style name="AppTheme.SettingActivity" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/colorPureWhite</item>
         <item name="colorPrimaryDark">@color/colorPureWhite</item>
-        <item name="colorAccent">@color/colorTurquoise</item>
+        <item name="colorAccent">@color/colorBelizahole</item>
         <item name="android:textColor">@color/colorPureBlack</item>
         <item name="android:textColorPrimary">@color/colorPureBlack</item>
     </style>

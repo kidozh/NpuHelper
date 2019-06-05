@@ -146,6 +146,12 @@ public class bookInfoDetailActivity extends AppCompatActivity implements bookDet
         Context context = this;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context) ;
         String selectLibraryCampus = prefs.getString(context.getString(R.string.pref_key_book_select_campus),"follow");
+
+        Boolean smartShowBook = prefs.getBoolean(getString(R.string.pref_key_smart_display_book),false);
+        if(smartShowBook && mList.size() <= 5){
+            return mList;
+        }
+
         String campus = "";
         if(selectLibraryCampus.equals("follow")){
             campus = prefs.getString(getString(R.string.pref_key_location_selection),"y");
@@ -258,6 +264,9 @@ public class bookInfoDetailActivity extends AppCompatActivity implements bookDet
             }
             mBookBorrowSearchFilterSize.setText(R.string.unknown);
             mBookBorrowSearchTotalSize.setText(R.string.unknown);
+
+            // get campus setting
+
         }
 
         @Override
@@ -289,6 +298,12 @@ public class bookInfoDetailActivity extends AppCompatActivity implements bookDet
                 // filter by setting
                 List<bookInfoUtils.bookBorrowStatus> filtered = filterBookInfoBySettings(bookBorrowStatusList);
                 Log.d(TAG,"Filtered Size "+filtered.size());
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                Boolean smartShowBook = prefs.getBoolean(getString(R.string.pref_key_smart_display_book),false);
+                if(smartShowBook && bookBorrowStatusList.size() <= 5){
+                    mBookBorrowSearchText.setText(R.string.smart_display_is_enabled);
+                }
+
                 adapter.bookBorrowStatusList = filtered;
                 mRecyclerView.setAdapter(adapter);
                 mBookBorrowSearchFilterSize.setText(String.format(Locale.getDefault(),"%d",filtered.size()));

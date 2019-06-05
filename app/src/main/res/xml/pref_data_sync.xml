@@ -39,7 +39,15 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="@string/pref_key_show_accessible_book"
+        android:summaryOn="@string/pref_summary_accessible_book"
         android:title="@string/show_access_book" />
+    <SwitchPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultValue="true"
+        android:key="@string/pref_key_smart_display_book"
+        android:summaryOn="@string/smart_book_status_display_demonstration"
+        android:title="@string/smart_show_books" />
     <Preference android:title="@string/pref_title_system_sync_settings">
         <intent android:action="android.settings.SYNC_SETTINGS" />
     </Preference>

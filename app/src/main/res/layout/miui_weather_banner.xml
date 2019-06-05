@@ -29,15 +29,7 @@
         android:textColor="#333333"
         android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/from_weather_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="霾"
-        android:textAlignment="center"
-        android:textColor="#333333"
-        android:textSize="12sp" />
+
 
     <ImageView
         android:id="@+id/from_weather_image"
@@ -46,6 +38,16 @@
         android:layout_margin="5dp"
 
         tools:srcCompat="@drawable/vector_drawable_weather_tornado" />
+
+    <TextView
+        android:id="@+id/from_weather_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="霾"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="18sp" />
 
     <cjh.weatherviewlibarary.WeatherView
         android:id="@+id/weatherView"
@@ -82,7 +84,7 @@
         android:text="霾"
         android:textAlignment="center"
         android:textColor="#333333"
-        android:textSize="12sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/to_weather_wind"

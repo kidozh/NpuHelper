@@ -87,16 +87,27 @@
             app:layout_constraintTop_toBottomOf="@+id/book_detail_option_chipGroup"
             app:theme="@style/book_option_switch" />
 
+        <Switch
+            android:id="@+id/book_detail_smart_show_all_book"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/smart_show_books"
+            app:layout_constraintEnd_toEndOf="@+id/book_detail_show_all_book"
+            app:layout_constraintStart_toStartOf="@+id/book_detail_show_all_book"
+            app:layout_constraintTop_toBottomOf="@+id/book_detail_show_all_book"
+            app:theme="@style/book_option_switch" />
+
         <Button
             android:id="@+id/book_detail_show_option_apply"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/apply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/book_detail_show_all_book"
             app:layout_constraintStart_toStartOf="@+id/book_detail_show_all_book"
-            app:layout_constraintTop_toBottomOf="@+id/book_detail_show_all_book" />
+            app:layout_constraintTop_toBottomOf="@+id/book_detail_smart_show_all_book" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -99,7 +99,7 @@ public class campusBuildingDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setActionBar();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.register_stadium_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

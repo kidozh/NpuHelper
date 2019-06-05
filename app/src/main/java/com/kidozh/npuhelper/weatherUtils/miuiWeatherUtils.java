@@ -73,7 +73,8 @@ public class miuiWeatherUtils {
         weather2drawable.put("35",R.drawable.vector_drawable_weather_light_haze);
         weather2drawable.put("MODERATE_HAZE",R.drawable.vector_drawable_weather_moderate_haze);
         weather2drawable.put("HEAVY_HAZE",R.drawable.vector_drawable_weather_heavy_haze);
-
+        weather2drawable.put("30",R.drawable.vector_drawable_weather_heavy_haze);
+        weather2drawable.put("31",R.drawable.vector_drawable_weather_moderate_haze);
         // rain
         weather2drawable.put("7",R.drawable.vector_drawable_weather_light_rain);
         weather2drawable.put("8",R.drawable.vector_drawable_weather_moderate_rain);

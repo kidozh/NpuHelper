@@ -22,7 +22,7 @@
             android:fitsSystemWindows="true"
             app:contentScrim="@color/colorNephritis"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            app:toolbarId="@+id/stadium_toolbar">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/campus_building_detail_toolbar"
@@ -37,7 +37,7 @@
     <include layout="@layout/content_campus_building_detail" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/register_stadium_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
