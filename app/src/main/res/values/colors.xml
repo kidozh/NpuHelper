@@ -14,7 +14,7 @@
     <color name="colorOrange">#F39C12</color>
     <color name="colorConcrete">#95A5A6</color>
     <color name="colorSilver">#BDC3C7</color>
-    <color name="colorAsbestos">#7f8c8d</color>
+    <color name="colorAsbestos">#7F8C8D</color>
     <color name="colorCloud">#ECF0F1</color>
     <color name="colorEmerland">#2ECC71</color>
     <color name="colorNephritis">#27AE60</color>
@@ -42,7 +42,7 @@
     <color name="userLoginedStatusBg">#BBDEFB</color>
     <color name="univeristyLogoColor">#004dff</color>
     <color name="colorStatusBarBg">@color/colorCloud</color>
-    <color name="colorPrimary">@color/colorStatusBarBg</color>
+    <color name="colorPrimary">@color/colorBelizahole</color>
 
     <color name="lightBackground">@color/colorEmerland</color>
     <color name="lightNotImportant">@color/colorSilver</color>

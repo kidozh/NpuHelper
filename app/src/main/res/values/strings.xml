@@ -721,5 +721,36 @@
     <string name="this_field_is_free">This field is accessible.</string>
     <string name="person_number_in_field_template">Total %s people in this field.</string>
     <string name="flush_to_refresh">Drop Down To Refresh</string>
+    <string name="npu_bbs">NPU BBS</string>
+    <string name="title_activity_bbs_forum_thread">bbsForumThreadActivity</string>
+    <string name="thread">Threads</string>
+    <string name="posts">Posts</string>
+    <string name="next_forum_page">More forum</string>
+    <string name="top_forum">TOP</string>
+    <string name="title_activity_bbs_show_thread">bbsShowThreadActivity</string>
+    <string name="bbs_thread_comment">Comment</string>
+    <string name="bbs_thread_say_something">Say something</string>
+    <string name="thread_format_template">Thread #%s</string>
+    <string name="thread_more_comments">More comments</string>
+    <string name="bbs_thread_publisher">Publisher</string>
+    <string name="bbs_personal_center">BBS Personal Center</string>
+    <string name="bbs_browse_failed">Fail to browse BBS\'s API, this is may be Internet crash or website maintaining.</string>
+    <string name="bbs_login_by_npu_portal">Login by NPU Portal</string>
+    <string name="bbs_thread_attachment">Attachment</string>
+    <string name="bbs_thread_attachment_template">Attachment #%d</string>
+    <string name="bbs_register_time_tag">Register Time</string>
+    <string name="bbs_notification_new_push">Push</string>
+    <string name="bbs_notification_new_pm">Message</string>
+    <string name="bbs_notification_prompt">Prompt</string>
+    <string name="bbs_notification_my_post">Post</string>
+    <string name="bbs_require_login">Please Login to Continue</string>
+    <string name="bbs_read_perm">Read Permission</string>
+    <string name="bbs_require_comment">No comment found</string>
+    <string name="bbs_comment_failed">Failed to comment</string>
+    <string name="bbs_comment_successfully">Comment successfully</string>
+    <string name="bbs_commentting">Commentting...</string>
+    <string name="bbs_require_login_to_comment">Login required</string>
+    <string name="bbs_thread_404">This thread may be no longer existed or under censored by the manager.</string>
+    <string name="title_activity_about_app">aboutAppActivity</string>
 
 </resources>

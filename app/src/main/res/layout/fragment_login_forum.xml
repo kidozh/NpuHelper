@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bbsService.loginForumFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/bbs_login_fragment_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/npu_bbs"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWetasphalt"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bbs_login_fragment_username_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/vector_drawable_matric_number"
+        app:layout_constraintBottom_toBottomOf="@+id/bbs_login_fragment_username_editText"
+        app:layout_constraintStart_toStartOf="@+id/bbs_login_fragment_title"
+        app:layout_constraintTop_toTopOf="@+id/bbs_login_fragment_username_editText" />
+
+    <EditText
+        android:id="@+id/bbs_login_fragment_username_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="@+id/bbs_login_fragment_title"
+        app:layout_constraintStart_toEndOf="@+id/bbs_login_fragment_username_icon"
+        app:layout_constraintTop_toBottomOf="@+id/bbs_login_fragment_title" />
+
+    <ImageView
+        android:id="@+id/bbs_login_fragment_password_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/vector_drawable_key"
+        app:layout_constraintBottom_toBottomOf="@+id/bbs_login_fragment_password_edittext"
+        app:layout_constraintStart_toStartOf="@+id/bbs_login_fragment_username_icon"
+        app:layout_constraintTop_toTopOf="@+id/bbs_login_fragment_password_edittext" />
+
+    <EditText
+        android:id="@+id/bbs_login_fragment_password_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="@+id/bbs_login_fragment_username_editText"
+        app:layout_constraintStart_toStartOf="@+id/bbs_login_fragment_username_editText"
+        app:layout_constraintTop_toBottomOf="@+id/bbs_login_fragment_username_editText" />
+
+    <Button
+        android:id="@+id/bbs_login_fragment_login_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPumpkin"
+        android:text="@string/sign_in_text"
+        app:layout_constraintEnd_toEndOf="@+id/bbs_login_fragment_password_edittext"
+        app:layout_constraintStart_toStartOf="@+id/bbs_login_fragment_password_icon"
+        app:layout_constraintTop_toBottomOf="@+id/bbs_login_fragment_password_edittext" />
+
+    <View
+        android:id="@+id/bbs_login_fragment_divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorConcrete"
+        app:layout_constraintEnd_toEndOf="@+id/bbs_login_fragment_login_btn"
+        app:layout_constraintStart_toStartOf="@+id/bbs_login_fragment_login_btn"
+        app:layout_constraintTop_toBottomOf="@+id/bbs_login_fragment_login_btn" />
+
+    <Button
+        android:id="@+id/bbs_login_fragment_login_by_official_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/bbs_login_by_npu_portal"
+        app:icon="@android:drawable/ic_lock_lock"
+        app:layout_constraintEnd_toEndOf="@+id/bbs_login_fragment_divider"
+        app:layout_constraintStart_toStartOf="@+id/bbs_login_fragment_divider"
+        app:layout_constraintTop_toBottomOf="@+id/bbs_login_fragment_divider" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

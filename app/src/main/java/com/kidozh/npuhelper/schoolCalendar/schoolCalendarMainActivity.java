@@ -8,12 +8,15 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -70,7 +73,7 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
     @BindView(R.id.recyclerView)
     GroupRecyclerView mRecyclerView;
     @BindView(R.id.fl_current)
-    FrameLayout backToCurTextView;
+    ConstraintLayout backToCurTextView;
     @BindView(R.id.tv_semester)
     TextView mSemesterTextView;
     @BindView(R.id.tv_week_number)
@@ -88,6 +91,8 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
     TextView mCalendarCardWeekNumberTextView;
     @BindView(R.id.calendar_card_scheme)
     TextView mCalendarCardScheme;
+    @BindView(R.id.tv_calendar_event_list)
+    ImageView mCalendarEventImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +152,7 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
 
             }
         });
-        backToCurTextView.setOnClickListener(new View.OnClickListener() {
+        mTextCurrentDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mCalendarView.isYearSelectLayoutVisible()){
@@ -228,10 +233,10 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
         mTextLunar.setVisibility(View.VISIBLE);
         mTextYear.setVisibility(View.VISIBLE);
         if(calendar.isCurrentDay()){
-            backToCurTextView.setVisibility(View.GONE);
+            mTextCurrentDay.setVisibility(View.GONE);
         }
         else {
-            backToCurTextView.setVisibility(View.VISIBLE);
+            mTextCurrentDay.setVisibility(View.VISIBLE);
         }
 
         if(lastMonth != calendar.getMonth()){

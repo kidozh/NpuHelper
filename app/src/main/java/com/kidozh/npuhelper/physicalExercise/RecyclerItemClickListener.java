@@ -7,7 +7,11 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kidozh.npuhelper.bbsService.bbsShowThreadActivity;
+
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
+
+
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
 

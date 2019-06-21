@@ -28,21 +28,29 @@
                 android:layout_marginEnd="8dp"
                 android:text="@string/marked_stadium"
                 android:textColor="?attr/colorPrimary"
-                app:layout_constraintEnd_toEndOf="@+id/stadium_recyclerview"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/marked_stadium_recyclerview"
+            <LinearLayout
+                android:id="@+id/marked_stadium_linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:orientation="vertical"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mark_stadium_textview"
-                tools:itemCount="1"
-                tools:listitem="@layout/item_stadium_info" />
+                app:layout_constraintTop_toBottomOf="@+id/mark_stadium_textview">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/marked_stadium_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_stadium_info" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/all_stadium_textview"
@@ -53,22 +61,29 @@
                 android:text="@string/display_all_accessible_stadium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/marked_stadium_recyclerview" />
+                app:layout_constraintTop_toBottomOf="@+id/marked_stadium_linearLayout" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stadium_recyclerview"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/stadium_linearLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/all_stadium_textview"
-                tools:itemCount="1"
-                tools:listitem="@layout/item_stadium_info">
+                app:layout_constraintTop_toBottomOf="@+id/all_stadium_textview">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/stadium_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_stadium_info">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/stadium_long_press_notification"
@@ -80,7 +95,7 @@
                 android:text="@string/stadium_long_press_to_mark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stadium_recyclerview" />
+                app:layout_constraintTop_toBottomOf="@+id/stadium_linearLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

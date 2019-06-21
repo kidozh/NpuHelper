@@ -19,7 +19,7 @@
         >
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
+            android:id="@+id/bbs_portal_appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorCityBusActionBar"

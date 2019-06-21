@@ -17,8 +17,30 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".physicalExercise.displayFieldAccessbilityActivity"
-                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".aboutApp.aboutAppActivity"
+            android:label="@string/title_activity_about_app"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".bbsService.bbsPersonalInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".bbsService.bbsLoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".bbsService.bbsShowThreadActivity"
+            android:label="@string/title_activity_bbs_show_thread"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".bbsService.bbsForumThreadActivity"
+            android:label="@string/title_activity_bbs_forum_thread"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".bbsService.bbsShowPortalActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".physicalExercise.displayFieldAccessbilityActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".physicalExercise.displayStadiumActivity"
             android:label="@string/title_activity_display_stadium"

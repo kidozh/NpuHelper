@@ -47,6 +47,7 @@ import com.kidozh.npuhelper.accountAuth.LoginUniversityActivity;
 import com.kidozh.npuhelper.accountAuth.accountInfoBean;
 import com.kidozh.npuhelper.accountAuth.loginUtils;
 import com.kidozh.npuhelper.accountAuth.personalInfoDisplayActivity;
+import com.kidozh.npuhelper.bbsService.bbsShowPortalActivity;
 import com.kidozh.npuhelper.campusAddressBook.campusAddressBookMainActivity;
 import com.kidozh.npuhelper.campusLibrary.libraryPortalActivity;
 import com.kidozh.npuhelper.campusTransaction.RecentTransactionFragment;
@@ -618,6 +619,12 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
 
         else if (id == R.id.nav_pe_department) {
             Intent intent = new Intent(this, displayStadiumActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        else if (id == R.id.nav_npu_bbs) {
+            Intent intent = new Intent(this, bbsShowPortalActivity.class);
             startActivity(intent);
             return true;
         }

@@ -41,6 +41,11 @@
                 android:id="@+id/nav_pe_department"
                 android:icon="@drawable/vector_drawable_pulse"
                 android:title="@string/physical_exercise_department" />
+            <item
+                android:id="@+id/nav_npu_bbs"
+                android:icon="@drawable/vector_drawable_bbs"
+                android:title="@string/npu_bbs" />
+
         </menu>
     </item>
     <item android:title="@string/city_service">
