@@ -43,6 +43,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.kidozh.npuhelper.aboutApp.aboutAppActivity;
 import com.kidozh.npuhelper.accountAuth.LoginUniversityActivity;
 import com.kidozh.npuhelper.accountAuth.accountInfoBean;
 import com.kidozh.npuhelper.accountAuth.loginUtils;
@@ -625,6 +627,12 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
 
         else if (id == R.id.nav_npu_bbs) {
             Intent intent = new Intent(this, bbsShowPortalActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        else if (id == R.id.nav_about_app) {
+            Intent intent = new Intent(this, aboutAppActivity.class);
             startActivity(intent);
             return true;
         }

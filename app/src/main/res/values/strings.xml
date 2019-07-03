@@ -752,5 +752,16 @@
     <string name="bbs_require_login_to_comment">Login required</string>
     <string name="bbs_thread_404">This thread may be no longer existed or under censored by the manager.</string>
     <string name="title_activity_about_app">aboutAppActivity</string>
+    <string name="about_app">About App</string>
+    <string name="about_app_version">App Version</string>
+    <string name="about_app_latest_version">Latest Version</string>
+    <string name="about_app_developer">Developer</string>
+    <string name="about_app_project_on_github">The Project on Github</string>
+    <string name="app_services">App Services</string>
+    <string name="about_app_is_latest_version">This app is up-to-date.</string>
+    <string name="about_app_update_title_template">Update to %s</string>
+    <string name="about_app_latest_version_description_null">No description given by developer</string>
+    <string name="about_app_install_failed">Failed to update app</string>
+    <string name="about_app_update_by_broswer">Download and update app by broswer</string>
 
 </resources>
