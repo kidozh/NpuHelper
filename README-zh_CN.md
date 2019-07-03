@@ -1,5 +1,7 @@
 # 瓜大助手
 
+![NPUHelper Logo](./NPU_Helper_banner.svg)
+
 瓜大的百科全书
 
 [English Introduction](/README.md)

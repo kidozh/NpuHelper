@@ -1,5 +1,7 @@
 # NpuHelper
 
+![NPUHelper Logo](./NPU_Helper_banner.svg)
+
 Your encyclopedia in NPU (in Xi'an, Shaanxi province, China.)
 
 [中文介绍](/README-zh_CN.md)
@@ -13,6 +15,7 @@ Your encyclopedia in NPU (in Xi'an, Shaanxi province, China.)
 + address book of all the NPU department
 + library services
 + campus card services
++ BBS services
 
 # Support
 
