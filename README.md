@@ -1,4 +1,4 @@
-# NpuHelper
+# NPUHelper
 
 ![NPUHelper Logo](./NPU_Helper_banner.svg)
 
