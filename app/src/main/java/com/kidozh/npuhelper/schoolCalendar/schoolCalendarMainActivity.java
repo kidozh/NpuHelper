@@ -24,6 +24,7 @@ import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
 import com.kidozh.npuhelper.R;
+import com.kidozh.npuhelper.utilities.cacheDataUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -350,6 +351,24 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
             isCalendarFinished = false;
             mSemesterTextView.setVisibility(View.INVISIBLE);
             mWeekNumberTextView.setVisibility(View.INVISIBLE);
+
+            mSemesterTextView.setVisibility(View.VISIBLE);
+            mWeekNumberTextView.setVisibility(View.VISIBLE);
+            String s = cacheDataUtils.getCalendarCacheData();
+            Log.d(TAG,"Finished Cache load "+s);
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                calendarJSONObj = jsonObject;
+                isCalendarFinished = true;
+                labelOnSpecialDay(jsonObject);
+                mCalendarView.setSchemeDate(calendarHolidayMap);
+                showSemesterInfo(mCalendarView.getCurYear(),mCalendarView.getCurMonth(),mCalendarView.getCurDay());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+
+            }
+
 
 
         }

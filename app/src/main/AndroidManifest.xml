@@ -10,9 +10,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/vector_drawable_npu_helper_logo"
+        android:icon="@mipmap/npu_helper_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/npu_helper_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
@@ -20,7 +20,7 @@
         <activity
             android:name=".aboutApp.aboutAppActivity"
             android:label="@string/title_activity_about_app"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".bbsService.bbsPersonalInfoActivity"
             android:theme="@style/AppTheme.NoActionBar" />

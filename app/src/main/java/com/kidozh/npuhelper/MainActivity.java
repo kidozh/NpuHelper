@@ -61,6 +61,7 @@ import com.kidozh.npuhelper.preference.SettingsActivity;
 import com.kidozh.npuhelper.schoolBusUtils.schoolBusListActivity;
 import com.kidozh.npuhelper.schoolCalendar.schoolCalendarMainActivity;
 import com.kidozh.npuhelper.scoreQuery.queryScoreMainActivity;
+import com.kidozh.npuhelper.utilities.cacheDataUtils;
 import com.kidozh.npuhelper.utilities.locationUtils;
 import com.kidozh.npuhelper.weatherUtils.WeatherDetailActivity;
 import com.kidozh.npuhelper.weatherUtils.caiyunWeatherDatabase;
@@ -688,6 +689,24 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
             request = new Request.Builder()
                     .url(mApiUrl)
                     .build();
+            // get data from cache
+            try {
+                String s = cacheDataUtils.getCalendarCacheData();
+                Log.d(TAG,"Get cache data "+s);
+                JSONObject jsonObject = new JSONObject(s);
+
+                String festival = schoolBusUtils.handleApiJson(jsonObject);
+                Log.d(TAG,"CACHE Detect festival : "+festival+" isFestival "+schoolBusUtils.isFestivalHoliday+" isWorkday "+schoolBusUtils.isFestivalWorkDay);
+
+                if(festival.length()!=0){
+                    displaySchoolBus(mContext);
+                }
+
+            } catch (JSONException e) {
+                Log.d(TAG,"Wrong JSON : ");
+                e.printStackTrace();
+            }
+
         }
 
         @Override

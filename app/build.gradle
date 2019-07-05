@@ -9,8 +9,8 @@ android {
         applicationId "com.kidozh.npuhelper"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 7
-        versionName "2.5.0"
+        versionCode 8
+        versionName "2.5.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

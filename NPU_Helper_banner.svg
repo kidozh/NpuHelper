@@ -35,7 +35,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.39311978"
-     inkscape:cx="832.84794"
+     inkscape:cx="798.50726"
      inkscape:cy="344.05976"
      inkscape:document-units="pt"
      inkscape:current-layer="layer5"
@@ -59,7 +59,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -78,6 +78,18 @@
        id="layer5"
        inkscape:label="red"
        style="display:inline">
+      <circle
+         style="fill:#ff5722;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="circle1186"
+         cx="421.7619"
+         cy="247.5578"
+         r="52.916668" />
+      <circle
+         r="52.916668"
+         cy="181.46135"
+         cx="398.5498"
+         id="circle1188"
+         style="fill:#16a085;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
       <g
          id="g1176"
          transform="matrix(0.60000062,0,0,0.60000062,151.69449,41.188672)">
@@ -165,12 +177,6 @@
            id="path1222" />
       </g>
       <circle
-         style="fill:#e74c3c;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
-         id="circle1186"
-         cx="432.87457"
-         cy="255.49519"
-         r="52.916668" />
-      <circle
          style="fill:#2c3e50;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
          id="path1182"
          cx="369.7493"
@@ -183,24 +189,18 @@
          id="circle1184"
          style="fill:#2980b9;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
       <circle
-         r="52.916668"
-         cy="181.46135"
-         cx="398.5498"
-         id="circle1188"
-         style="fill:#16a085;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
-      <circle
          style="fill:#27ae60;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
          id="circle1196"
-         cx="268.55344"
-         cy="39.683414"
+         cx="276.62985"
+         cy="43.048588"
          r="52.916668"
          transform="rotate(90)" />
       <circle
          r="52.916668"
-         cy="54.020061"
-         cx="196.4232"
+         cy="52.673992"
+         cx="209.21086"
          id="circle1190"
-         style="fill:#e67e22;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         style="fill:#3f51b5;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
          transform="rotate(90)" />
       <circle
          style="fill:#8e44ad;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
@@ -211,8 +211,8 @@
          transform="rotate(90)" />
       <circle
          r="70.555557"
-         cy="-1.4906908"
-         cx="133.25002"
+         cy="7.9317985"
+         cx="135.94215"
          id="circle1192"
          style="fill:#7f8c8d;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
          transform="rotate(90)" />
