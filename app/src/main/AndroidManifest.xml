@@ -17,10 +17,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".bbsService.bbsPostThreadActivity"
+
+            />
         <activity
             android:name=".aboutApp.aboutAppActivity"
             android:label="@string/title_activity_about_app"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            />
         <activity
             android:name=".bbsService.bbsPersonalInfoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -72,7 +75,7 @@
         <activity
             android:name=".preference.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.SettingActivity" />
+             />
         <activity
             android:name=".weatherUtils.WeatherDetailActivity"
             android:label="@string/title_activity_weather_detail"

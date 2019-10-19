@@ -23,11 +23,11 @@
 
     <Button
         android:id="@+id/auth_status_btn"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        android:background="@color/authStatusBg"
+        android:background="@color/colorButtonBackground"
+        android:backgroundTint="@color/colorButtonBackground"
         android:elevation="0dp"
         android:fontFamily="@font/open_sans"
         android:paddingTop="0dp"
@@ -35,7 +35,6 @@
         android:text="@string/title_activity_login_university"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/colorCloud"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/login_status_imageView"
         app:layout_constraintEnd_toEndOf="@+id/login_status_imageView"

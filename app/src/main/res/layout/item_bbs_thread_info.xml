@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/colorWetasphalt"
+                android:textColor="@color/colorTextDefault"
                 app:layout_constraintStart_toEndOf="@+id/bbs_thread_avatar_imageView"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@tools:sample/full_names" />
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorBelizahole"
                 android:padding="4dp"
                 android:textColor="@color/colorCloud"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -575,8 +575,8 @@ public class bbsShowThreadActivity extends AppCompatActivity {
 
     private void configureToolbar(){
         setSupportActionBar(toolbar);
-        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setTitle(subject);

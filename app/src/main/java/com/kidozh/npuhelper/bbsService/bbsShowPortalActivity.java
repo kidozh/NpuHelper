@@ -69,10 +69,11 @@ public class bbsShowPortalActivity extends AppCompatActivity {
     private void configureToolbar(){
         toolbar.setTitle(getString(R.string.npu_bbs));
         setSupportActionBar(toolbar);
-        getWindow().setStatusBarColor(getColor(R.color.colorCloud));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        getWindow().setStatusBarColor(getColor(R.color.colorCloud));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
     }
 
     private void configurePortalRecyclerview(){
@@ -169,6 +170,7 @@ public class bbsShowPortalActivity extends AppCompatActivity {
             this.finish();
             return false;
         }
+
         else {
             return super.onOptionsItemSelected(item);
         }

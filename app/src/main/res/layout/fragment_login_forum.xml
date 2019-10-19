@@ -69,9 +69,11 @@
     <Button
         android:id="@+id/bbs_login_fragment_login_btn"
         android:layout_width="0dp"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@color/colorPumpkin"
+        android:background="@color/colorButtonBackground"
+        android:backgroundTint="@color/colorButtonBackground"
         android:text="@string/sign_in_text"
         app:layout_constraintEnd_toEndOf="@+id/bbs_login_fragment_password_edittext"
         app:layout_constraintStart_toStartOf="@+id/bbs_login_fragment_password_icon"
@@ -92,6 +94,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@color/colorButtonBackground"
+        android:backgroundTint="@color/colorButtonBackground"
         android:text="@string/bbs_login_by_npu_portal"
         app:icon="@android:drawable/ic_lock_lock"
         app:layout_constraintEnd_toEndOf="@+id/bbs_login_fragment_divider"

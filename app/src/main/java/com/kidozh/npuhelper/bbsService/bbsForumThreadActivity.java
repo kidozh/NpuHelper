@@ -31,12 +31,14 @@ import com.kidozh.npuhelper.R;
 import com.kidozh.npuhelper.campusLibrary.librarySearchBookFragment;
 import com.kidozh.npuhelper.schoolCalendar.TrustAllCerts;
 import com.kidozh.npuhelper.schoolCalendar.TrustAllHostnameVerifier;
+import com.kidozh.npuhelper.utilities.okHttpUtils;
 
 import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -71,6 +73,7 @@ public class bbsForumThreadActivity extends AppCompatActivity {
     private bbsForumThreadAdapter adapter;
     boolean isTaskRunning;
     String fid;
+    String returned_res_json;
 
     private int page = 1;
 
@@ -93,6 +96,14 @@ public class bbsForumThreadActivity extends AppCompatActivity {
 
 
         new getThreadInfoTask(this).execute();
+        configurePostThreadBtn();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        page = 1;
+        new getThreadInfoTask(this).execute();
     }
 
     private void configureSwipeRefreshLayout(){
@@ -106,14 +117,47 @@ public class bbsForumThreadActivity extends AppCompatActivity {
         });
     }
 
+    private void configurePostThreadBtn(){
+        Context context = getApplicationContext();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(returned_res_json != null){
+                    bbsUtils.bbsPersonInfo bbsPersonInfo = bbsUtils.parsePersonInfo(returned_res_json);
+                    if(bbsPersonInfo!=null && bbsPersonInfo.isValid()){
+                        Intent intent = new Intent(getApplicationContext(),bbsPostThreadActivity.class);
+                        intent.putExtra("fid",fid);
+                        intent.putExtra("fid_name",forum.name);
+                        Log.d(TAG,"You pass fid name"+forum.name);
+                        intent.putExtra("api_result",returned_res_json);
+                        startActivity(intent);
+                    }
+                    else {
+                        Toasty.info(context,getApplicationContext().getString(R.string.bbs_require_login), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(context, bbsLoginActivity.class);
+                        startActivity(intent);
+                    }
+                }
+                else {
+                    Toasty.info(context,getApplicationContext().getString(R.string.bbs_loading_api), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(context, bbsLoginActivity.class);
+                    startActivity(intent);
+                }
+
+
+
+            }
+        });
+    }
+
     private void configureClient(){
-        client = getUnsafeOkHttpClient();
+        client = okHttpUtils.getUnsafeOkHttpClientWithCookieJar(this);
     }
 
     private void configureActionBar(){
         setSupportActionBar(toolbar);
-        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mToolbarTextview.setText(forum.name);
@@ -194,6 +238,7 @@ public class bbsForumThreadActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            returned_res_json = s;
             swipeRefreshLayout.setRefreshing(false);
             List<bbsUtils.threadInfo> threadInfoList;
             if (page == 1 || page == 0){
@@ -214,8 +259,16 @@ public class bbsForumThreadActivity extends AppCompatActivity {
                 }
 
             }
-            SpannableString spannableString = new SpannableString(Html.fromHtml(bbsUtils.getThreadRuleString(s)));
-            mForumAlert.setText(spannableString, TextView.BufferType.SPANNABLE);
+            if (bbsUtils.getThreadRuleString(s).equals("")){
+                SpannableString spannableString = new SpannableString(Html.fromHtml(bbsUtils.getThreadDescriptionString(s)));
+                mForumAlert.setText(spannableString, TextView.BufferType.SPANNABLE);
+            }
+            else {
+                SpannableString spannableString = new SpannableString(Html.fromHtml(bbsUtils.getThreadRuleString(s)));
+                mForumAlert.setText(spannableString, TextView.BufferType.SPANNABLE);
+            }
+
+
             page += 1;
             isTaskRunning = false;
         }

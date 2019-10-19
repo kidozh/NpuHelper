@@ -43,7 +43,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/open_sans"
-                android:textColor="@color/colorMidnightblue"
+                android:textColor="@color/colorTextDefault"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +78,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="@color/colorPureBlack"
+                android:textColor="@color/colorTextDefault"
                 app:layout_constraintEnd_toEndOf="@+id/item_book_title"
                 app:layout_constraintTop_toTopOf="@+id/item_book_author"
                 tools:text="2018.9" />

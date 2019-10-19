@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
+
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
@@ -45,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:singleLine="false"
-                    android:textColor="#333333"
+                    android:textColor="@color/colorTextDefault"
                     android:textSize="24sp"
                     tools:text="马德克群岛发生5.7级地震 震源深度10千米" />
 

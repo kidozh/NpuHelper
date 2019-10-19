@@ -73,8 +73,8 @@ public class libraryPortalActivity extends AppCompatActivity implements
     }
 
     private void configureStatusBar(){
-        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     private void setActionBar(){
@@ -82,8 +82,8 @@ public class libraryPortalActivity extends AppCompatActivity implements
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
-        getSupportActionBar().setBackgroundDrawable(drawable);
+//        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
+//        getSupportActionBar().setBackgroundDrawable(drawable);
         getSupportActionBar().setTitle(R.string.campus_library);
     }
 

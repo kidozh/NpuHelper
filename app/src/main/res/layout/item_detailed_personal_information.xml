@@ -53,7 +53,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/lato"
                 android:textAllCaps="false"
-                android:textColor="@color/colorMidnightblue"
+                android:textColor="@color/colorTextDefault"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

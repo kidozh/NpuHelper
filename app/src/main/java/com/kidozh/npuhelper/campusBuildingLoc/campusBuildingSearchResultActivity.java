@@ -80,16 +80,16 @@ public class campusBuildingSearchResultActivity extends AppCompatActivity {
     }
 
     private void configureStatusBar(){
-        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     private void setActionBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
-        getSupportActionBar().setBackgroundDrawable(drawable);
+//        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
+//        getSupportActionBar().setBackgroundDrawable(drawable);
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -121,7 +121,7 @@ public class campusBuildingSearchResultActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            mLocationSearchResultProgressBar.setVisibility(View.INVISIBLE);
+            mLocationSearchResultProgressBar.setVisibility(View.GONE);
             mAdapter.setCampusBuildingInfoEntityList(campusBuildingInfoEntityList);
             mLocationSearchResultRecyclerView.setAdapter(mAdapter);
 

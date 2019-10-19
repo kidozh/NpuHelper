@@ -28,8 +28,8 @@ import okhttp3.Response;
 public class aboutAppActivity extends AppCompatActivity {
     private String TAG = aboutAppActivity.class.getSimpleName();
 
-    @BindView(R.id.about_app_toolbar)
-    Toolbar toolbar;
+//    @BindView(R.id.about_app_toolbar)
+//    Toolbar toolbar;
     @BindView(R.id.about_app_info_recyclerview)
     RecyclerView mRecyclerview;
     @BindView(R.id.about_app_progressBar)
@@ -53,9 +53,9 @@ public class aboutAppActivity extends AppCompatActivity {
 
     private void configureToolbar(){
 
-        setSupportActionBar(toolbar);
-        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        setSupportActionBar(toolbar);
+//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.about_app));

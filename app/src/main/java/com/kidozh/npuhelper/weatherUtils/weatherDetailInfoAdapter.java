@@ -48,25 +48,25 @@ public class weatherDetailInfoAdapter extends RecyclerView.Adapter<weatherDetail
         if (weatherDetailInfo.isAlerted){
             // force dark mode
             holder.mWeatherCardView.setBackgroundColor(mContext.getColor(R.color.colorPumpkin));
-            holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorPureWhite));
-            holder.mWeatherValue.setTextColor(mContext.getColor(R.color.colorPureWhite));
-            holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorPureWhite));
-            holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorTextPureWhite));
+            holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorTextDefault));
+            holder.mWeatherValue.setTextColor(mContext.getColor(R.color.colorTextDefault));
+            holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorTextDefault));
+            holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorBackgroundDefault));
         }
         else{
             if(weatherDetailInfo.isDarkMode){
-                holder.mWeatherCardView.setBackgroundColor(mContext.getColor(primaryColor));
-                holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorTextPureWhite));
-                holder.mWeatherValue.setTextColor(mContext.getColor(R.color.colorPureWhite));
-                holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorPureWhite));
-                holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorTextPureWhite));
+                //holder.mWeatherCardView.setBackgroundColor(mContext.getColor(primaryColor));
+                holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorBackgroundDefault));
+                holder.mWeatherValue.setTextColor(mContext.getColor(R.color.colorTextDefault));
+                holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorTextDefault));
+                holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorBackgroundDefault));
             }
             else {
-                holder.mWeatherCardView.setBackgroundColor(mContext.getColor(R.color.colorPureWhite));
-                holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorTextPureBlack));
+                //holder.mWeatherCardView.setBackgroundColor(mContext.getColor(R.color.colorTextDefault));
+                holder.mWeatherTitle.setTextColor(mContext.getColor(R.color.colorTextDefault));
                 holder.mWeatherValue.setTextColor(mContext.getColor(primaryColor));
-                holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorPureBlack));
-                holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorTextPureBlack));
+                holder.mWeatherDiscribe.setTextColor(mContext.getColor(R.color.colorTextDefault));
+                holder.mWeatherExtra.setTextColor(mContext.getColor(R.color.colorTextDefault));
             }
         }
 

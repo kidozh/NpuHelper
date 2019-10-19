@@ -57,6 +57,8 @@ public class WeatherDetailActivity extends AppCompatActivity {
     TextView mDetailedWeatherWindSpeed;
     @BindView(R.id.detailed_weather_wind_direction)
     TextView mDetailedWeatherWindDirection;
+    @BindView(R.id.detailed_weather_wind_icon)
+    ImageView mDetailedWeatherWindIcon;
 //    @BindView(R.id.weather_recyler_view)
 //    RecyclerView mRecyclerview;
     @BindView(R.id.weather_detail_total_cardView)
@@ -147,6 +149,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
             mDetailedWeatherTempNum.setText(String.format("%s",intLocalTemperature));
             mDetailedWeatherIcon.setImageDrawable(getDrawable(miuiWeatherUtils.getDrawableWeatherByString(weatherCondition)));
             mDetailedWeatherIcon.setColorFilter(getColor(R.color.colorPureWhite));
+            mDetailedWeatherWindIcon.setColorFilter(getColor(R.color.colorPureWhite));
             mDetailedWeatherDescription.setText(miuiWeatherUtils.getWeatherTextByString(weatherCondition));
             // wind
             JSONObject windCondition = weatherResult.getJSONObject("wind");

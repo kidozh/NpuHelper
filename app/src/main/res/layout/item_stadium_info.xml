@@ -40,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Areaname"
-                android:textColor="?attr/colorPrimary"
                 app:layout_constraintStart_toEndOf="@+id/stadium_type_imageview"
                 app:layout_constraintTop_toTopOf="@+id/stadium_type_imageview" />
 

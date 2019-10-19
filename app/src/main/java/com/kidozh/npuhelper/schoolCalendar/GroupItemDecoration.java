@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.kidozh.npuhelper.R;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,12 +39,12 @@ public class GroupItemDecoration<Group, Child> extends RecyclerView.ItemDecorati
 
     private void init() {
         mBackgroundPaint = new Paint();
-        mBackgroundPaint.setColor(0xFFf5f7f8);
+        mBackgroundPaint.setColor(R.color.colorBackgroundDefault);
         mBackgroundPaint.setStyle(Paint.Style.FILL);
         mBackgroundPaint.setAntiAlias(true);
 
         mTextPaint = new Paint();
-        mTextPaint.setColor(0xFF353535);
+        mTextPaint.setColor(R.color.colorBackgroundDefault);
         mTextPaint.setAntiAlias(true);
     }
 

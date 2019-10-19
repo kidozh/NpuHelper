@@ -52,7 +52,7 @@ public class bbsUtils {
     }
 
     public static String getLoginUrl(){
-        return "https://bbs.nwpu.edu.cn/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1";
+        return BASE_URL + "/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1";
         //return "https://bbs.nwpu.edu.cn/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1";
     }
 
@@ -62,6 +62,10 @@ public class bbsUtils {
 
     public static String getUserThreadUrl(int page){
         return BASE_URL + String.format("/api/mobile/index.php?version=4&module=mythread&page=%s",page);
+    }
+
+    public static String getNewThreadUrl(int fid){
+        return BASE_URL + String.format("/api/mobile/index.php?module=newthread&fid=%s&mobile=2&version=4",fid);
     }
 
 
@@ -83,7 +87,21 @@ public class bbsUtils {
     }
 
     public static String getAttachmentImageUrl(String s){
-        return "https://bbs.nwpu.edu.cn/data/attachment/forum/"+s;
+        return BASE_URL +"/data/attachment/forum/"+s;
+    }
+
+    public static String getUploadImageUrl() {
+        return BASE_URL + "/misc.php?mod=swfupload&operation=upload&simple=1&type=image";
+    }
+
+    public static String getCheckPostUrl(){
+        return BASE_URL + "/api/mobile/index.php?version=4&module=checkpost";
+    }
+
+
+
+    public static String getPostThreadUrl(String fid){
+        return BASE_URL+"/api/mobile/index.php?version=4&module=newthread&fid=" + fid ;
     }
 
     public static String ajaxGetReplyPostParametersUrl(String tid, String pid){
@@ -225,7 +243,7 @@ public class bbsUtils {
         public String author,authorId;
         public String subject;
         public Date publishAt,UpdateAt;
-        public String lastUpdator;
+        public String lastUpdator, lastUpdateTimeString;
         public String viewNum,repliesNum;
         public Boolean isTop = false;
         public List<shortReplyInfo> shortReplyInfoList;
@@ -253,6 +271,67 @@ public class bbsUtils {
             return null;
         }
     }
+
+    public static String getThreadDescriptionString(String s){
+        try{
+            JSONObject jsonObject = new JSONObject(s);
+            JSONObject variables = jsonObject.getJSONObject("Variables");
+            JSONObject forumInfo = variables.getJSONObject("forum");
+
+            return forumInfo.optString("description","");
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Map<String,String> getThreadTypeMapper(String s){
+        try{
+            Map<String,String> mapper = new HashMap<>();
+            JSONObject jsonObject = new JSONObject(s);
+            JSONObject variables = jsonObject.getJSONObject("Variables");
+            JSONObject forumTypeInfo = variables.getJSONObject("threadtypes");
+            JSONObject forumTypes = forumTypeInfo.getJSONObject("types");
+            Iterator<String> iterator = forumTypes.keys();
+            while (iterator.hasNext()){
+                String numKey = iterator.next();
+                String threadName = forumTypes.getString(numKey);
+                mapper.put(numKey,threadName);
+            }
+            return mapper;
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static List<String> getThreadTypeList(String s){
+        try{
+            List<String> numKeys = new ArrayList<>();
+            JSONObject jsonObject = new JSONObject(s);
+            JSONObject variables = jsonObject.getJSONObject("Variables");
+            JSONObject forumTypeInfo = variables.getJSONObject("threadtypes");
+            JSONObject forumTypes = forumTypeInfo.getJSONObject("types");
+            Iterator<String> iterator = forumTypes.keys();
+            while (iterator.hasNext()){
+                String numKey = iterator.next();
+                String threadName = forumTypes.getString(numKey);
+                numKeys.add(numKey);
+            }
+            return numKeys;
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 
     public static List<threadInfo> parseThreadListInfo(String s,Boolean isFirst){
         try{
@@ -286,6 +365,7 @@ public class bbsUtils {
                 thread.viewNum = viewNum;
                 thread.repliesNum = replyNum;
                 thread.publishAt = new Timestamp(Long.parseLong(publishAtStringTimestamp)*1000);
+                thread.lastUpdateTimeString = updateAtString;
                 if(!displayOrder.equals("0")){
                     thread.isTop = true;
                 }
@@ -326,11 +406,24 @@ public class bbsUtils {
         }
     }
 
+    public static String parseUploadHashString(String s){
+        try{
+            JSONObject jsonObject = new JSONObject(s);
+            JSONObject variables = jsonObject.getJSONObject("Variables");
+            JSONObject allowperm = variables.getJSONObject("allowperm");
+            return allowperm.getString("uploadhash");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static class threadCommentInfo{
         public String tid,pid;
         public Boolean first = false;
         public String author,authorId;
-        public String message;
+        public String message,lastPost;
         public Date publishAt;
         public List<attachmentInfo> attachmentInfoList;
 
@@ -341,6 +434,17 @@ public class bbsUtils {
             this.authorId = authorId;
             this.message = message;
             this.publishAt = publishAt;
+            this.lastPost = null;
+        }
+
+        threadCommentInfo(String tid,String pid,String author,String authorId, String message,Date publishAt, String lastPost){
+            this.tid = tid;
+            this.pid = pid;
+            this.author = author;
+            this.authorId = authorId;
+            this.message = message;
+            this.publishAt = publishAt;
+            this.lastPost = lastPost;
         }
 
     }
@@ -350,6 +454,28 @@ public class bbsUtils {
             JSONObject jsonObject = new JSONObject(s);
             JSONObject variables = jsonObject.getJSONObject("Variables");
             return variables.getString("formhash");
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
+    public static Boolean isPostThreadSuccessful(String s){
+        try{
+            JSONObject jsonObject = new JSONObject(s);
+            JSONObject message = jsonObject.getJSONObject("Message");
+            return message.getString("messageval") == "post_newthread_succeed";
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    public static String parsePostThreadInfo(String s){
+        try{
+            JSONObject jsonObject = new JSONObject(s);
+            JSONObject message = jsonObject.getJSONObject("Message");
+            return message.getString("messagestr");
         }
         catch (Exception e){
             return null;
@@ -371,8 +497,9 @@ public class bbsUtils {
                 String authorId = threadObj.getString("authorid");
                 String message = threadObj.getString("message");
                 String publishAtStringTimestamp = threadObj.getString("dbdateline");
+                String lastPostTimeString = threadObj.getString("dateline");
                 Date publishAt = new Timestamp(Long.parseLong(publishAtStringTimestamp)*1000);
-                threadCommentInfo threadComment = new threadCommentInfo(tid,pid,author,authorId,message,publishAt);
+                threadCommentInfo threadComment = new threadCommentInfo(tid,pid,author,authorId,message,publishAt,lastPostTimeString);
                 if(firstString.equals("1")){
                     threadComment.first = true;
                 }
@@ -486,6 +613,10 @@ public class bbsUtils {
             this.uid = uid;
             this.username = username;
             this.readPerm = readPerm;
+        }
+
+        public boolean isValid(){
+            return this.auth !=null && (!this.auth.equals("null"));
         }
     }
 

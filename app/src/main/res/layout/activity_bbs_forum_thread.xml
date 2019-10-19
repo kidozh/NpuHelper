@@ -9,29 +9,26 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/bbs_forum_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorNephritis"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/stadium_toolbar">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/bbs_forum_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+                android:layout_height="?attr/actionBarSize">
 
                 <TextView
                     android:id="@+id/bbs_forum_toolbar_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="textStart"
-                    android:textColor="@color/colorPureWhite"
                     android:textSize="24sp"
                     tools:text="@tools:sample/first_names" />
             </androidx.appcompat.widget.Toolbar>

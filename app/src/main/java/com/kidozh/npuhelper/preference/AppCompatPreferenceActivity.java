@@ -31,8 +31,8 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     }
 
     private void configureStatusBar(){
-        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     @Override

@@ -23,8 +23,7 @@
             android:fitsSystemWindows="true"
             android:padding="0dp"
             android:textAlignment="center"
-            android:theme="@style/toolbar_blue_theme"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            >
 
             <TextView
                 android:id="@+id/login_toolbar_textview"
@@ -38,7 +37,6 @@
 
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="@color/colorPureWhite"
                 android:textSize="24sp"
                 app:titleTextAppearance="@style/AppTheme.ToolbarTitleTextStyle" />
 
@@ -57,7 +55,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/loginBgColor"
             tools:context=".accountAuth.LoginUniversityActivity">
 
             <ProgressBar
@@ -79,7 +76,6 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/ecampus_label"
-                android:textColor="@color/loginTitleColor"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +94,6 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:singleLine="true"
-                android:textColor="@color/colorMidnightblue"
-                android:textCursorDrawable="@color/colorMidnightblue"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/matric_number_image"
@@ -116,8 +110,6 @@
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:singleLine="true"
-                android:textColor="@color/colorMidnightblue"
-                android:textCursorDrawable="@color/colorMidnightblue"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/account_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/account_edit_text"
@@ -125,14 +117,13 @@
 
             <Button
                 android:id="@+id/login_btn"
-                style="@style/Widget.AppCompat.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:background="@color/loginAlertTextColor"
+                android:background="@color/colorButtonBackground"
+                android:backgroundTint="@color/colorButtonBackground"
                 android:fontFamily="@font/pt_sans"
                 android:text="@string/sign_in_text"
-                android:textColor="@color/colorPureWhite"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/password_edit_text"
                 app:layout_constraintStart_toStartOf="@+id/password_imageview"
@@ -145,7 +136,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/titillium_web"
                 android:text="@string/login_trouble_text"
-                android:textColor="@color/loginNoticeTextColor"
+                android:textColor="@color/colorTextSecondaryDefault"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/login_btn"
                 app:layout_constraintStart_toStartOf="@+id/login_btn"

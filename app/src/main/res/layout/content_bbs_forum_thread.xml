@@ -136,6 +136,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="@color/colorButtonBackground"
+                android:backgroundTint="@color/colorButtonBackground"
                 android:text="@string/next_forum_page"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -74,8 +74,8 @@ public class bbsLoginActivity extends AppCompatActivity implements loginForumFra
 
     private void configureToolbar(){
         setSupportActionBar(toolbar);
-        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mBBSPersonalCenterToolbarTitle.setText(R.string.bbs_personal_center);
@@ -87,7 +87,7 @@ public class bbsLoginActivity extends AppCompatActivity implements loginForumFra
             public void onClick(View v) {
                 String inputUsername = mUsernameEditText.getText().toString();
                 String inputPassword = mPasswordEditText.getText().toString();
-                Log.d(TAG,"You press"+inputUsername+" USR "+mPasswordEditText.getText().toString());
+                //Log.d(TAG,"You press"+inputUsername+" USR "+mPasswordEditText.getText().toString());
                 if(inputPassword.length() == 0 || inputUsername.length() == 0){
                     Toasty.warning(getApplicationContext(),getString(R.string.account_or_password_required), Toast.LENGTH_SHORT).show();
 
@@ -143,7 +143,7 @@ public class bbsLoginActivity extends AppCompatActivity implements loginForumFra
                         String content = response.body().string();
                         Log.d(TAG,"get response body "+content);
 
-                        if(!content.contains("username")){
+                        if(content.contains("失败")){
                             return false;
                         }
                         else {

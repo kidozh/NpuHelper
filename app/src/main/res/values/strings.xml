@@ -763,5 +763,21 @@
     <string name="about_app_latest_version_description_null">No description given by developer</string>
     <string name="about_app_install_failed">Failed to update app</string>
     <string name="about_app_update_by_broswer">Download and update app by broswer</string>
+    <string name="time_template_yesterday_time">Yesterday %s</string>
+    <string name="time_template_today_time">Today %s</string>
+    <string name="time_template_days_ago">%d days ago %s</string>
+    <string name="bbs_post_thread">Post Thread</string>
+    <string name="bbs_tap_to_enter_title">Tap to name a title(required)</string>
+    <string name="bbs_loading_api">Fetching api, please wait</string>
+    <string name="bbs_post_thread_message">Tap to type message</string>
+    <string name="bbs_post_thread_subject_required">Subject is required</string>
+    <string name="bbs_post_thread_message_required">Message is required</string>
+    <string name="bbs_post_thread_choose_a_picture">Choose a picture</string>
+    <string name="bbs_post_thread_cannot_upload_picture">Upload hash missed, can\'t upload picture to server</string>
+    <string name="bbs_post_thread_upload_hash_not_found">Cann\'t connect with BBS server, and you may not upload a picture.</string>
+    <string name="bbs_thread_uploading_files">Uploading files</string>
+    <string name="bbs_thread_uploading_picture">App is uploading your picture to bbs server.</string>
+    <string name="bbs_thread_upload_files_failed">Failed to upload your file.</string>
+    <string name="bbs_thread_upload_files_successful">Upload files successful</string>
 
 </resources>

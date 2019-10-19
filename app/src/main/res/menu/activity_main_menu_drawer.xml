@@ -17,9 +17,17 @@
             android:icon="@drawable/vector_drawable_address_book_icon"
             android:title="@string/school_department_address_book" />
         <item
+            android:id="@+id/nav_npu_bbs"
+            android:icon="@drawable/vector_drawable_bbs"
+            android:title="@string/npu_bbs" />
+        <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/action_settings" />
+        <item
+            android:id="@+id/nav_about_app"
+            android:icon="@drawable/vector_drawable_info"
+            android:title="@string/about_app" />
     </group>
 
     <!--<item android:title="@string/auth_services" android:id="@+id/auth_service_item">-->

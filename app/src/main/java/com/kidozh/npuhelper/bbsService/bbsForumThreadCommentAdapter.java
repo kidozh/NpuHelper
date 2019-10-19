@@ -35,6 +35,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.kidozh.npuhelper.R;
 import com.kidozh.npuhelper.schoolCalendar.TrustAllCerts;
 import com.kidozh.npuhelper.schoolCalendar.TrustAllHostnameVerifier;
+import com.kidozh.npuhelper.utilities.timeDisplayUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -112,8 +113,9 @@ public class bbsForumThreadCommentAdapter extends RecyclerView.Adapter<bbsForumT
         holder.mContent.setText(spannableString, TextView.BufferType.SPANNABLE);
         holder.mContent.setMovementMethod(LinkMovementMethod.getInstance());
         holder.mContent.setCompoundDrawablePadding(8);
-        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM, Locale.getDefault());
-        holder.mPublishDate.setText(df.format(threadInfo.publishAt));
+        //DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM, Locale.getDefault());
+        //holder.mPublishDate.setText(df.format(threadInfo.publishAt));
+        holder.mPublishDate.setText(timeDisplayUtils.getLocalePastTimeString(mContext,threadInfo.publishAt));
         if(threadInfo.first == true){
             holder.mThreadType.setText(R.string.bbs_thread_publisher);
             holder.mThreadType.setBackgroundColor(mContext.getColor(R.color.colorPomegranate));
@@ -266,8 +268,8 @@ public class bbsForumThreadCommentAdapter extends RecyclerView.Adapter<bbsForumT
                 drawable.setBounds(0,0,screenWidth,newHeight);
             }
             else {
-                myDrawable.setBounds(0,0,width,height);
-                drawable.setBounds(0,0,width,height);
+                myDrawable.setBounds(0,0,width*2,height*2);
+                drawable.setBounds(0,0,width*2,height*2);
             }
 
 

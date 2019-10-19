@@ -16,7 +16,6 @@
         android:layout_marginTop="10dp"
         android:text="昨天"
         android:textAlignment="center"
-        android:textColor="@color/colorWetasphalt"
         android:textSize="14sp" />
 
     <TextView
@@ -26,7 +25,6 @@
         android:layout_marginTop="2dp"
         android:text="11/26"
         android:textAlignment="center"
-        android:textColor="#333333"
         android:textSize="10sp" />
 
 
@@ -46,7 +44,6 @@
         android:layout_marginTop="2dp"
         android:text="霾"
         android:textAlignment="center"
-        android:textColor="#333333"
         android:textSize="18sp" />
 
     <cjh.weatherviewlibarary.WeatherView
@@ -55,15 +52,14 @@
         android:layout_height="180dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
-        app:backgroundColor="@color/colorPureWhite"
-        app:dotColor="@android:color/white"
+        app:backgroundColor="@color/colorBackgroundDefault"
         app:dotRadiu="4dp"
         app:highDotColor="@color/colorPomegranate"
         app:highLineColor="@color/colorAlizarin"
         app:lineStrokWidth="2dp"
         app:lowDotColor="@color/colorGreensea"
         app:lowLineColor="@color/colorGreensea"
-        app:txtColor="@color/colorMidnightblue"
+        app:txtColor="@color/colorTextDefault"
         app:txtSize="12sp"
         app:txtToBorder="10dp"
         app:txtToDot="3dp" />
@@ -83,7 +79,6 @@
         android:layout_marginTop="2dp"
         android:text="霾"
         android:textAlignment="center"
-        android:textColor="#333333"
         android:textSize="18sp" />
 
     <TextView
@@ -93,7 +88,6 @@
         android:layout_marginTop="2dp"
         android:text="北风"
         android:textAlignment="center"
-        android:textColor="#333333"
         android:textSize="12sp" />
 
     <TextView
@@ -103,7 +97,6 @@
         android:layout_marginTop="2dp"
         android:text="3级"
         android:textAlignment="center"
-        android:textColor="#333333"
         android:textSize="12sp" />
 
     <TextView

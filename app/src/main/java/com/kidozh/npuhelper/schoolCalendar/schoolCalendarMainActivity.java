@@ -112,8 +112,8 @@ public class schoolCalendarMainActivity extends AppCompatActivity implements
 
     @SuppressLint("SetTextI18n")
     protected void initView() {
-        getWindow().setStatusBarColor(getColor(R.color.colorPureWhite));
-        getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        getWindow().setStatusBarColor(getColor(R.color.colorPureWhite));
+//        getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this) ;
         String api_string = prefs.getString(getString(R.string.pref_key_calendar_start_day),"mon");
         if(api_string.equals("mon")){

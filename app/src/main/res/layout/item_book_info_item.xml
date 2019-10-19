@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:textAlignment="viewEnd"
-                android:textColor="@color/colorPureBlack"
+                android:textColor="@color/colorTextDefault"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/item_book_key"
                 app:layout_constraintTop_toTopOf="parent"

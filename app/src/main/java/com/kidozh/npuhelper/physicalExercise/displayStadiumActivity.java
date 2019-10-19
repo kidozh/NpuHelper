@@ -90,14 +90,14 @@ public class displayStadiumActivity extends AppCompatActivity {
     }
 
     private void configureStatusBar(){
-        getWindow().setStatusBarColor(getColor(R.color.colorBelizahole));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        getWindow().setStatusBarColor(getColor(R.color.colorBelizahole));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
 
     void configureToolbar(){
 
         toolbar.setTitle(R.string.physical_exercise_department);
-        toolbar.setTitleTextColor(getColor(R.color.colorPureWhite));
+//        toolbar.setTitleTextColor(getColor(R.color.colorPureWhite));
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

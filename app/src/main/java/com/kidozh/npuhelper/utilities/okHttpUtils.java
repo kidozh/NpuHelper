@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cookie;
 import okhttp3.CookieJar;
@@ -20,10 +21,17 @@ import okhttp3.OkHttpClient;
 
 public class okHttpUtils {
 
+    public final static int CONNECT_TIMEOUT =5;
+    public final static int READ_TIMEOUT=5;
+    public final static int WRITE_TIMEOUT=5;
+
     public static OkHttpClient getUnsafeOkHttpClient(){
         OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
         mBuilder.sslSocketFactory(TrustAllCerts.createSSLSocketFactory());
         mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+        mBuilder.readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(WRITE_TIMEOUT,TimeUnit.SECONDS)
+                .connectTimeout(CONNECT_TIMEOUT,TimeUnit.SECONDS);
         return mBuilder.build();
     }
 
@@ -33,6 +41,9 @@ public class okHttpUtils {
         OkHttpClient.Builder mBuilder = new OkHttpClient.Builder().cookieJar(cookieJar);
         mBuilder.sslSocketFactory(TrustAllCerts.createSSLSocketFactory());
         mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+        mBuilder.readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(WRITE_TIMEOUT,TimeUnit.SECONDS)
+                .connectTimeout(CONNECT_TIMEOUT,TimeUnit.SECONDS);
 
 
         return mBuilder.build();

@@ -141,7 +141,7 @@ public class campusAddressBookPhoneGeneralFragment extends Fragment {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toasty.error(getActivity(),getString(R.string.failed_to_parse_json), Toast.LENGTH_LONG).show();
+                Toasty.error(this.mContext,getString(R.string.failed_to_parse_json), Toast.LENGTH_LONG).show();
             }
         }
     }

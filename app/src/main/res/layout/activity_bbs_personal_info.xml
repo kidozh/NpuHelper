@@ -8,8 +8,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bbs_personal_info_appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/toolbar_dark_theme">
+        android:layout_height="wrap_content">
 
 
         <androidx.appcompat.widget.Toolbar
@@ -22,7 +21,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/bbs_personal_center"
-                android:textColor="@color/colorCloud"
                 android:textSize="18sp" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -66,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="8dp"
-                        android:textColor="@color/colorMidnightblue"
+                        android:textColor="@color/colorTextDefault"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"

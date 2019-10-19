@@ -66,7 +66,13 @@
     <color name="air_quality_hazardous">@color/colorWetasphalt</color>
     <color name="air_quality_unknown">@color/colorGreensea</color>
 
+    <color name="colorTextDefault">@color/colorPureBlack</color>
+    <color name="colorBackgroundDefault">@color/colorPureWhite</color>
 
+    <color name="colorTextSecondaryDefault">@color/colorWetasphalt</color>
+    <color name="colorHighlight">@color/colorPeterRiver</color>
+
+    <color name="colorButtonBackground">@color/colorBelizahole</color>
 
 
 </resources>

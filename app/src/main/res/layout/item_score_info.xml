@@ -29,7 +29,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/open_sans"
-                android:textColor="@color/colorWetasphalt"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +42,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/credit_weight"
-                android:textColor="@color/colorTextWetasphalt"
                 app:layout_constraintStart_toStartOf="@+id/item_score_name"
                 app:layout_constraintTop_toBottomOf="@+id/item_score_name" />
 
@@ -65,7 +63,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto"
-                android:textColor="@color/colorMidnightblue"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/item_score_name"

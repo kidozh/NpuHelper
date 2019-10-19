@@ -47,12 +47,12 @@ public class bbsPersonalNoticeAdapter extends RecyclerView.Adapter<bbsPersonalNo
         holder.mFieldNumber.setText(notification.notificationNum);
         holder.mFieldNumber.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         if(notification.notificationNum.equals("0")){
-            holder.mFieldNumber.setTextColor(mContext.getColor(R.color.colorMidnightblue));
-            holder.mFieldDescription.setTextColor(mContext.getColor(R.color.colorMidnightblue));
+            holder.mFieldNumber.setTextColor(mContext.getColor(R.color.colorTextSecondaryDefault));
+            holder.mFieldDescription.setTextColor(mContext.getColor(R.color.colorTextSecondaryDefault));
         }
         else {
-            holder.mFieldNumber.setTextColor(mContext.getColor(R.color.colorPrimary));
-            holder.mFieldDescription.setTextColor(mContext.getColor(R.color.colorMidnightblue));
+            holder.mFieldNumber.setTextColor(mContext.getColor(R.color.colorHighlight));
+            holder.mFieldDescription.setTextColor(mContext.getColor(R.color.colorHighlight));
         }
         if(notification.jsonName.equals("newpush")){
             holder.mFieldDescription.setText(R.string.bbs_notification_new_push);

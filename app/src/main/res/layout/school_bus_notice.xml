@@ -30,6 +30,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/depature_tag"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,6 +41,7 @@
                 android:fontFamily="@font/oxygen"
                 android:text="@string/youyi_campus_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintStart_toStartOf="@+id/depature_tag"
                 app:layout_constraintTop_toBottomOf="@+id/depature_tag"
                 tools:text="@string/youyi_campus_name" />
@@ -52,6 +54,7 @@
                 android:fontFamily="@font/oxygen"
                 android:text="@string/changan_campus_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/depature_place"
                 tools:text="@string/changan_campus_name" />
@@ -62,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/arrivial_tag"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintEnd_toEndOf="@+id/arrival_place"
                 app:layout_constraintTop_toTopOf="@+id/depature_tag" />
 
@@ -72,6 +76,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/shuttle_start_time"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintStart_toStartOf="@+id/depature_place"
                 app:layout_constraintTop_toBottomOf="@+id/depature_place" />
 
@@ -80,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintStart_toStartOf="@+id/shuttle_label"
                 app:layout_constraintTop_toBottomOf="@+id/shuttle_label"
                 tools:text="11:00" />
@@ -90,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/left_time_label"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintEnd_toEndOf="@+id/arrival_tag"
                 app:layout_constraintTop_toTopOf="@+id/shuttle_label" />
 
@@ -98,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintEnd_toEndOf="@+id/left_time_label"
                 app:layout_constraintTop_toBottomOf="@+id/left_time_label"
                 tools:text="1 Hours" />
@@ -130,6 +138,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/depature_tag"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -140,6 +149,7 @@
                 android:fontFamily="@font/oxygen"
                 android:text="@string/changan_campus_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintStart_toStartOf="@+id/depature_tag1"
                 app:layout_constraintTop_toBottomOf="@+id/depature_tag1"
                 tools:text="@string/changan_campus_name" />
@@ -151,6 +161,7 @@
                 android:fontFamily="@font/oxygen"
                 android:text="@string/youyi_campus_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintEnd_toEndOf="@+id/arrival_tag1"
                 app:layout_constraintTop_toTopOf="@+id/depature_place1"
                 tools:text="@string/youyi_campus_name" />
@@ -162,6 +173,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/arrivial_tag"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/depature_tag1" />
 
@@ -172,6 +184,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/shuttle_start_time"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintStart_toStartOf="@+id/depature_place1"
                 app:layout_constraintTop_toBottomOf="@+id/depature_place1" />
 
@@ -180,6 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintStart_toStartOf="@+id/shuttle_label1"
                 app:layout_constraintTop_toBottomOf="@+id/shuttle_label1"
                 tools:text="11:00" />
@@ -190,6 +204,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/left_time_label"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintEnd_toEndOf="@+id/arrival_place1"
                 app:layout_constraintTop_toTopOf="@+id/shuttle_label1" />
 
@@ -198,6 +213,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="@color/colorPureWhite"
                 app:layout_constraintEnd_toEndOf="@+id/left_time_label1"
                 app:layout_constraintTop_toBottomOf="@+id/left_time_label1"
                 tools:text="1 Hours" />

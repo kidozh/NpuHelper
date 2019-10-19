@@ -2,6 +2,9 @@ package com.kidozh.npuhelper.bbsService;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +25,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.kidozh.npuhelper.R;
 import com.kidozh.npuhelper.schoolCalendar.TrustAllCerts;
 import com.kidozh.npuhelper.schoolCalendar.TrustAllHostnameVerifier;
+import com.kidozh.npuhelper.utilities.timeDisplayUtils;
+
+import org.jsoup.helper.StringUtil;
 
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -74,9 +80,21 @@ public class bbsForumThreadAdapter extends RecyclerView.Adapter<bbsForumThreadAd
         holder.mTitle.setText(threadInfo.subject);
         holder.mThreadViewNum.setText(threadInfo.viewNum);
         holder.mThreadReplyNum.setText(threadInfo.repliesNum);
+//        if(threadInfo.lastUpdator != null){
+//            holder.mPublishDate.setText(threadInfo.lastUpdator);
+//        }
 
-        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM, Locale.getDefault());
-        holder.mPublishDate.setText(df.format(threadInfo.publishAt));
+        //DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM, Locale.getDefault());
+        if(threadInfo.lastUpdateTimeString!=null){
+            // String lastUpdateTimeString = TextUtils.htmlEncode(threadInfo.lastUpdateTimeString);
+            SpannableString spannableString = new SpannableString(Html.fromHtml(threadInfo.lastUpdateTimeString));
+            holder.mPublishDate.setText(spannableString, TextView.BufferType.SPANNABLE);
+        }
+        else {
+            holder.mPublishDate.setText(timeDisplayUtils.getLocalePastTimeString(mContext,threadInfo.publishAt));
+        }
+
+        //holder.mPublishDate.setText(df.format(threadInfo.publishAt));
         if(threadInfo.isTop == true){
             holder.mThreadType.setText(R.string.top_forum);
             holder.mThreadType.setBackgroundColor(mContext.getColor(R.color.colorPomegranate));

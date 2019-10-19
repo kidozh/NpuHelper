@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="1024"
     android:viewportHeight="1024" android:width="200dp" android:height="200dp">
-    <path android:fillColor="@color/cardview_light_background"
+    <path android:fillColor="@color/colorBackgroundDefault"
         android:pathData="M499.46624 509.82912m-195.39968 0a9.541 9.541 0 1 0 390.79936 0 9.541 9.541 0 1 0-390.79936 0Z" />
-    <path android:fillColor="@color/cardview_light_background"
+    <path android:fillColor="@color/colorBackgroundDefault"
         android:pathData="M950.96832 455.76192l-57.856 0c-24.02304-176.29184-163.26656-315.55584-339.5584-339.57888L553.55392 57.89696l-108.1344 0 0 58.30656C269.1072 140.22656 129.86368 279.47008 105.84064 455.76192L50.76992 455.76192l0 108.1344 55.05024 0c24.02304 176.29184 163.26656 315.53536 339.57888 339.5584l0 55.54176 108.1344 0 0-55.54176c176.29184-24.02304 315.53536-163.26656 339.5584-339.5584l57.856 0L950.94784 455.76192zM499.48672 801.56672c-161.13664 0-291.71712-130.60096-291.71712-291.71712S338.35008 218.112 499.48672 218.112c161.11616 0 291.71712 130.60096 291.71712 291.71712S660.60288 801.56672 499.48672 801.56672z" />
 </vector>

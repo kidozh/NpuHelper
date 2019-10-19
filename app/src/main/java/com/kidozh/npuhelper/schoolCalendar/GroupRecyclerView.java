@@ -37,7 +37,7 @@ public class GroupRecyclerView extends RecyclerView {
         mGroupHeight = (int) array.getDimension(R.styleable.GroupRecyclerView_group_height, 80);
         mChildItemOffset = (int) array.getDimension(R.styleable.GroupRecyclerView_group_child_offset, 20);
         mTextColor = array.getColor(R.styleable.GroupRecyclerView_group_text_color, context.getColor(R.color.colorGreensea));
-        mGroutBackground = array.getColor(R.styleable.GroupRecyclerView_group_background, context.getColor(R.color.cardview_light_background));
+        mGroutBackground = array.getColor(R.styleable.GroupRecyclerView_group_background, context.getColor(R.color.colorBackgroundDefault));
         isCenter = array.getBoolean(R.styleable.GroupRecyclerView_group_center, false);
         isHasHeader = array.getBoolean(R.styleable.GroupRecyclerView_group_has_header, false);
         mPaddingLeft = (int) array.getDimension(R.styleable.GroupRecyclerView_group_padding_left, 16);

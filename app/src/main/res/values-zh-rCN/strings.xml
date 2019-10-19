@@ -511,4 +511,20 @@
     <string name="about_app_latest_version_description_null">开发者对此版本没有描述文件</string>
     <string name="about_app_install_failed">更新应用失败</string>
     <string name="about_app_update_by_broswer">使用浏览器下载apk并且更新应用</string>
+    <string name="time_template_days_ago">%d天前%s</string>
+    <string name="time_template_today_time">今天 %s</string>
+    <string name="time_template_yesterday_time">昨天 %s</string>
+    <string name="bbs_post_thread">发表帖子</string>
+    <string name="bbs_tap_to_enter_title">键入以命名帖子标题(必填)</string>
+    <string name="bbs_loading_api">正在联系API中，请等待</string>
+    <string name="bbs_post_thread_message">轻触以键入内容</string>
+    <string name="bbs_post_thread_subject_required">需要主题</string>
+    <string name="bbs_post_thread_message_required">帖子需要内容</string>
+    <string name="bbs_post_thread_choose_a_picture">选择图片</string>
+    <string name="bbs_post_thread_cannot_upload_picture">因为缺失令牌，您现在无法上传图片</string>
+    <string name="bbs_post_thread_upload_hash_not_found">无法连接至服务器，因此无法上传图片</string>
+    <string name="bbs_thread_uploading_files">上传文件中</string>
+    <string name="bbs_thread_uploading_picture">应用正在上传图片</string>
+    <string name="bbs_thread_upload_files_failed">由于系统拒绝，无法上传文件</string>
+    <string name="bbs_thread_upload_files_successful">成功上传文件</string>
 </resources>

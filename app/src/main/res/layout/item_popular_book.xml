@@ -45,7 +45,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/open_sans"
-                android:textColor="@color/colorPureBlack"
+                android:textColor="@color/colorTextDefault"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
                     android:layout_weight="0.5"
                     android:fontFamily="@font/lato"
                     android:maxEms="10"
-                    android:textColor="@color/colorMidnightblue"
+                    android:textColor="@color/colorTextSecondaryDefault"
                     tools:text="priscess" />
 
                 <TextView
@@ -81,7 +81,7 @@
                     android:layout_weight="0.5"
                     android:fontFamily="@font/lato"
                     android:textAlignment="viewEnd"
-                    android:textColor="@color/colorMidnightblue"
+                    android:textColor="@color/colorTextSecondaryDefault"
                     tools:text="ODE 2017.05" />
             </LinearLayout>
 
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
-                android:textColor="@color/colorPeterRiver"
+                android:textColor="@color/colorHighlight"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/item_popular_publish_constraintlayout"
                 app:layout_constraintTop_toTopOf="@+id/item_popular_book_item_key"
@@ -116,7 +116,7 @@
                 android:layout_marginStart="8dp"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:progressTint="@color/colorPeterRiver"
+                android:progressTint="@color/colorHighlight"
                 android:rating="3.5"
                 app:layout_constraintBottom_toBottomOf="@+id/item_popular_book_item_key"
                 app:layout_constraintEnd_toStartOf="@+id/item_popular_book_item_value"

@@ -1,0 +1,169 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!-- migrate to material design Theme.AppCompat.Light.DarkActionBar ->  android:Theme.Material-->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize your theme here. -->
+
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+
+        <!--<item name="colorPrimary">@color/colorBelizahole</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorBelizahole</item>-->
+        <!--<item name="colorPrimaryVariant">@color/colorBelizahole</item>-->
+        <!--<item name="colorOnPrimary">@color/colorPureWhite</item>-->
+        <!--<item name="colorSecondary">@color/colorPomegranate</item>-->
+        <!--<item name="colorSecondaryVariant">@color/colorPomegranate</item>-->
+        <!--<item name="colorOnSecondary">@color/colorPureWhite</item>-->
+        <!--<item name="colorAccent">@color/colorAlizarin</item>-->
+
+        <item name="colorPrimary">@color/colorPureBlack</item>
+        <item name="colorPrimaryDark">@color/colorPureBlack</item>
+        <item name="colorAccent">@color/colorBelizahole</item>
+
+<!--        <item name="colorTextDefault">@color/colorPureWhite</item>-->
+
+        <item name="android:actionBarStyle">@style/darkActionBar</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="android:buttonStyle">@style/ButtonAppTheme</item>
+        <item name="buttonStyle">@style/ButtonAppTheme</item>
+        <!--<item name="android:colorButtonNormal">@color/colorBelizahole</item>-->
+
+
+        <!-- reference the card view -->
+        <item name="cardViewStyle">@style/CardView</item>
+    </style>
+
+    <style name="ButtonAppTheme" parent="android:Widget.Material.Light.Button">
+        <item name="android:background">@color/colorBelizahole</item>
+    </style>
+
+    <style name="darkActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/darkActionBarTitle</item>
+    </style>
+
+    <style name="darkActionBarTitle">
+        <item name="android:textColor">@color/colorPureWhite</item>
+    </style>
+
+<!--    <style name="NPUAppTheme" parent="Theme.MaterialComponents.DayNight">-->
+<!--        <item name="colorPrimary">@color/colorPeterRiver</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorBelizahole</item>-->
+<!--        <item name="colorAccent">@color/colorAlizarin</item>-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+<!--        <item name="android:windowTranslucentNavigation">true</item>-->
+<!--    </style>-->
+
+    <style name="WeatherText">
+        <item name="android:textColor">@color/colorConcrete</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+
+    <style name="cityBusEditTextStyle" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorControlActivated">@color/colorPureWhite</item>
+        <item name="colorControlNormal">@color/colorSilver</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:cursorVisible">true</item>
+    </style>
+
+    <style name="AppTheme.ToolBar" parent="Theme.MaterialComponents.DayNight">
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <item name="android:textColor">@color/colorCloud</item>
+        <item name="android:textColorPrimary">@color/colorCloud</item>
+    </style>
+
+    <style name="AppTheme.SettingActivity" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/colorPureBlack</item>
+        <item name="colorPrimaryDark">@color/colorPureBlack</item>
+        <item name="colorAccent">@color/colorBelizahole</item>
+
+    </style>
+
+    <!--定义ToolBar上Title的文字样式-->
+    <style name="AppTheme.ToolbarTitleTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorWetasphalt</item>
+    </style>
+
+    <style name="NPUAppTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/colorPureWhite</item>
+        <item name="colorPrimaryDark">@color/colorPureWhite</item>
+
+        <item name="colorAccent">@color/colorBelizahole</item>
+        <!--        <item name="windowActionBar">false</item>-->
+        <!--        <item name="windowNoTitle">true</item>-->
+        <!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <!--        <item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title" parent="TextAppearance.AppCompat.Title">
+
+        <item name="android:textColor">@color/colorCloud</item>
+    </style>
+
+    <style name="toolbar_blue_theme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/colorPureWhite</item>
+    </style>
+
+    <style name="toolbar_dark_theme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/colorPureWhite</item>
+    </style>
+
+    <style name="toolbar_light_theme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/colorWetasphalt</item>
+    </style>
+
+    <style name="toolbar_pure_white_theme" parent="@style/toolbar_light_theme">
+        <item name="android:background">@color/colorPureWhite</item>
+    </style>
+
+    <style name="book_chip_dark_style" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background_select_state</item>
+        <item name="chipStrokeColor">@color/colorPeterRiver</item>
+        <item name="android:textColor">@color/chip_text_color_select_state</item>
+        <!--<item name="android:textColorHighlight">@color/colorCloud</item>-->
+        <!--<item name="chipSurfaceColor">@color/colorPeterRiver</item>-->
+        <item name="android:shadowColor">@color/colorBelizahole</item>
+        <item name="rippleColor">@color/colorBelizahole</item>
+        <item name="chipIconVisible">true</item>
+    </style>
+
+
+    <style name="book_option_switch" parent="Theme.MaterialComponents.DayNight">
+        <!-- Active thumb color & Active track color(30% transparency)
+            switch 打开时的拇指按钮的颜色 轨迹颜色默认为30%这个颜色 -->
+        <item name="colorControlActivated">@color/colorBelizahole</item>
+        <!-- Inactive thumb color switch关闭时的拇指按钮的颜色 -->
+        <item name="colorSwitchThumbNormal">@color/colorAsbestos</item>
+        <!-- Inactive track color(30% transparency) switch关闭时的轨迹的颜色  30%这个颜色 -->
+        <item name="android:colorForeground">@color/colorSilver</item>
+        <!--使用方法：
+        在布局文件中给需要自定义控件中增加app:theme="@style/MySwitch"-->
+    </style>
+
+</resources>

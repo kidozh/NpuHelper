@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="1024"
+    android:viewportHeight="1024" android:width="200dp" android:height="200dp">
+    <path android:fillColor="@color/colorTextDefault"
+        android:pathData="M245.76 122.88m51.2 0l0 0q51.2 0 51.2 51.2l0 675.84q0 51.2-51.2 51.2l0 0q-51.2 0-51.2-51.2l0-675.84q0-51.2 51.2-51.2Z" />
+    <path android:fillColor="@color/colorTextDefault"
+        android:pathData="M296.96 686.08m-92.16 0a92.16 92.16 0 1 0 184.32 0 92.16 92.16 0 1 0-184.32 0Z" />
+    <path android:fillColor="@color/colorTextDefault"
+        android:pathData="M471.04 122.88m51.2 0l0 0q51.2 0 51.2 51.2l0 675.84q0 51.2-51.2 51.2l0 0q-51.2 0-51.2-51.2l0-675.84q0-51.2 51.2-51.2Z" />
+    <path android:fillColor="@color/colorTextDefault"
+        android:pathData="M522.24 317.44m-92.16 0a92.16 92.16 0 1 0 184.32 0 92.16 92.16 0 1 0-184.32 0Z" />
+    <path android:fillColor="@color/colorTextDefault"
+        android:pathData="M747.52 686.08m-92.16 0a92.16 92.16 0 1 0 184.32 0 92.16 92.16 0 1 0-184.32 0Z" />
+    <path android:fillColor="@color/colorTextDefault"
+        android:pathData="M696.32 122.88m51.2 0l0 0q51.2 0 51.2 51.2l0 675.84q0 51.2-51.2 51.2l0 0q-51.2 0-51.2-51.2l0-675.84q0-51.2 51.2-51.2Z" />
+</vector>

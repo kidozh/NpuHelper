@@ -12,7 +12,7 @@
         android:layout_height="@dimen/app_bar_height"
 
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:expanded="false">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/stadium_display_toolbar_layout"
@@ -30,7 +30,7 @@
 
                 app:layout_collapseMode="pin"
 
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

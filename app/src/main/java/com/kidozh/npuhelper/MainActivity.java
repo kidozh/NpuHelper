@@ -192,24 +192,13 @@ public class MainActivity extends AppCompatActivity implements RecentTransaction
 
         countDownTimer.start();
         Log.d(TAG,"Main thread finished."+mAuthBtn);
-        configureStatusBar();
-        configureToolbar();
+
 
         getWeatherFromDb();
 
         configureAuthBtn(mAuthBtn);
 
 
-    }
-
-    private void configureToolbar(){
-        ColorDrawable drawable = new ColorDrawable(getColor(R.color.colorCloud));
-        getSupportActionBar().setBackgroundDrawable(drawable);
-    }
-
-    private void configureStatusBar(){
-        getWindow().setStatusBarColor(getColor(R.color.colorStatusBarBg));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     private void configureAuthBtn(Button mAuthBtn){
